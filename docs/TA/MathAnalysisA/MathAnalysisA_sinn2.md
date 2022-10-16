@@ -37,7 +37,13 @@ $$\lim\limits_{n\to \infty}\sin((2n)^2)=\lim\limits_{n\to \infty}\sin(n^2+1)^2=\
 
 $$\begin{aligned}
 \sin 4n^2&=\sin\Big((n^2+1)^2-(n^2-1)^2\Big) \\
-&=\sin(n^2+1)^2 \cos(n^2-1)^2 - \sin(n^2-1)^2\cos(n^2+1)^2.
+&=\sin(n^2+1)^2 \cos(n^2-1)^2 - \sin(n^2-1)^2\cos(n^2+1)^2 \\
+&=\Big[\sin(n^2+1)^2-a\Big]\cos(n^2-1)^2-\Big[\sin(n^2-1)^2-a\Big]\cos(n^2+1)^2 \\
+&\qquad + a\Big[\cos(n^2-1)^2-\cos(n^2+1)^2\Big] \\
+&=\Big[\sin(n^2+1)^2-a\Big]\cos(n^2-1)^2-\Big[\sin(n^2-1)^2-a\Big]\cos(n^2+1)^2 \\
+&\qquad -2a\Big[\sin(n^4+1)\sin(2n^2)\Big] \\
+&=\Big[\sin(n^2+1)^2-a\Big]\cos(n^2-1)^2-\Big[\sin(n^2-1)^2-a\Big]\cos(n^2+1)^2 \\
+&\qquad -4a\Big[\sin(n^4+1)\cos(n^2)\Big]\sin(n^2).
 \end{aligned}$$
 
 让$n\to\infty$, 利用前面的命题, 可得上式等号右边趋于0, 从而
