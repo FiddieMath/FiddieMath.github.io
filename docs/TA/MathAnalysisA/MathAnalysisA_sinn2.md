@@ -43,10 +43,10 @@ $$\begin{aligned}
 
 令$n\to \infty$, 则根据$(1)(2)$可知
 
-$$\lim\limits_{n\to +\infty}a\sin(2n)=0.$$
+$$\lim\limits_{n\to \infty}a\sin(2n)=0.$$
 
 若$a\neq 0$, 则
-$\lim\limits_{n\to +\infty}\sin(2n)=0. $
+$\lim\limits_{n\to \infty}\sin(2n)=0. $
 又
 
 $$\sin{4}=\sin(2n+2)\cos(2n-2)-\cos(2n+2)\sin(2n-2),$$
