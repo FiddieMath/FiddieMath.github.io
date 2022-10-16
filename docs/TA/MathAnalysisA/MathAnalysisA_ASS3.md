@@ -3,6 +3,7 @@ layout: default
 title: 第3次作业
 parent: 数学分析A
 grand_parent: 助教工作
+nav_order: 3
 ---
 
 ## 第3次作业
