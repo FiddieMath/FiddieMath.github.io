@@ -23,7 +23,28 @@ nav_order: 4
 
 我们用反证法来证明$\lbrace \sin n^2\rbrace$是发散数列. 
 
-假设$\left\lbrace\sin(n^2)\right\rbrace$收敛, 则
+
+假设$\left\lbrace\sin(n^2)\right\rbrace$收敛, 记$\lim\limits_{n\to \infty}\sin(n^2)=a$. 
+我们把证明分成两部分. 
+
+### Step 1: 先证明$a=0$. 
+
+**【方法一：石老师极力推荐】** 由$\lim\limits_{n\to \infty}\sin(n^2)=a$可得
+
+$$\lim\limits_{n\to \infty}\sin((2n)^2)=\lim\limits_{n\to \infty}\sin(n^2+1)^2=\lim\limits_{n\to \infty}\sin(n^2-1)^2 = a.$$
+
+注意恒等式$(2n)^2=(n^2+1)^2-(n^2-1)^2$, 所以
+
+$$\begin{aligned}
+\sin 4n^2&=\sin\Big((n^2+1)^2-(n^2-1)^2\Big) \\
+&=\sin(n^2+1)^2 \cos(n^2-1)^2 - \sin(n^2-1)^2\cos(n^2+1)^2.
+\end{aligned}$$
+
+让$n\to\infty$, 利用前面的命题, 可得上式等号右边趋于0, 从而
+
+$$a=\lim\limits_{n\to\infty}\sin 4n^2 = 0.$$
+
+**【方法二：麻烦一点】** 由$\lim\limits_{n\to \infty}\sin(n^2)=a$可得
 
 $$\lim\limits_{n\to \infty}\sin(n^2)=\lim\limits_{n\to \infty}\sin(n+i)^2\triangleq a\in\mathbb{R}, \qquad i\in\{-2,-1,1,2\}.$$
 
@@ -55,7 +76,9 @@ $$\sin{4}=\sin(2n+2)\cos(2n-2)-\cos(2n+2)\sin(2n-2),$$
 
 $$\lim\limits_{n\to \infty}\sin(n^2)=0. $$ 
 
-又由$(n+1)^2+(n-1)^2-2n^2=2$知，
+### Step 2: 导出矛盾.
+
+由$(n+1)^2+(n-1)^2-2n^2=2$知，
 
 $$\begin{aligned}
 \sin{2}&=\sin\Big[(n+1)^2+(n-1)^2-2n^2\Big] \\
