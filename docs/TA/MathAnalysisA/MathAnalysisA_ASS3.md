@@ -25,13 +25,13 @@ $\sup\lbrace|a_k-a_l|:k,l\ge n\rbrace=\sup\lbrace a_k|k\ge n\rbrace -\inf\lbrace
 - 2.5/11题: 没用$\varepsilon-N$语言把过程写清楚, 而是直接取极限, 保号性是“$ < $”变成“$\le$”. 
 
 {% endraw %}
-### 课后思考题: 
+### 作业之后的思考题:（此部分思考题为助教友情提供，与上课无关，感兴趣可以做，不感兴趣可以不做） 
 
 **1.** 设$f(x)$在区间$I$中有界, 证明: 
 
 $$\sup\limits_{x\in I}f(x)-\inf\limits_{x\in I}f(x)=\sup\limits_{x,y\in I}|f(x)-f(y)|.$$
 
-**2.** 证明: 对任意数列$\{a_n\}$, 都有
+**2.** 证明: 对任意数列$\lbrace a_n\rbrace$, 都有
 
 $$\mathop{\underline{\lim}}\limits_{n\to\infty}\left(1+\dfrac{1}{n}\right)^{a_n}
 =e^{\mathop{\underline{\lim}}\limits_{n\to\infty}\frac{a_n}{n}}.$$
