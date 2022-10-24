@@ -49,4 +49,34 @@ $$\vert f(x)-f(y)\vert \le \dfrac{1}{n^{\alpha-1}}\vert x-y\vert^{\alpha}.$$
 进而推导出$f(x)$恒为$0$.
 
 
+{: .note }
+> 下面的题可以用来巩固一下对“上确界”概念的理解.
+
+{% raw %}
+**2.** 设$E$是数集, 函数$f:E\to\mathbb{R}$. 定义函数$f$的**连续模(modulus of continuity)**为
+
+$$\omega(\delta)=\sup\{|f(x_1)-f(x_2)|\,|x_1,x_2\in E, |x_1-x_2| < \delta\}$$
+
+证明: 
+
+(1)$\omega(\delta)$是单调不降的非负函数, 并且在$0$处存在右极限:
+
+$$\omega(0^+)=\lim\limits_{\delta\to 0^+}\omega(\delta).$$
+
+(2)对任意的$\varepsilon>0$, 存在$\delta > 0$, 使得对任意$x_1,x_2\in E$, 当$\vert x_1 - x_2 \vert < \delta$时, 有
+
+$$|f(x_1)-f(x_2)| < \omega(0^+) + \varepsilon.$$
+
+(3)若$E$是区间(例如: 闭区间、开区间、半开半闭区间), 则
+
+$$\omega(\delta_1+\delta_2) \le \omega(\delta_1) + \omega(\delta_2).$$
+
+(4)设$E=\mathbb{R}$, 则函数$f(x)=x$的连续模为$\omega(\delta)=\delta(\forall \delta>0)$.
+
+(5)设$E=\mathbb{R}$, 则函数$f(x)=\sin(x^2)$的连续模为$\omega(\delta)=2(\forall \delta>0)$.
+
+(6)函数$f$在集合$E$上一致连续当且仅当$\omega(0^+)=0$. 
+(**注：** 现在, 除了书上3.4节第17题之外，这里又给出了另外一种证明$\sin(x^2)$不是一致连续的方法.)
+
+
 {% endraw %}
