@@ -46,7 +46,7 @@ $$|f(x)-f(y)|\le(x-y)^{\alpha},  \qquad \forall x,y\in(-\infty,+\infty).$$
 
 $$\vert f(x)-f(y)\vert \le \dfrac{1}{n^{\alpha-1}}\vert x-y\vert^{\alpha}.$$
 
-进而推导出$f(x)$恒为$0$.
+进而推导出$f(x)$必为常值函数.
 
 
 {: .note }
