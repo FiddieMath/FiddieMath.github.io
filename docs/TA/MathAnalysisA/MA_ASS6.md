@@ -52,7 +52,6 @@ $$\vert f(x)-f(y)\vert \le \dfrac{1}{n^{\alpha-1}}\vert x-y\vert^{\alpha}.$$
 {: .note }
 > 下面的题可以用来巩固一下对“上确界”概念的理解.
 
-{% raw %}
 **2.** 设$E$是数集, 函数$f:E\to\mathbb{R}$. 定义函数$f$的**连续模(modulus of continuity)**为
 
 $$\omega(\delta)=\sup\{|f(x_1)-f(x_2)|\,|x_1,x_2\in E, |x_1-x_2| < \delta\}$$
