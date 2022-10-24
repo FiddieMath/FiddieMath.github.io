@@ -76,7 +76,6 @@ $$\omega(\delta_1+\delta_2) \le \omega(\delta_1) + \omega(\delta_2).$$
 (5)设$E=\mathbb{R}$, 则函数$f(x)=\sin(x^2)$的连续模为$\omega(\delta)=2(\forall \delta>0)$.
 
 (6)函数$f$在集合$E$上一致连续当且仅当$\omega(0^+)=0$. 
-(**注：** 现在, 除了书上3.4节第17题之外，这里又给出了另外一种证明$\sin(x^2)$不是一致连续的方法.)
 
 
 {% endraw %}
