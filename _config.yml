@@ -89,7 +89,7 @@ heading_anchors: true
 # Aux links for the upper right navigation
 aux_links:
   "Fiddie's Homepage":
-    - "fiddiemath.github.io/"
+    - "https://fiddiemath.github.io/"
 
 # Makes Aux links open in a new tab. Default is false
 aux_links_new_tab: false
@@ -100,7 +100,7 @@ nav_sort: case_sensitive # Capital letters sorted before lowercase
 
 # External navigation links
 nav_external_links:
-  - title: Just the Docs on GitHub
+  - title: FiddieMath on GitHub
     url: https://github.com/FiddieMath/FiddieMath.github.io
 
 # Footer content
