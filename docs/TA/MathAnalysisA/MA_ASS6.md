@@ -39,7 +39,7 @@ nav_order: 9
 
 **1.** 设$f$是定义在$(-\infty,+\infty)$上的函数, 满足
 
-$$|f(x)-f(y)|\le(x-y)^{\alpha},  \qquad \forall x,y\in(-\infty,+\infty).$$
+$$|f(x)-f(y)|\le\vert x-y\vert^{\alpha},  \qquad \forall x,y\in(-\infty,+\infty).$$
 
 其中实数$\alpha>1$. 
 证明：对任意的$x,y\in(-\infty,+\infty)$以及任意的正整数$n$, 都有

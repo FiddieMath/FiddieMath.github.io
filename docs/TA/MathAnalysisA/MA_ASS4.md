@@ -46,6 +46,14 @@ $$f(x)=\left\{\begin{aligned}
 
 证明: $f(x)$在$x=\dfrac{p}{2^n}(\forall n\ge 1, p\text{是奇数})$处连续, 在其余点不连续. 
 
+{: .note }
+> 下面这题是2012年中国科学技术大学数学分析考研真题.
+
+**3.** 设$f:(0,+\infty)\to(0,+\infty)$是单调递增的函数, 如果$\lim\limits_{t\to+\infty}\dfrac{f(2t)}{f(t)}=1$,
+证明: 对任意$m>0$, 都有
+
+$$\lim\limits_{t\to+\infty}\dfrac{f(mt)}{f(t)}=1.$$
+
 
 
 {% endraw %}

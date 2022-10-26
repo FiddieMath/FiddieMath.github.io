@@ -145,6 +145,12 @@ callouts:
   warning:
     title: Warning
     color: red
+  theorem:
+    title: Theorem
+    color: green
+  remark:
+    title: Remark
+    color: yellow
 
 # Google Analytics Tracking (optional)
 # e.g, UA-1234567-89
