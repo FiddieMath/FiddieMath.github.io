@@ -5,6 +5,8 @@ parent: 讨论班
 nav_order: 11
 ---
 
+发布日期：2022年9月22日
+
 # GFEM overview
 
 {: .no_toc }

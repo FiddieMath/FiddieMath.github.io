@@ -6,6 +6,8 @@ grand_parent: 讨论班
 nav_order: 1
 ---
 
+发布日期：2022年8月17日
+
 {: .no_toc }
 
 <details open markdown="block">
