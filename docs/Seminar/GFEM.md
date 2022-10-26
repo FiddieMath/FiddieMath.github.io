@@ -233,7 +233,9 @@ $$\begin{aligned}
 \omega_j^{(2)}&=\lbrace (x,y):(x-\bar{x})^2+(y-\bar{y})^2<\delta^2, \text{ where }\delta<h\rbrace .
 \end{aligned}$$
 
-![图1](https://github.com/FiddieMath/FiddieMath.github.io/GFEM1.png)
+<div align = center>
+<img src="/pics/GFEM1.png" width = "200"/>
+</div>
 
 然后我们再假设$\partial\omega_j^{(2)}\subset\Gamma_2$并且在$\partial \omega_j^{(2)}$上满足$g=0$,
 即在问题$(2)$中有$\dfrac{\partial u}{\partial n}=0$ on $\partial \omega_j^{(2)}$.
@@ -292,7 +294,9 @@ ${^{\mathcal{H}}}W_{j,i}^{(p)}={^{\mathcal{H}}}W_j^{(p)}\chi_j^{(i)}, i=1,2$).
 
 我们现在只考虑上述前2点. 假设边界$\partial\Omega$在点$A$处有角点:
 
-![图2](https://github.com/FiddieMath/FiddieMath.github.io/GFEM2.png)
+<div align = center>
+<img src="/pics/GFEM2.png"  width = "135" />
+</div>
 
 如果问题$(1)$中$f$和$g$充分光滑, 则在$A$的邻域内,
 
