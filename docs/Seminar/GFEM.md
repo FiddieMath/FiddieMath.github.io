@@ -7,6 +7,18 @@ nav_order: 11
 
 # GFEM overview
 
+{: .no_toc }
+
+<details open markdown="block">
+  <summary>
+    目录
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
+
+
 考虑下面的问题, 其中$\Omega\subset\mathbb{R}^2$, $\Gamma=\partial\Omega:=\Gamma_1\cup\Gamma_2$, 并且
 
 $$\left\lbrace \begin{aligned}
@@ -401,7 +413,7 @@ $$\max\limits_{(x,y)\in\Omega}|\nabla\phi_j(x,y)|\le\dfrac{C_2}{\mathrm{diam}(\o
 {: .remark }
 > 我们不应只是为了一个影响因素来定义单位分解函数. 事实上, 定义$\lbrace \phi_j\rbrace $需要综合广义有限元方法的多个影响因素. 
 
-## 4 小结
+## 5 小结
 
 用广义有限元方法或者其他类似方法在下面这些问题中能得到比较好的解决: 
 - 非光滑解的问题(可能因为边界条件或者系数的原因导致的)
