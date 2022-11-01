@@ -74,25 +74,26 @@ $$|a_{n+p}-a_n|=\dfrac{1}{n+1}+\cdots+\dfrac{1}{n+p} \le \dfrac{p}{n} \to 0(n\to
 {: .problem}
 > $\color{blue}{\mathbf{\text{3.}}}$ 设$\lim\limits_{x\to x_0}g(x)=y_0$, $\lim\limits_{y\to y_0}f(y)=\alpha$, 则$\lim\limits_{x\to x_0}f(g(x))=\alpha.$ 
 
-正确. 回顾复合函数的连续性(命题3.3.3):
+错误. 回顾复合函数的连续性(命题3.3.3):
 
 > $\color{purple}{\mathbf{\text{Proposition 3.3.3}}}$ 设函数$f(y)$在$y_0$连续, 函数$g(x)$在$x_0$处的极限为$y_0$, 
 > 则$f(g(x))$在$x_0$处的极限为$f(y_0)$. 
 
-本题把上述命题的连续性条件推广为了极限存在的条件. (注意连续性的条件是$\lim\limits_{x\to x_0}f(x)=f(x_0)$, 
+本题把上述命题的连续性条件变为了极限存在的条件. (注意连续性的条件是$\lim\limits_{x\to x_0}f(x)=f(x_0)$, 
 这里把连续性条件中的$f(x_0)$换成了$\alpha$)
 
-证明如下：
-由于$\lim\limits_{y\to y_0}f(y)=\alpha$, 所以对任意$\varepsilon>0$, 存在$\delta_1>0$($\delta_1$只与$\varepsilon$有关), 
-使得当$\vert y-y_0\vert < \delta_1$时, $\vert f(y)-\alpha\vert < \varepsilon$.
+我们考虑函数极限是在去心开邻域$V(x_0,\delta)=(x_0-\delta,x_0)\cup(x_0,x_0+\delta)$中考虑的! 
 
+但极限存在不代表连续, 例如函数
 
-由于$\lim\limits_{x\to x_0}g(x)=y_0$, 所以对于$\varepsilon_1=\delta_1$, 
-存在$\delta_2>0$($\delta_2$只依赖于$\delta_1$, 于是$\delta_2$就只依赖于$\varepsilon$), 使得当$\vert x-x_0\vert < delta_2$时, $\vert g(x)-y_0\vert < \varepsilon_1 = \delta_1$. 此时, $y=g(x)$满足$\vert y-y_0\vert < \delta_1$, 于是
+$$f(x)=\left\{\begin{aligned}
+&1, &&x=0, \\
+&0, &&x\ne 0,
+\end{aligned}\right.$$
 
-$$\vert f(y) - \alpha\vert < \varepsilon$$
+它满足$\lim\limits_{y\to 0}f(y)=0$, 但是在$0$处不连续. 
 
-即$\vert f(g(x))-\alpha\vert < \varepsilon.$ $\square$
+令$g(x)=0$(常函数), 则$f(g(x))=f(0)=1$恒成立, 于是$\lim\limits_{x\to x_0}f(g(x))=1 \ne 0$. 
 
 {: .problem}
 > $\color{blue}{\mathbf{\text{4.}}}$ 设$f$在$x_0$附近有定义, 如果对任何收敛于$x_0$的数列$\lbrace x_n\rbrace $, 数列$\lbrace f(x_n)\rbrace $都收敛, 则$f$在$x_0$连续.
@@ -119,18 +120,6 @@ $$x_{2n}=x_0, \qquad x_{2n-1}=x_0+\dfrac{1}{n}, \qquad n\in\mathbb{N}, $$
 $$f(x_0)=\alpha,$$
 
 从而$f$在$x_0$处连续. 
-
-{: .remark}
-> 我们考虑函数极限是在去心开邻域$V(x_0,\delta)=(x_0-\delta,x_0)\cup(x_0,x_0+\delta)$中考虑的! 
-> 
-> 但极限存在不代表连续, 例如函数
-> 
-> $$f(x)=\left\{\begin{aligned}
-&1, &&x=0, \\
-&0, &&x\ne 0,
-\end{aligned}\right.$$
-> 
-> 它满足$\lim\limits_{x\to 0}f(x)=0$, 但是在$0$处不连续. 
 
 
 {: .problem}
