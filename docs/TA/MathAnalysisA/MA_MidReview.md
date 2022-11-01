@@ -380,6 +380,13 @@ $$f(c)=\lim\limits_{n\to\infty}f(x_n)=f(a),$$
 > 事实上, 在证明**定理3.4.2(零值定理, Bolzano)** 的时候, 就用到了这个证明技巧. 请读者回顾课本.
 
 
+{: .remark}
+> 本题的其他做法：
+> 
+> 1. 反证法, 考虑$A=\lbrace x\vert \text{对任意}y\in[x,b], \text{都有}f(y) < f(a)\rbrace$.
+> 
+> 2. 考虑$A=\lbrace x\vert x\in[a,b], f(x)\ge f(a)\rbrace$, 然后证明$b\in A$. 
+
 
 
 ### 第4题
