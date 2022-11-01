@@ -21,7 +21,7 @@ nav_order: 10
 4. 设$f$在$x_0$附近有定义, 如果对任何收敛于$x_0$的数列$\lbrace x_n\rbrace $, 数列$\lbrace f(x_n)\rbrace $都收敛, 则$f$在$x_0$连续.
 5. 如果$f$在区间中每一点都局部单调, 则$f$在区间上单调.
 6. $\lim\limits_{n\to\infty}a_n=A \Longleftrightarrow \forall\varepsilon>0, \exists N>0$, 使得当$n\ge 2023N$时, 有$\vert a_n-A\vert \le 2022\varepsilon.$
-7. $\lim\limits_{n\to\infty}a_n=A \Longleftrightarrow \forall\varepsilon>0, \exists N>0$, 使得当$n\ge N$时, 有$\vert a_n-A\vert \le \varepsilon.$
+7. $\lim\limits_{n\to\infty}a_n=A \Longleftrightarrow \forall\varepsilon\ge 0, \exists N>0$, 使得当$n\ge N$时, 有$\vert a_n-A\vert \le \varepsilon.$
 8. $\lim\limits_{n\to\infty}a_n=A \Longleftrightarrow \forall\varepsilon\in(0,1), \exists N>0$, 使得当$n\ge N$时, 有$\vert a_n-A\vert \le 2\varepsilon.$
 9. $\lim\limits_{n\to\infty}a_n=A \Longleftrightarrow \exists N>0$, 使得$\forall \varepsilon\in(0,1), \forall n>N$, 有$\vert a_n-A\vert  < \varepsilon.$ 
 10. $\lim\limits_{n\to\infty}a_n=A \Longleftrightarrow \forall \varepsilon>0$, $\exists N\ge 0$, 使得当$n\ge 2N$时, $A-\varepsilon < \inf\limits_{k\ge n} a_k\le \sup\limits_{k\ge n}a_k < A+\varepsilon.$
@@ -168,7 +168,7 @@ $\square$
 {: .problem}
 > $\color{blue}{\mathbf{\text{6.}}}$ $\lim\limits_{n\to\infty}a_n=A \Longleftrightarrow \forall\varepsilon>0, \exists N>0$, 使得当$n\ge 2023N$时, 有$\vert a_n-A\vert \le 2022\varepsilon.$
 > 
-> $\color{blue}{\mathbf{\text{7.}}}$ $\lim\limits_{n\to\infty}a_n=A \Longleftrightarrow \forall\varepsilon>0, \exists N>0$, 使得当$n\ge N$时, 有$\vert a_n-A\vert \le \varepsilon.$
+> $\color{blue}{\mathbf{\text{7.}}}$ $\lim\limits_{n\to\infty}a_n=A \Longleftrightarrow \forall\varepsilon\ge 0, \exists N>0$, 使得当$n\ge N$时, 有$\vert a_n-A\vert \le \varepsilon.$
 > 
 > $\color{blue}{\mathbf{\text{8.}}}$ $\lim\limits_{n\to\infty}a_n=A \Longleftrightarrow \forall\varepsilon\in(0,1), \exists N>0$, 使得当$n\ge N$时, 有$\vert a_n-A\vert \le 2\varepsilon.$
 
