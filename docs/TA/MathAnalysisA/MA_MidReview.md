@@ -169,7 +169,12 @@ $\square$
 > 
 > $\color{blue}{\mathbf{\text{8.}}}$ $\lim\limits_{n\to\infty}a_n=A \Longleftrightarrow \forall\varepsilon\in(0,1), \exists N>0$, 使得当$n\ge N$时, 有$\vert a_n-A\vert \le 2\varepsilon.$
 
-这些都是正确的命题, 回顾2.1节第1题. 
+6和8都是正确的命题, 回顾2.1节第1题. 
+
+7是错误的, 可以证明：对于$\varepsilon=0$, 存在$N>0$, 使得当$n\ge N$时, 有$\vert a_n-A\vert \le \varepsilon=0$, 
+$\Leftrightarrow$存在$N>0$, 当$n\ge N$时有$a_n=A$, 即从某项起$\lbrace a_n\rbrace$是常数列. 
+
+所以取$a_n=\dfrac{1}{n}$, $A=0$, 即可得到一个反例(左边推不出右边).  
 
 {: .problem}
 > $\color{blue}{\mathbf{\text{9.}}}$ $\lim\limits_{n\to\infty}a_n=A \Longleftrightarrow \exists N>0$, 使得$\forall \varepsilon\in(0,1), \forall n>N$, 有$\vert a_n-A\vert  < \varepsilon.$ 
