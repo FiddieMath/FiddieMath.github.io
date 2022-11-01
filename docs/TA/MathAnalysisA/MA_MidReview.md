@@ -128,44 +128,42 @@ $$f(x_0)=\alpha,$$
 {: .problem}
 > $\color{blue}{\mathbf{\text{5.}}}$ 如果$f$在区间中每一点都局部单调, 则$f$在区间上单调.
 
-**(1)** 先考虑闭区间. 
+错误. 考虑函数
 
-假设$f$定义在闭区间$I$上. 对任意$x\in I$, 根据局部单调的定义, 存在$\delta_x>0$, 
+$$f(x)=\left\{\begin{aligned}
+&x, &&x\in[0,1], \\
+&1, &&x\in[1,2], \\
+&3-x, &&x\in[2,3], \\
+&0, &&\text{其他}
+\right.}$$
+
+{: .remark}
+> 如果把“局部单调”和“单调”分别改成“局部严格单调”和“严格单调”, 那么结论正确. 证明如下：
+> 
+> **(1)** 先考虑闭区间. 
+> 
+> 假设$f$定义在闭区间$I$上. 对任意$x\in I$, 根据局部单调的定义, 存在$\delta_x>0$, 
 使得$f$在区间$(x-\delta_x,x+\delta_x)$中是单调函数. 我们考虑区间$I$的开覆盖如下:
-
-$$I=\bigcup\limits_{x\in I}(x-\delta_x,x+\delta_x),$$
-
-由Heine-Borel定理(有限覆盖定理, 即闭区间的开覆盖必有有限子覆盖), 我们可以找到有限个点$x_1,\cdots,x_n$, 使得
-
-$$I=\bigcup\limits_{i=1}^n(x_i-\delta_{x_i}, x_i+\delta_{x_i}).$$
-
-注意, $f$在每个区间$(x_i-\delta_{x_i}, x_i+\delta_{x_i})$上都是单调函数.
+> 
+> $$I=\bigcup\limits_{x\in I}(x-\delta_x,x+\delta_x),$$
+> 
+> 由Heine-Borel定理(有限覆盖定理, 即闭区间的开覆盖必有有限子覆盖), 我们可以找到有限个点$x_1,\cdots,x_n$, 使得
+> 
+> $$I=\bigcup\limits_{i=1}^n(x_i-\delta_{x_i}, x_i+\delta_{x_i}).$$
+> 
+> 注意, $f$在每个区间$(x_i-\delta_{x_i}, x_i+\delta_{x_i})$上都是单调函数.
 不妨设$f$在某个$(x_i-\delta_{x_i},x_i+\delta_{x_i})$单调递增(单调递减情形完全对偶), 
 那么根据
-
-$$(x_k-\delta_{x_k},x_k+\delta_{x_k})\cap (x_{k+1}-\delta_{x_{k+1}}, x_{k+1}+\delta_{x_{k+1}})\ne\varnothing,$$ 
-
-可知$f$在$(x_{i-1}-\delta_{x_{i-1}},x_{i-1}+\delta_{x_{i-1}})$以及$(x_{i+1}-\delta_{x_{i+1}},x_{i+1}+\delta_{x_{i+1}})$也是单调递增. 这样不断进行下去可知$f$在$I$上单调递增. 
-
-**(2)** 再考虑开区间或者半开半闭区间. 开区间$(a,b)$、半开半闭区间$[a,b), (a,b]$可以写成
-
-$$\begin{aligned}
-(a,b)&=\bigcup\limits_{n=1}^{\infty}\left[a+\dfrac{1}{n}, b-\dfrac{1}{n}\right], \\
-[a,b)&=\bigcup\limits_{n=1}^{\infty}\left[a, b-\dfrac{1}{n}\right], \\
-(a,b]&=\bigcup\limits_{n=1}^{\infty}\left[a+\dfrac{1}{n}, b\right].
-\end{aligned}$$
-
-由于$f$在每个闭区间上都是单调递增函数, 并且对于开区间的情形(另外两个情况完全类似), 
-对任意$x,y\in(a,b)$, $x < y$, 存在充分大的$n$ $\Bigg($事实上, 
-取$n>\max\left\lbrace\dfrac{1}{b-y}, \dfrac{1}{x-a}\right\rbrace$即可 $\Bigg)$, 
-使得$x,y\in \left[a+\dfrac{1}{n}, b-\dfrac{1}{n}\right]$. 
-这样, 由$f$在这个闭区间上单调递增可知$f(x) \le f(y)$, 从而$f$在$(a,b)$上单调递增. 
-
-**(3)** 对于包含无限的区间, 例如$(a,\infty)$, 我们可以写
-
-$$(a,\infty) = \bigcup\limits_{n=1}^{\infty}\left[a+\dfrac{1}{n},n\right].$$
-
-然后用(2)中的论证过程即可. $\square$
+> 
+> $$(x_k-\delta_{x_k},x_k+\delta_{x_k})\cap (x_{k+1}-\delta_{x_{k+1}}, x_{k+1}+\delta_{x_{k+1}})\ne\varnothing,$$ 
+> 
+> 可知$f$在$(x_{i-1}-\delta_{x_{i-1}},x_{i-1}+\delta_{x_{i-1}})$以及$(x_{i+1}-\delta_{x_{i+1}},x_{i+1}+\delta_{x_{i+1}})$也是单调递增(**注：**如果把“严格单调”改成“单调”, 那这一步是错的, 因为局部常函数同时是递增或者递减的). 
+这样不断进行下去可知$f$在$I$上单调递增. 
+> 
+> **(2)** 对于一般的区间$I$, 假设$x_1,x_2\in I$, 满足$x_1 < x_2$. 由于闭区间$[x_1,x_2]$上的每个点都是局部单调的, 不妨设在某一个点是局部单调递增. 
+利用(1)中证明的结论可知函数$f(x)$在区间$[x_1,x_2]$上是单调递增的, 于是$f(x_1) < f(x_2)$.
+从而$f(x)$在$I$上是单调递增的. 
+$\square$
 
 {: .problem}
 > $\color{blue}{\mathbf{\text{6.}}}$ $\lim\limits_{n\to\infty}a_n=A \Longleftrightarrow \forall\varepsilon>0, \exists N>0$, 使得当$n\ge 2023N$时, 有$\vert a_n-A\vert \le 2022\varepsilon.$
