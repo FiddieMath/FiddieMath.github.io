@@ -151,6 +151,9 @@ callouts:
   remark:
     title: Remark
     color: yellow
+  problem:
+    title: Problem
+    color: blue
 
 # Google Analytics Tracking (optional)
 # e.g, UA-1234567-89
