@@ -6,6 +6,9 @@ grand_parent: 助教工作
 nav_order: 10
 ---
 
+{: .warning}
+> 此页面未完成, 仍有错误. 
+
 {% raw %}
 
 # 问题
@@ -114,8 +117,8 @@ $$\lim\limits_{x\to x_0}f(x)=\alpha.$$
 
 $$x_{2n}=x_0, \qquad x_{2n-1}=x_0+\dfrac{1}{n}, \qquad n\in\mathbb{N}, $$
 
-则$\lbrace x_n\rbrace$收敛于$\alpha$, 从而它的所有子列都收敛于$\alpha$, 
-即$\lbrace f(x_{2n-1})\rbrace$收敛于$\alpha$, 即必有
+则$\lbrace f(x_n)\rbrace$收敛于$\alpha$, 从而它的所有子列都收敛于$\alpha$, 
+即$\lbrace f(x_{2n})\rbrace$收敛于$\alpha$, 即必有
 
 $$f(x_0)=\alpha,$$
 
@@ -125,7 +128,7 @@ $$f(x_0)=\alpha,$$
 {: .problem}
 > $\color{blue}{\mathbf{\text{5.}}}$ 如果$f$在区间中每一点都局部单调, 则$f$在区间上单调.
 
-正确. 仿照习题2.5/12题和例2.5.2来证明即可. 我们假设“单调”都是指单调递增, 而单调递减的证明过程是完全对偶的.
+我们假设“单调”都是指单调递增, 而单调递减的证明过程是完全对偶的.
 
 **(1)** 先考虑闭区间. 
 
