@@ -128,8 +128,6 @@ $$f(x_0)=\alpha,$$
 {: .problem}
 > $\color{blue}{\mathbf{\text{5.}}}$ 如果$f$在区间中每一点都局部单调, 则$f$在区间上单调.
 
-我们假设“单调”都是指单调递增, 而单调递减的证明过程是完全对偶的.
-
 **(1)** 先考虑闭区间. 
 
 假设$f$定义在闭区间$I$上. 对任意$x\in I$, 根据局部单调的定义, 存在$\delta_x>0$, 
@@ -142,7 +140,7 @@ $$I=\bigcup\limits_{x\in I}(x-\delta_x,x+\delta_x),$$
 $$I=\bigcup\limits_{i=1}^n(x_i-\delta_{x_i}, x_i+\delta_{x_i}).$$
 
 注意, $f$在每个区间$(x_i-\delta_{x_i}, x_i+\delta_{x_i})$上都是单调函数.
-不妨设$f$在某个$(x_i-\delta_{x_i},x_i+\delta_{x_i})$单调递增, 
+不妨设$f$在某个$(x_i-\delta_{x_i},x_i+\delta_{x_i})$单调递增(单调递减情形完全对偶), 
 那么根据
 
 $$(x_k-\delta_{x_k},x_k+\delta_{x_k})\cap (x_{k+1}-\delta_{x_{k+1}}, x_{k+1}+\delta_{x_{k+1}})\ne\varnothing,$$ 
