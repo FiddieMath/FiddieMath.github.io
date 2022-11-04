@@ -100,15 +100,15 @@ f(\tfrac{x}{2^n})-f(\tfrac{x}{2^{n+1}})&=O(x)
 
 **问题1：** 错误的绝对值
 
-少部分同学记错绝对值不等式的方向了
+正确的绝对值不等式是
 
 $$\vert \vert x\vert -\vert y\vert \vert \le \vert x\pm y\vert \le \vert x\vert +\vert y\vert .$$
 
-或者这样写：如果$\vert x\vert \ge \vert a\vert $, 则
+但少部分同学记错绝对值不等式的方向了，或者这样写：如果$\vert x\vert \ge \vert a\vert $, 则
 
 $$\vert \vert x\vert -\vert y\vert \vert  \ge \vert \vert a\vert -\vert y\vert \vert $$
 
-这都是错的！
+这是错的！
 
 **问题2：** 消失的绝对值
 
