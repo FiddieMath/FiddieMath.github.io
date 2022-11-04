@@ -6,6 +6,10 @@ grand_parent: 助教工作
 nav_order: 10
 ---
 
+<div align = center>
+<img src="/pics/funny1.jpg" width = "500"/>
+</div>
+
 {% raw %}
 
 # 问题
