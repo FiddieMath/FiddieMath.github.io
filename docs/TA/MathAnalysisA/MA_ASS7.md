@@ -18,17 +18,22 @@ nav_order: 11
 
 ## 作业之后的思考题:（此部分思考题为助教友情提供，与上课无关，感兴趣可以做，不感兴趣可以不做）
 
-**1. ** 证明：如果$f(x)$是连续的, 并且
+**1.** 证明：如果$f(x)$是连续的, 并且
 
 $$f(x)=\int_0^xf(t)\mathrm{d}t,$$
 
 则$f(x)$恒为零. 
 
-**2. ** 设$f\in \mathrm{Lip}([0,1])$, 即存在常数$L>0$满足
+**2.** (1)设$f\in \mathrm{Lip}([0,1])$, 即存在常数$M>0$满足
 
 $$|f(x)-f(y)|\le M|x-y|, \qquad \forall x,y\in[0,1].$$
 
-证明: 
+证明: 对于任意正整数$n$, 
 
 $$\left|\int_0^1f(x)\mathrm{d}x-\dfrac{1}{n}\sum\limits_{k=1}^nf\left(\dfrac{k}{n}\right)\right|
 < \dfrac{M}{2n}.$$
+
+(2)如果$f\in C^0([0,1])$, 能否证明存在常数$M>0$使得对于任意正整数$n$, 有
+
+$$\int_0^1f(x)\mathrm{d}x-\dfrac{1}{n}\sum\limits_{k=1}^nf\left(\dfrac{k}{n}\right)
+= \dfrac{M}{n}?$$

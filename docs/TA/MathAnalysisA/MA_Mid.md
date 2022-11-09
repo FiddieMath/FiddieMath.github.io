@@ -154,7 +154,7 @@ $$|f(y)| < \varepsilon, \quad \forall y\in A_k.$$
 
 **证明：【正解】** 取区间$[a_k,b_k]=\left[\dfrac{1}{k},1-\dfrac{1}{k}\right]\subset(0,1)$, 其中$k\in\mathbb{N}$是正整数. 
 
-对任意$m>0$, 对任意$x\in[a_k,b_k]$, 由条件, 存在$\delta_x^{(m)}>0$, 使得当$y\in V(x,\delta_x^{(m)})$时, 
+对任意正整数$m$, 对任意$x\in[a_k,b_k]$, 由条件, 存在$\delta_x^{(m)}>0$, 使得当$y\in V(x,\delta_x^{(m)})$时, 
 有$\vert f(y)\vert  < \dfrac{1}{m}$. 
 
 由于
