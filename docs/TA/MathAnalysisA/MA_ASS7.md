@@ -33,7 +33,7 @@ $$|f(x)-f(y)|\le M|x-y|, \qquad \forall x,y\in[0,1].$$
 $$\left|\int_0^1f(x)\mathrm{d}x-\dfrac{1}{n}\sum\limits_{k=1}^nf\left(\dfrac{k}{n}\right)\right|
 < \dfrac{M}{2n}.$$
 
-(2)如果$f\in C^0([0,1])$, 能否证明存在常数$M>0$使得对于任意正整数$n$, 有
+(2)如果$f\in C^0([0,1])$, 能否证明存在常数$C>0$使得对于任意正整数$n$, 有
 
 $$\int_0^1f(x)\mathrm{d}x-\dfrac{1}{n}\sum\limits_{k=1}^nf\left(\dfrac{k}{n}\right)
-= \dfrac{M}{n}?$$
+= \dfrac{C}{n}?$$
