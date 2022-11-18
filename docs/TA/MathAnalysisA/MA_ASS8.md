@@ -7,7 +7,7 @@ nav_order: 13
 ---
 
 <div align = center>
-<img src="/pics/godie.jpg" width = "400" alt="高等代数考前指南"/>
+<img src="/pics/Godie.jpg" width = "400"/>
 
 <br/>
 
