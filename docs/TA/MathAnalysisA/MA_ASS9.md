@@ -91,6 +91,8 @@ $$xy\le\dfrac{1}{p}x^p+\dfrac{1}{q}x^q,$$
 
 ## 思考题提示
 
+**1.** 答案为$\mathrm{tr}(\mathbf{A})$. 
+
 **2.** (1)用Leibniz公式; (3)分部积分$n$次. 
 (4)分部积分$n$次, 最后可能要用到Wallis公式, 答案为$\dfrac{2}{2n+1}$. 
 
