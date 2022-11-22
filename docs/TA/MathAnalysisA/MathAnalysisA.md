@@ -2,6 +2,7 @@
 layout: default
 title: 数学分析A
 parent: 助教工作
+nav_order: 1
 has_children: true
 ---
 

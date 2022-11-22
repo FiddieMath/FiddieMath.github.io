@@ -2,6 +2,7 @@
 layout: default
 title: 数值计算方法
 parent: 助教工作
+nav_order: 2
 has_children: true
 ---
 
