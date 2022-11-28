@@ -17,9 +17,6 @@ nav_order: 193
 {:toc}
 </details>
 
-{: .new}
-> 待补充完整. 
-
 给定一些数据$\lbrace (x_i,y_i)\rbrace_{i=1}^m$, 其中$x_i\in\mathbb{R}^d$, $y_i\in\mathbb{R}$. 
 我们想用函数$y=f(x)$来拟合这些数据. 
 由于$(x_i,y_i)$不一定都在这条曲线上, 所以会有误差. 我们一般用**均方误差(Mean-square Loss)**, 即
@@ -248,4 +245,130 @@ if __name__ == "__main__":
     print(x)
 ```
 
-## 非线性拟合工具包: lsqcurvefit
+## 非线性拟合工具包
+
+### Python
+
+在Python中用非线性函数拟合数据的方法是```scipy.optimize.curve_fit()```. 
+具体使用方法可以参见[这里](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html)
+
+核心代码为
+
+```python
+import scipy.optimize as opt
+
+popt, pcov = opt.curve_fit(f,xdata,ydata,p0) 
+```
+
+用```curve_fit()```方法来对前面的线性化以后的结果作进一步优化的代码如下：
+
+
+```python
+import numpy as np
+import scipy.optimize as opt
+import matplotlib.pyplot as plt
+
+if __name__ == "__main__": 
+    xdata = np.array([-1.5, -1, -0.5, 0, 0.5, 1, 1.5])
+    ydata = np.array([0.04, 0.17, 0.65, 1.39, 1.85, 1.90, 1.99])
+
+    # 变换
+    yt = np.log(2.0/ydata-1.0) 
+    u = np.polyfit(xdata,yt,1) #u[0]x+u[1]
+    print(u)
+    b = u[0]
+    c = u[1]
+    a = np.exp(c)
+
+    #作curve_fit
+
+    def f(x, a, b):
+        y = 2.0/(1+a*np.exp(b*x))
+        return y
+
+    popt, pcov = opt.curve_fit(f,xdata,ydata,p0 = [a,b]) 
+
+    #计算Loss
+    err1 = np.linalg.norm(f(xdata,a,b) - ydata)/7
+    err2 = np.linalg.norm(f(xdata,popt[0],popt[1]) - ydata)/7
+    print(err1,err2)
+    
+```
+
+输出值：popt为$[0.43798582 -3.13205546]$, 
+err1为$0.016569358316672757$, 
+err2为$0.009438304573712395$. 
+    
+
+### Matlab
+
+在Matlab中, 用非线性函数拟合数据的方法是```lsqcurvefit()```. 
+具体使用方法可以在Matlab中输入```help lsqcurvefit``. 
+
+核心代码为
+
+```
+p = lsqcurvefit(@(x,xdata) 2./(1+x(1)*exp(x(2)*xdata)), p0, xdata, ydata);
+```
+
+用```lsqcurvefit```方法来对前面的线性化以后的结果作进一步优化的代码如下：
+
+```
+xdata = [-1.5, -1, -0.5, 0, 0.5, 1, 1.5];
+ydata = [0.04, 0.17, 0.65, 1.39, 1.85, 1.90, 1.99];
+
+% 线性化处理
+yt = log(2.0./ydata-1.0);
+u = polyfit(xdata,yt,1)
+b = u(1);
+c = u(2);
+a = exp(c);
+
+%% lsqcurvefit
+
+p0 = [a b];
+p = lsqcurvefit(@(x,xdata) 2./(1+x(1)*exp(x(2)*xdata)), p0, xdata, ydata);
+
+y1 = 2./(1+a*exp(b*xdata));
+y2 = 2./(1+p(1)*exp(p(2)*xdata));
+err1 = norm(y1-ydata)/7.;
+err2 = norm(y2-ydata)/7.;
+
+```
+
+输出值：$p = [0.4380, -3.1320]$.
+err1为$0.016569358316673$, 
+err2为$0.009438304592826$.
+
+## 习题
+
+
+{: .problem}
+> 给定$x_i,y_i(i=0,1,\cdots,10)$作为拟合点和拟合点函数值, 
+> 
+> $$\begin{array}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline x & -1 & -0.8 & -0.6 & -0.4 & -0.2 & 0 & 0.2 & 0.4 & 0.6 & 0.8 & 1  \\
+\hline y & -0.8669 & -0.2997 & 0.3430 & 1.0072 & 1.6416 & 2.2022 & 2.6558 & 2.9823 & 3.1755 & 3.2416 & 3.1974 \\ \hline
+\end{array}$$
+> 
+> 请自己编写算法程序, 不要直接调用软件包中的拟合命令(但你可以用软件包来验证你程序写得是否正确), 回答下列问题. 
+>
+> (1)利用四次多项式$p(x)$进行最小二乘拟合, 计算拟合多项式$p(x)$的表达式和误差
+> 
+> $$\varepsilon=\left(\sum\limits_{i=0}^{10}(p(x_i)-f(x_i))^2\right)^{\frac{1}{2}}.$$
+>
+> 保留六位有效数字. 
+>
+> (2)利用如下形式的$p(x)$进行拟合: 
+>
+> $$p(x)=a_0+a_1\sin(a_2x)+a_3\cos(a_4x).$$
+>
+> 这里$a_0,a_1,a_2,a_3,a_4$是参数, 参数的近似值为
+>
+> $$a_0\approx 1.3, a_1\approx 2.2, a_2\approx 1.1, a_3\approx 0.9, a_4\approx 1.8.$$
+>
+> 计算拟合函数$p(x)$的表达式使得误差
+> 
+> $$\varepsilon=\left(\sum\limits_{i=0}^{10}(p(x_i)-f(x_i))^2\right)^{\frac{1}{2}}.$$
+>
+> 达到最小, 保留三位有效数字.
