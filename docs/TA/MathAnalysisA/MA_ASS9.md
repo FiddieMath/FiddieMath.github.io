@@ -6,6 +6,23 @@ grand_parent: 助教工作
 nav_order: 15
 ---
 
+
+<span style="display:block;color:red;  font-size:32px">
+温馨提示：不要抄网上的答案. 
+</span>
+
+## 问卷填写
+
+《数学分析》助教个人主页已经陪伴同学们多时，希望同学们可以填写一下这份问卷，反馈一下使用情况，谢谢！
+
+**(根据填写情况可以加Fiddie微信获得红包)**
+
+
+<div align = center>
+<img src="/pics/wjx.png" width = "300"/>
+</div>
+
+
 ## 第9次作业
 
 习题4.1/17(2)(4)(6), 19(2), 21.
@@ -16,14 +33,20 @@ nav_order: 15
 
 ## 主要问题
 
-计算的问题这里就不说了, 主要提一下4.2/13题. 拿到A而不是A+的同学基本上就是13题有问题.
-
 ### 4.1/17题
 
-{: .problem}
-> **问题：** 写$y'=u^{e^v}e^v\cdot\dfrac{uv'\ln u+e^vu'}{u}.$
+{: .warning-title}
+> Problem
+> 
+> 
+<span style="display:block;color:red">
+**问题：** 写$y'=u^{e^v}e^v\cdot\dfrac{uv'\ln u+e^vu'}{u}.$
+</span>
 
-错误原因：不要抄知乎上某位同学整理的答案. 发现大面积跟这份答案雷同的我都最多只给C, 如果你觉得不服气就加Fiddie微信. 
+
+错误原因：
+不要抄网上的答案. 
+发现大面积跟这份答案雷同的我都最多只给C, 如果你觉得不服气就加Fiddie微信. 
 
 
 ### 4.3/5(5)题
@@ -97,7 +120,11 @@ $$g(x-\Delta x)=\lim\limits_{\Delta y\to 0^-}\dfrac{f(x-\Delta x+\Delta y)-f(x-\
 ## 作业之后的思考题:（此部分思考题为助教友情提供，与上课无关，感兴趣可以做，不感兴趣可以不做）
 
 **1.** 设$\mathbf{I}_n$是$n\times n$单位矩阵, $\mathbf{A}$是$n\times n$实矩阵, 
-函数$f(x)=\mathrm{det}(\mathbf{I}+x\mathbf{A})$. 计算$f'(0)$的值.
+函数$f(x)=\mathrm{det}(\mathbf{I}+x\mathbf{A})$. 计算$f'(0)$的值. （需要化到最简. ）
+
+&nbsp; 
+
+&nbsp;
 
 {: .note}
 > Legendre多项式在数值计算方法(大二下学期和大三上学期的课)中经常用到. 感兴趣的同学欢迎以后走信息与计算科学方向.
@@ -123,6 +150,10 @@ $$\int_{-1}^1L_m(x)L_n(x)\mathrm{d}x=0.$$
 (4)计算
 
 $$\int_{-1}^1(L_n(x))^2\mathrm{d}x.$$
+
+&nbsp; 
+
+&nbsp;
 
 {: .note}
 > 第三章(74页)我们证明了Young不等式: 
@@ -154,6 +185,22 @@ $$xy\le\dfrac{1}{p}x^p+\dfrac{1}{q}x^q,$$
 
 
 &nbsp; 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp; 
+
+## 温馨提示
+
+
 
 &nbsp;
 
