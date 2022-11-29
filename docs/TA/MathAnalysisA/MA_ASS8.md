@@ -83,3 +83,11 @@ $$\lim\limits_{u\to x_0^-, v\to x_0^+}\dfrac{f(v)-f(u)}{v-u}$$
 &nbsp; 
 
 &nbsp;
+
+**4.** 是否存在可微函数$f:\mathbb{R}\to\mathbb{R}$, 使得$f(\mathbb{Q})\subseteq\mathbb{Q}$,
+并且$f'(\mathbb{Q})\subseteq\mathbb{R}\setminus\mathbb{Q}$?
+
+{: .remark}
+> 设$f:U\to V$, $A$是$U$的子集, 则$f(A)$是$V$的子集, 定义为
+>
+> $$f(A)=\{f(x)|x\in A\}.$$

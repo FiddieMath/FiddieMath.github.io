@@ -66,6 +66,10 @@ $(1)$ 老生常谈的问题：反证法 $\lim_{x\to\infty}f(x)=\infty$ 的否定
 
 ### 作业之后的思考题:（此部分思考题为助教友情提供，与上课无关，感兴趣可以做，不感兴趣可以不做）
 
+**1.** 设$f:\mathbb{R}^+\to\mathbb{R}^+$是一致连续函数. 是否有
+
+$$\lim\limits_{x\to+\infty}\dfrac{f(x+\frac{1}{x})}{f(x)}=1?$$
+
 {: .note }
 > 回顾Lipschitz连续和Hölder连续的定义：
 >
@@ -85,7 +89,7 @@ $(1)$ 老生常谈的问题：反证法 $\lim_{x\to\infty}f(x)=\infty$ 的否定
 >
 > 本题我们探究如果把Hölder函数的$\alpha$设为$\alpha>1$会出现什么情况. 
 
-**1.** 设$f$是定义在$(-\infty,+\infty)$上的函数, 满足
+**2.** 设$f$是定义在$(-\infty,+\infty)$上的函数, 满足
 
 $$\vert f(x)-f(y)\vert \le\vert x-y\vert^{\alpha},  \qquad \forall x,y\in(-\infty,+\infty).$$
 
@@ -100,7 +104,7 @@ $$\vert f(x)-f(y)\vert \le \dfrac{1}{n^{\alpha-1}}\vert x-y\vert^{\alpha}.$$
 {: .note }
 > 下面的题可以用来巩固一下对“上确界”概念的理解.
 
-**2.** 设$E$是数集, 函数$f:E\to\mathbb{R}$. 定义函数$f$的**连续模(modulus of continuity)**为
+**3.** 设$E$是数集, 函数$f:E\to\mathbb{R}$. 定义函数$f$的**连续模(modulus of continuity)**为
 
 $$\omega(\delta)=\sup\{\vert f(x_1)-f(x_2)\vert \,\vert x_1,x_2\in E, \vert x_1-x_2\vert  < \delta\}$$
 
