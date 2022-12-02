@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 插值：用样条插值重构外旋轮线
+title: 插值：参数曲线的样条插值
 parent: 数值计算方法
 grand_parent: 助教工作
 nav_order: 52

@@ -94,7 +94,7 @@ $$f(t)\le \int_0^t\dfrac{f(s)}{s}\mathrm{d}s,$$
 &nbsp;
 
 {: .note}
-> 下面的Gronwall定理在常微分方程(大二上学期课程)中会用到. 
+> 下面的Gronwall定理在常微分方程(大二上学期课程)中会用到, 用来证明微分方程存在唯一解. 
 >
 
 **5.(Gronwall不等式)** 设有四个定义在$\mathbb{R}^+$的非负连续函数$a,b,c,f$, 满足对任意$x\ge 0$, 有
@@ -108,9 +108,16 @@ $$f(x)\le \left[\int_0^xb(t)\mathrm{d}t+\max\limits_{t\in[0,x]}c(t)\right]e^{\in
 **提示：** 建立函数$\displaystyle F(x)=\int_0^x[a(t)f(t)]\mathrm{d}t$的不等式,
 再考虑函数$A(x)=F(x)e^{-\int_0^xa(t)\mathrm{d}t}$. 
 
-&nbsp; 
+**6.** 假设存在定义在$[0,+\infty)$上的$C^1$函数$x(t)$满足
 
-&nbsp;
+$$\left\{\begin{aligned}
+&x'(t)=x(t)t+\sin(t^2+x(t)) \\
+&x(0)=x_0 \\
+\end{aligned}\right. \qquad (*)$$
+
+证明满足$(*)$式的$x(t)$是唯一的. 
+
+
 
 &nbsp; 
 
@@ -201,3 +208,36 @@ f(x)&=F(x)+\int_0^xb(s)\mathrm{d}s+c(x) \\
 +\int_0^xb(s)\mathrm{d}s+c(x) \\
 &\le \left(\int_0^xb(s)\mathrm{d}s+\max\limits_{s\in[0,x]}c(s)\right)e^{\int_0^xa(s)\mathrm{d}s}.
 \end{aligned}$$
+
+**6.** 假设$\psi(t), \phi(t)$同时满足
+
+$$\left\{\begin{aligned}
+&\psi'(t)=\psi(t)t+\sin(t^2+\psi(t)) \\
+&\varphi'(t)=\varphi(t)t+\sin(t^2+\varphi(t)) \\
+\end{aligned}\right.$$
+
+由Newton-Leibniz公式, 
+
+$$\left\{\begin{aligned}
+&\psi(t)-x_0=\int_0^t \psi(s)s+\sin(s^2+\psi(s))\mathrm{d}s \\
+&\varphi(t)-x_0=\int_0^t \varphi(s)s+\sin(s^2+\varphi(s))
+\end{aligned}\right.$$
+
+两式作差, 可得
+
+$$\begin{aligned}
+|\psi(t)-\varphi(t)|&=\left|\int_0^t(\psi(s)-\varphi(s))s+\sin(s^2+\psi(s))-\sin(s^2+\varphi(s))\mathrm{d}s\right| \\
+&\le \int_0^t\left( |\psi(s)-\varphi(s)|s + 2\left|\cos\dfrac{2s^2+\psi(s)+\varphi(s)}{2}\sin\dfrac{\psi(s)-\varphi(s)}{2}\right| \right) \mathrm{d}s \\
+&\le \int_0^t \left(|\psi(s)-\varphi(s)|s + 2\cdot\dfrac{1}{2}|\psi(s)-\varphi(s)|\right)\mathrm{d}s \\
+&= \int_0^t|\psi(s)-\varphi(s)|(s+1)\mathrm{d}s.
+\end{aligned}$$
+
+根据Gronwall不等式(在Gronwall不等式中让$f(t)=|\psi(t)-\varphi(t)|$, $a(t)=t+1$, $b(t)=c(t)=0$, 可知
+
+$$|\psi(t)-\varphi(t)|\le 0.$$
+
+即$\psi(t)=\varphi(t)$. 因此满足$(*)$的函数$x(t)$是唯一的. 
+
+
+
+

@@ -3,7 +3,7 @@ layout: default
 title: 助教工作
 nav_order: 2
 has_children: true
-permalink: docs/助教工作
+permalink: docs/TA
 ---
 
 # 助教工作
