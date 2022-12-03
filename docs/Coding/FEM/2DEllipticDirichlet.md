@@ -6,10 +6,12 @@ grand_parent: 代码记录
 nav_order: 11
 ---
 
-更新日期：2022年12月2日
+更新日期：2022年12月3日
 
 {: .new}
-> 未完成
+> 放出来的代码可以直接运行. 
+>
+> 目前关于代码的详细解释还没写完, 尤其是Gauss积分的实现细节.
 
 {: .no_toc }
 
@@ -184,14 +186,17 @@ import scipy.sparse as sparse
 from scipy.sparse.linalg import spsolve
 ```
 
-首先用```lil_matrix```来初始化一个稀疏矩阵：
+首先用```lil_matrix```来初始化一个稀疏矩阵, 并初始化右端向量$b$. 
 
 ```python
     A = sparse.lil_matrix((Nb,Nb)) #稀疏矩阵
+    b = np.zeros(Nb)
 ```
 
 {: .remark}
 > 关于稀疏矩阵的多种存储方式(不止```lil_matrix```)可以在别处搜到.
+
+### 装配刚度矩阵
 
 如果$c$是一个常数, 那么我们可以很快手动算出单刚度矩阵$S=(s_{ij})$是
 
@@ -212,10 +217,10 @@ $$s_{ij} = \int_{K}c\nabla\varphi_i\cdot\nabla\varphi_j\mathrm{d}x\mathrm{d}y,$$
 算完之后把单刚度矩阵拼接成总刚度矩阵即可. (注意下面的```Nlb```为$3$.)
 
 
-```
+```python
     S = np.array([[1,-0.5,-0.5],
-              [-0.5,0.5,0],
-              [-0.5,0,0.5]  ]) #单刚度矩阵
+                  [-0.5,0.5,0],
+                  [-0.5,0,0.5]  ]) #单刚度矩阵
 
     for k in range(N):  #第k个单元      
         for i in range(Nlb): #第i个结点
@@ -228,7 +233,7 @@ $$s_{ij} = \int_{K}c\nabla\varphi_i\cdot\nabla\varphi_j\mathrm{d}x\mathrm{d}y,$$
 如果$c$不是一个常数, 而是一个函数, 那么这就比较复杂了. 此时计算$s_{ij}$需要用到数值积分, 并且单刚度矩阵$S$不尽相同. 
 我们先用```localstiff```来表示从给定三个结点构造单刚度矩阵的函数, 后续再补充. 
 
-```
+```python
     for k in range(N):  #第k个单元  
         p = np.array([Pb[Tb[k][0]], Pb[Tb[k][1]], Pb[Tb[k][2]]])  
         S = localstiff(p, c)
@@ -238,6 +243,341 @@ $$s_{ij} = \int_{K}c\nabla\varphi_i\cdot\nabla\varphi_j\mathrm{d}x\mathrm{d}y,$$
                 A[Tb[k][j],Tb[k][i]] += r
 ```
 
+### 装配右端向量
+
 右端向量的第$i$个分量就是(其中$E_n$表示第$n$个单元)
 
 $$\int_{\Omega}f\phi_i\mathrm{d}x\mathrm{d}y=\sum\limits_{n=1}^N \int_{E_n}f\phi_i\mathrm{d}x\mathrm{d}y,$$
+
+如果$f$是常数, 那么可以算出
+
+$$\int_{E_n}f\phi_i\mathrm{d}x\mathrm{d}y = \dfrac{h^2}{6}f.$$
+
+```python
+    for k in range(N): #第k个单元
+        for i in range(Nlb): #第i个结点
+            r = (h**2)*f/6   
+            b[Tb[k][i]] += r 
+```
+
+如果$f$不是常数, 那么这时要用到数值积分: 
+
+```python
+    for k in range(N): #第k个单元
+        p = np.array([Pb[Tb[k][0]], Pb[Tb[k][1]], Pb[Tb[k][2]]])  
+        for i in range(Nlb): #第i个结点
+            r = gaussquadnodal(p, f, i)
+            b[Tb[k][i]] += r 
+```
+
+关于```gaussquad```和```gaussquadnodal```的实现细节, 后面再说.
+
+### Dirichlet边界条件
+
+遍历所有边界点```bdnodes```, 如果一个结点$i$是Dirichlet边界, 那么我们就把其对应的刚度矩阵的第$i$行变成单位向量, 
+而右端向量的第$i$个分量改为用Dirichlet边界来赋值:
+
+```python
+    for k in range(Nbn):
+        if(bdnodes[k][0] == 1): #Dirichlet边界
+            i = bdnodes[k][1]
+            A.data[i] = []
+            A.rows[i] = []
+            A[i,i] = 1
+            b[i] = g(Pb[i])  
+```
+
+### 求解
+
+装配完成后, 需要求解线性方程组. 这时我们要用到另外一种稀疏矩阵的存储格式: ```csc_matrix```. 
+
+```python
+    AA = sparse.csc_matrix(A)
+    u = spsolve(AA, b) 
+```
+
+$u$就是我们最终的解向量. 如果想要画出3D的图, 那么点```(Pb[i], u[i])```就是原来问题在```Pb[i]```处的数值解.
+
+## Gauss积分的数值实现
+
+```python
+def gaussquad(p, g, N=7): 
+    #三角形上的Gauss积分, 三角形由p=[p_1,p_2,p_3]围成, 其中p_i都是2维向量.
+    #g是一个二元函数.
+    
+    #首先要把函数变换为参考单元上的函数.
+    def G(x,y): #\hat{x}=(\lambda_1,\lambda_2)\in[0,1]
+        #x = (\alpha_1-\alpha_0)\lambda_1+(\alpha_2-\alpha_0)\lambda_2+\alpha_0
+        xx = (p[1][0]-p[0][0])*x + (p[2][0]-p[0][0])*y + p[0][0]
+        yy = (p[1][1]-p[0][1])*x + (p[2][1]-p[0][1])*y + p[0][1]
+        return g(np.array([xx,yy]))
+    
+    val = 0
+    if(N==1):
+        val=G(1.0/3,1.0/3)
+    elif(N==3):
+        val=(G(0.5,0.5)+G(0.5,0)+G(0,0.5))/3.0
+    elif(N==4):
+        val=-9.0*G(1.0/3,1.0/3)/16.0 + 25.0*(G(0.2,0.2)+Grr(0.2,0.6)+G(0.6,0.2))/48.0
+    elif(N==7):
+        val=9.0*G(1.0/3,1.0/3)/20 + 2.0*(G(0.5,0.5)+G(0.5,0)+G(0,0.5))/15.0 + (G(1,0)+G(0,1)+G(0,0))/20.0
+    
+    return val
+```
+
+```python
+def gaussquadnodal(p, f, idx, N=7): 
+    #计算积分\int_{E_n}f\phi_i dxdy
+    #三角形上的Gauss积分, 三角形由p=[p_1,p_2,p_3]围成, 其中p_i都是2维向量.
+    #f是一个二元函数.
+    #idx是计算第几个点的结点基函数. 在参考单元中，第0个点的结点基函数是1-x-y, 第1个点的结点基函数是x, 第2个点的结点基函数y.
+    #例如idx=1的时候, phi_i变换在参考单元中就会得到\hat{phi}_i=x. 
+    
+    #首先要把函数变换为参考单元上的函数.
+    def G(x,y): #\hat{x}=(\lambda_1,\lambda_2)\in[0,1]
+        #x = (\alpha_1-\alpha_0)\lambda_1+(\alpha_2-\alpha_0)\lambda_2+\alpha_0
+        xx = (p[1][0]-p[0][0])*x + (p[2][0]-p[0][0])*y + p[0][0]
+        yy = (p[1][1]-p[0][1])*x + (p[2][1]-p[0][1])*y + p[0][1]
+        
+        val = f(np.array([xx,yy]))
+        if(idx==0):
+            val = val * (1-x-y)
+        elif(idx==1):
+            val = val * x
+        elif(idx==2):
+            val = val * y
+        return val
+    
+    val = 0
+    if(N==1):
+        val=G(1.0/3,1.0/3)
+    elif(N==3):
+        val=(G(0.5,0.5)+G(0.5,0)+G(0,0.5))/3.0
+    elif(N==4):
+        val=-9.0*G(1.0/3,1.0/3)/16.0 + 25.0*(G(0.2,0.2)+Grr(0.2,0.6)+G(0.6,0.2))/48.0
+    elif(N==7):
+        val=9.0*G(1.0/3,1.0/3)/20 + 2.0*(G(0.5,0.5)+G(0.5,0)+G(0,0.5))/15.0 + (G(1,0)+G(0,1)+G(0,0))/20.0
+    
+    return val
+```
+
+## 拼接单刚度矩阵的数值实现
+
+```python
+def localstiff(p, c):
+    #拼接局部刚度矩阵.
+    D = np.array([[-1,-1],[1,0],[0,1]]) #参考单元的梯度
+    det = (p[1][0]-p[0][0])*(p[2][1]-p[0][1]) - (p[1][1]-p[0][1])*(p[2][0]-p[0][0]) 
+    d11 = (p[2][1]-p[0][1])/det  #\partial\hat{x}_1/\partial x_1
+    d12 = -(p[2][0]-p[0][0])/det #\partial\hat{x}_1/\partial x_2
+    d21 = -(p[1][1]-p[0][1])/det #\partial\hat{x}_2/\partial x_1
+    d22 = (p[1][0]-p[0][0])/det  #\partial\hat{x}_2/\partial x_2
+    S = np.zeros([3,3]) #单刚度矩阵
+    
+    #单元的梯度
+    Nabla = np.zeros([3,2]) 
+    for i in [0,1,2]:
+        Nabla[i] = np.array([D[i][0] * d11 + D[i][1] * d21, D[i][0] * d12 + D[i][1] * d22])
+    
+    ##S[i][j]的计算
+    for i in [0,1,2]:
+        for j in [0,1,2]:
+            def g(x):
+                return c(x)*(Nabla[i][0]*Nabla[j][0] + Nabla[i][1]*Nabla[j][1])
+            S[i][j] = gaussquad(p, g)  #\int_{E_n}c\nabla_{ni}\cdot\nabla_{nj}dxdy
+    return S
+```
+
+# 算例
+
+考虑问题
+
+$$-\nabla\cdot(\nabla u)=2\pi^2\sin(\pi x)\sin(\pi y), (x,y)\in\Omega=[0,1]\times[0,1],$$
+
+其中边界条件为
+
+$$u|_{\partial\Omega}=0, (x,y)\in\partial\Omega.$$
+
+这个问题的真解是
+
+$$u(x,y)=\sin(\pi x)\sin(\pi y),$$
+
+我们取$n=64$, 运行上面的代码得到的数值解记为$u_h$, 真解为$u$, 那么误差的绝对值$e_h=\vert u_h-u\vert $的图像如下: 
+
+<div align = center>
+<img src="/pics/2DElliptic_Ex1.png" width = "400"/>
+
+<br/>
+
+图4：算例的误差
+</div>
+
+# 附录：本节的所有代码
+
+{: .remark}
+> ```gaussquad```、```localstiff```、```gaussquadnodal```方法在前面已给出, 这里略.
+
+## 装配矩阵并求解
+
+```python
+import numpy as np
+#from scipy.sparse import csr_matrix
+import scipy.sparse as sparse
+from scipy.sparse.linalg import spsolve
+
+def assempde(Pb,Tb,c,a,f,bdnodes, g):
+    """
+    输入参数：
+    Pb: 结点集, 包含结点编号对应的真实坐标
+    Tb: 单元集, 里面包含每个单元的若干个顶点
+    c: 函数或标量.
+    a: 常数（暂时没用）
+    f: 常数或函数
+    g: Dirichlet边界条件
+    """
+    if(callable(g)==False):
+        G = g
+        def g(x):
+            return G
+    
+    Nb = len(Pb)                       #number of nodes
+    N = len(Tb)                        #number of elements
+    Nlb = 3                            #number of nodes on each element
+    Nbn = len(bdnodes)                 #number of boundary nodes
+    #Nbe = len(neumann_edges)           #number of boundary edges
+
+    # 装配稀疏矩阵
+    A = sparse.lil_matrix((Nb,Nb)) #稀疏矩阵
+    
+    if(callable(c)==False):  #c是常数，那就直接算单刚度矩阵. 
+        S = np.array([[1,-0.5,-0.5],
+                  [-0.5,0.5,0],
+                  [-0.5,0,0.5]  ]) #单刚度矩阵
+
+        for k in range(N):  #第k个单元      
+            for i in range(Nlb): #第i个结点
+                for j in range(Nlb): #第j个结点
+                    r = c*S[j][i] #单刚度矩阵
+                    A[Tb[k][j],Tb[k][i]] += r
+                    
+    else:  #c是个函数, 此时需要算数值积分, 比较麻烦. 
+        #我们可以采用Gauss数值积分.
+        for k in range(N):  #第k个单元  
+            p = np.array([Pb[Tb[k][0]], Pb[Tb[k][1]], Pb[Tb[k][2]]])  
+            S = localstiff(p, c)
+            for i in range(Nlb): #第i个结点
+                for j in range(Nlb): #第j个结点
+                    r = S[j][i] #单刚度矩阵
+                    A[Tb[k][j],Tb[k][i]] += r
+
+    #右端向量
+    b = np.zeros(Nb)
+    if(callable(f)==False):  #f是常数，那就直接算. 
+        for k in range(N): #第k个单元
+            for i in range(Nlb): #第i个结点
+                r = (h**2)*f/6   
+                b[Tb[k][i]] += r 
+    
+    else: #f是函数
+        for k in range(N): #第k个单元
+            p = np.array([Pb[Tb[k][0]], Pb[Tb[k][1]], Pb[Tb[k][2]]])  
+            for i in range(Nlb): #第i个结点
+                r = gaussquadnodal(p, f, i)
+                b[Tb[k][i]] += r 
+
+    #Dirichlet 边界条件
+    for k in range(Nbn):
+        if(bdnodes[k][0] == 1): #Dirichlet边界
+            i = bdnodes[k][1]
+            A.data[i] = []
+            A.rows[i] = []
+            A[i,i] = 1
+            b[i] = g(Pb[i])    #对于一般的情况, 替换为g(Pb(i))
+       
+    AA = sparse.csc_matrix(A)
+    u = spsolve(AA, b) 
+    return u
+```
+
+## 网格生成
+
+```python
+def poimesh(n): #把[0,1]\times[0,1]分成n^2个单元，采用三角网格
+    Nb = (n+1)*(n+1) #number of nodes
+    N = 2*n*n           #number of elements
+    Nlb = 3           #number of nodes on each element
+    Nbn = 4*n         #number of boundary nodes
+
+    h = 1.0/n
+
+    bdnodes = np.zeros((Nbn, 2), dtype=np.int32)
+    for i in range(n):
+        bdnodes[i][0] = 1
+        bdnodes[i][1] = i
+        bdnodes[i+n][0] = 1
+        bdnodes[i+n][1] = n + (n+1)*i
+        bdnodes[i+2*n][0] = 1
+        bdnodes[i+2*n][1] = (n+1) * (i+1)
+        bdnodes[i+3*n][0] = 1
+        bdnodes[i+3*n][1] = n*n+n+i+1
+    
+    Tb = np.zeros((N, 3), dtype=np.int32)
+    for i in range(n):
+        for j in range(n):
+            #第ij个单元的结点按顺序是i+(n+1)j, i+1+(n+1)j, i+2+n+(n+1)j, i+1+n+(n+1)j.
+            Tb[i+j*n*2]=[i+(n+1)*j, i+1+(n+1)*j, i+1+n+(n+1)*j]
+            Tb[i+j*n*2+n]=[i+2+n+(n+1)*j, i+1+(n+1)*j, i+1+n+(n+1)*j] 
+            
+    #结点与真实坐标的对应关系，存储在information matrix Pb 中
+    Pb = {} #字典
+    for j in range(n+1):
+        for i in range(n+1):
+            Pb[i+j*(n+1)]=np.array([i/n,j/n])
+    return Pb, Tb, bdnodes
+```
+
+## 算例
+
+### 求解PDE
+
+```python
+n = 64
+Pb, Tb, bdnodes = poimesh(n)
+def g(x):
+    return 0
+def c(x):
+    return 1
+def f(x):
+    return 2*(np.pi**2)*np.sin(np.pi* x[0])*np.sin(np.pi* x[1])
+
+u = assempde(Pb,Tb,c,0,f,bdnodes,g)
+```
+
+### 画图
+
+```python
+import matplotlib.pyplot as plt
+X = np.linspace(0,1,n+1)
+Y = np.linspace(0,1,n+1)
+Z = np.zeros((n+1,n+1))
+for i in range(n+1):
+    for j in range(n+1):
+        Z[i][j] = u[i*(n+1)+j]
+
+Z_real = np.zeros((n+1,n+1))
+for i in range(n+1):
+    for j in range(n+1):
+        Z_real[i][j] = np.sin(np.pi*X[i])*np.sin(np.pi*Y[j])
+
+E = np.abs(Z-Z_real)
+lower_bound = np.min(E)
+upper_bound = np.max(E)
+print(lower_bound, upper_bound)
+fig, ax = plt.subplots()
+levels = np.linspace(lower_bound,upper_bound,1000) #对颜色渐进细致程度进行设置
+cs = ax.contourf(X, Y, E, levels,cmap=plt.get_cmap('Spectral'))
+cbar = fig.colorbar(cs) #添加colorbar
+plt.show()
+
+```
+
