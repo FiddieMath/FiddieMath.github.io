@@ -59,13 +59,19 @@ pdesurf(p,t,u);              %画解
 
 求解
 
-$$-\mathrm{div}(c\nabla u)=f, \text{ in }\Omega,$$
+$$-\mathrm{div}(c\nabla u)+au=f, \text{ in }\Omega,$$
 
 其中边界条件为
 
 $$u|_{\partial\Omega}=g.$$
 
-采用三角网格.
+采用三角网格. 它的弱形式为: 求$u\in H^1$使得
+
+$$a(u,v)=(f,v), \qquad \forall v\in H^1(\Omega),$$
+
+其中, 双线性形式
+
+$$a(u,v)=\int_{\Omega}(c(x)\nabla u\cdot\nabla v + a(x)uv)\mathrm{d}x.$$
 
 ## 基本步骤
 
@@ -130,7 +136,7 @@ $$u|_{\partial\Omega}=g.$$
 
 在第一次写这个部分的时候, 建议把直角对应的顶点放在第一个.
 
-同样, 我们从下到上、从左到右存储, 这里一共有$2n^2$个elements. 
+同样, 我们从下到上、从左到右存储, 这里一共有$2n^2$个有限元. 
 
 <div align = center>
 <img src="/pics/pdemesh3.png" width = "300"/>
@@ -179,7 +185,31 @@ $$u|_{\partial\Omega}=g.$$
 
 ## 装配矩阵和右端向量
 
-注意装配的矩阵是稀疏的, 所以我们要引入稀疏矩阵的包.
+假设$\lbrace \phi_j\rbrace_{i=1}^{Nb}$是线性元空间$V_h$的结点基函数, 满足
+
+$$\phi_i(x_j)=\delta_{ij}, \qquad i,j=1,\cdots,N_b,$$
+
+其中$\lbrace x_j\rbrace_{i=1}^{Nb}$是结点. 刚度矩阵$A$是一个$Nb\times Nb$矩阵, 其各个分量为
+
+$$A_{ij}=a(\phi_j,\phi_i)=\sum\limits_{n=1}^{N}\int_{E_n}(c(x)\nabla\phi_j\cdot\nabla\phi_i+a(x)\phi_j\phi_i)\mathrm{d}x.$$
+
+这里$E_n$是单元区域. 显然如果$x_i$和$x_j$不相邻, 则$A_{ij}=0$, 所以$A$是个稀疏矩阵. 右端向量$F$的各个分量为
+
+$$F_i=\int_{\Omega}f\phi_i\mathrm{d}x=\sum\limits_{n=1}^N\int_{E_n}f\phi_i\mathrm{d}x.$$
+
+计算上述积分需要用到Gauss积分公式. 在计算刚度矩阵$A$的$\int_{E_n}(c(x)\nabla\phi_j\cdot\nabla\phi_i$部分的时候, 我们的步骤如下: 
+
+- **Step 1:** 遍历$n=1,\cdots,N$(所有单元), 执行Step 2和Step 3:
+
+- **Step 2:** 计算每个单元$E_n$(由编号为$k_0,k_1,k_2$的结点构成)上的单刚度矩阵$S$. 
+我们把这个方法的调用记为```localstiff(p,c)```, 
+其中$p$是三个结点$k_0,k_1,k_2$, 并且$c$是方程里面的参数.
+
+- **Step 3:** 对于$i,j=0,1,2$, 把单刚度矩阵的值$S_{ij}$加在$A$的分量$A_{k_ik_j}$中. 
+
+计算$\int_{E_n}a(x)\phi_j\phi_i\mathrm{d}x$和右端向量也是完全类似的, 这里就不写了, 后面我们以代码的形式列出.
+
+由于装配的矩阵是稀疏的, 所以我们要引入稀疏矩阵的包.
 
 ```python
 import scipy.sparse as sparse
@@ -195,6 +225,7 @@ from scipy.sparse.linalg import spsolve
 
 {: .remark}
 > 关于稀疏矩阵的多种存储方式(不止```lil_matrix```)可以在别处搜到.
+
 
 ### 装配刚度矩阵
 
@@ -213,6 +244,7 @@ $$s_{ij} = \int_{K}c\nabla\varphi_i\cdot\nabla\varphi_j\mathrm{d}x\mathrm{d}y,$$
 
 {: .remark}
 > 这就是为什么我们一开始要求直角对应的结点必须放在第1个位置, 不然的话$S$的某些行和某些列会发生互换.
+> 一般情况下如果想要避免这个错误, 可以直接跳过这部分, 采用“$c$不是常数”的情形来处理, 用的时间可能会长一些. 
 
 算完之后把单刚度矩阵拼接成总刚度矩阵即可. (注意下面的```Nlb```为$3$.)
 
@@ -242,6 +274,8 @@ $$s_{ij} = \int_{K}c\nabla\varphi_i\cdot\nabla\varphi_j\mathrm{d}x\mathrm{d}y,$$
                 r = S[j][i] #单刚度矩阵
                 A[Tb[k][j],Tb[k][i]] += r
 ```
+
+对$au$项的处理也是类似的, 这里略过(后面会附代码).
 
 ### 装配右端向量
 
@@ -300,6 +334,40 @@ $u$就是我们最终的解向量. 如果想要画出3D的图, 那么点```(Pb[i
 
 ## Gauss积分的数值实现
 
+为了计算如下形式的积分:
+
+$$\int_K\varphi(x)\mathrm{d}x,$$
+
+假设$\alpha_i=(a_i,b_i)$是单元$K$的顶点$A_i(i=0,1,2)$的坐标,
+定义仿射变换$\hat{x}:=(\lambda_1,\lambda_2)\mapsto x$如下: 
+
+$$x=(\alpha_1-\alpha_0)\lambda_1+(\alpha_2-\alpha_0)\lambda_2+\alpha_0.$$
+
+这个仿射变换可以把以$(0,0),(1,0),(0,1)$为顶点的**参考单元** $\hat{K}$变成以$A_0,A_1,A_2$为顶点的单元$K$. 
+
+下面记$\hat{\varphi}(\hat{x})=\varphi(x).$ 显然
+
+$$\int_K\varphi(x)\mathrm{d}x=\dfrac{|K|}{|\hat{K}|}\int_{\hat{K}}\hat{\varphi}(\hat{x})\mathrm{d}\hat{x}.$$
+
+$\hat{K}$上的数值积分公式一般形式可以写成
+
+$$\int_{\hat{K}}\hat{\varphi}(\hat{x})\mathrm{d}\hat{x}\sim |\hat{K}|\sum_{n=1}^Mw_n\varphi(Q_n). $$
+
+其中$Q_n\in \hat{K}$是积分结点, $w_n$是权重. 如果上式两边对次数小于等于$k$的多项式都相等,
+但对$k+1$次多项式不相等, 则称其代数精度是$k$. 下表给出了一些数值积分的例子: 
+
+
+<div align = center>
+<img src="/pics/GaussNode.png" width = "550"/>
+
+<br/>
+
+图4：$\hat{K}$上的数值积分公式.
+</div>
+
+
+下面的代码具有较高的耦合性(即相同的代码出现多次), 这里为方便起见就不改了.
+
 ```python
 def gaussquad(p, g, N=7): 
     #三角形上的Gauss积分, 三角形由p=[p_1,p_2,p_3]围成, 其中p_i都是2维向量.
@@ -324,6 +392,18 @@ def gaussquad(p, g, N=7):
     
     return val
 ```
+
+计算右端向量时需要涉及到$\varphi=f\phi_i$, 此时变换之后的函数为$\hat{\varphi}=\hat{f}\hat{\varphi}_i$, 其中
+
+$$\hat{f}(\hat{x})=f(x), \qquad \hat{\phi}_i=\phi_i,$$
+
+由于$\phi_i$是$K$上的结点基函数, 所以$\hat{\phi}_i$是参考单元$\hat{K}$的结点基函数, 
+于是$A_0(0,0)$, $A_1(1,0)$, $A_2(0,1)$的结点基函数分别为
+
+$$\hat{\phi}_0=1-x-y, \qquad \hat{\phi}_1=x, \qquad \hat{\phi}_2=y.$$
+
+所以可以很容易根据$f$的表达式写出$\hat{\varphi}$的表达式(即下面代码中的```G(x,y)```.)
+
 
 ```python
 def gaussquadnodal(p, f, idx, N=7): 
@@ -361,7 +441,95 @@ def gaussquadnodal(p, f, idx, N=7):
     return val
 ```
 
+下面的代码用来计算
+
+$$\int_{E_n}a\phi_i\phi_j dxdy,$$
+
+这跟计算右端向量的时候的处理也是完全类似的. 
+
+
+```python
+def gaussquadnodalboth(p, a, idx1, idx2, N=7): 
+    #三角形上的Gauss积分, 三角形由p=[p_1,p_2,p_3]围成, 其中p_i都是2维向量.
+    #f是一个二元函数.
+    #计算积分\int_{E_n}a\phi_i\phi_j dxdy
+    #idx是计算第几个点的结点基函数. 在参考单元中，第0个点的结点基函数是1-x-y, 第1个点的结点基函数是x, 第2个点的结点基函数y.
+    #例如idx=1的时候, phi_i变换在参考单元中就会得到\hat{phi}_i=x.
+    
+    #首先要把函数变换为参考单元上的函数.
+    def G(x,y): #\hat{x}=(\lambda_1,\lambda_2)\in[0,1]
+        #x = (\alpha_1-\alpha_0)\lambda_1+(\alpha_2-\alpha_0)\lambda_2+\alpha_0
+        xx = (p[1][0]-p[0][0])*x + (p[2][0]-p[0][0])*y + p[0][0]
+        yy = (p[1][1]-p[0][1])*x + (p[2][1]-p[0][1])*y + p[0][1]
+        
+        val = a(np.array([xx,yy]))
+        if(idx1==0):
+            val = val * (1-x-y)
+        elif(idx1==1):
+            val = val * x
+        elif(idx1==2):
+            val = val * y
+            
+        if(idx2==0):
+            val = val * (1-x-y)
+        elif(idx2==1):
+            val = val * x
+        elif(idx2==2):
+            val = val * y
+        return val
+    
+    val = 0
+    if(N==1):
+        val=G(1.0/3,1.0/3)
+    elif(N==3):
+        val=(G(0.5,0.5)+G(0.5,0)+G(0,0.5))/3.0
+    elif(N==4):
+        val=-9.0*G(1.0/3,1.0/3)/16.0 + 25.0*(G(0.2,0.2)+Grr(0.2,0.6)+G(0.6,0.2))/48.0
+    elif(N==7):
+        val=9.0*G(1.0/3,1.0/3)/20 + 2.0*(G(0.5,0.5)+G(0.5,0)+G(0,0.5))/15.0 + (G(1,0)+G(0,1)+G(0,0))/20.0
+    
+    return val
+```
+
 ## 拼接单刚度矩阵的数值实现
+
+计算梯度$\nabla\phi_i\cdot\nabla\phi_j$的时候稍微麻烦一些, 同样需要变成参考单元来计算. 由于
+
+$$\phi_i(x)=\hat{\phi}_i(\hat{x}),$$
+
+两边对$x_j(j=1,2)$求导, 利用链式法则可得
+
+$$\dfrac{\partial\phi_i(x)}{\partial x_j} 
+= \dfrac{\partial\hat{\phi}_i(\hat{x})}{\partial x_j} 
+= \dfrac{\partial\hat{\phi}_i(\hat{x})}{\partial \hat{x}_1} \dfrac{\partial\hat{x}_1}{\partial x_j}
++ \dfrac{\partial\hat{\phi}_i(\hat{x})}{\partial \hat{x}_2} \dfrac{\partial\hat{x}_2}{\partial x_j}.$$
+
+于是
+
+$$\nabla\phi_i(x) = \nabla\hat{\phi}_i(\hat{x}) J ,$$
+
+(梯度是行向量. )其中$J$是仿射变换的Jacobi矩阵, 
+
+$$J=\begin{pmatrix}
+\dfrac{\partial\hat{x}_1}{\partial x_1} & \dfrac{\partial\hat{x}_1}{\partial x_2} \\
+\dfrac{\partial\hat{x}_2}{\partial x_1} & \dfrac{\partial\hat{x}_2}{\partial x_2}
+\end{pmatrix}$$
+
+$J$的各个分量可以直接计算出来, 用$A_0,A_1,A_2$的坐标表示. 假设
+
+$$B = \det\begin{pmatrix}
+a_1-a_0 & b_1-b_0 \\
+a_2-a_0 & b_2-b_0
+\end{pmatrix}$$
+
+那么
+
+$$\begin{aligned}
+&\dfrac{\partial\hat{x}_1}{\partial x_1} = \dfrac{b_2-b_0}{B}, 
+\quad \dfrac{\partial\hat{x}_1}{\partial x_2} = -\dfrac{a_2-a_0}{B},  \\
+&\dfrac{\partial\hat{x}_2}{\partial x_1} = -\dfrac{b_1-b_0}{B}, 
+\quad \dfrac{\partial\hat{x}_2}{\partial x_2} = \dfrac{a_1-a_0}{B}.
+\end{aligned}$$
 
 ```python
 def localstiff(p, c):
@@ -386,13 +554,23 @@ def localstiff(p, c):
                 return c(x)*(Nabla[i][0]*Nabla[j][0] + Nabla[i][1]*Nabla[j][1])
             S[i][j] = gaussquad(p, g)  #\int_{E_n}c\nabla_{ni}\cdot\nabla_{nj}dxdy
     return S
+
+def localstiff_a(p, a):
+    #拼接局部刚度矩阵\int_{E_n}a\phi_i\phi_jdxd.
+    S = np.zeros([3,3]) #单刚度矩阵
+    
+    ##S[i][j]的计算
+    for i in [0,1,2]:
+        for j in [0,1,2]:    #\int_{E_n}c\nabla_{ni}\cdot\nabla_{nj}dxdy
+            S[i][j] = gaussquadnodalboth(p, a, i, j) 
+    return S
 ```
 
 # 算例
 
 考虑问题
 
-$$-\nabla\cdot(\nabla u)=2\pi^2\sin(\pi x)\sin(\pi y), (x,y)\in\Omega=[0,1]\times[0,1],$$
+$$-\nabla\cdot(\nabla u)+2\pi^2u=4\pi^2\sin(\pi x)\sin(\pi y), (x,y)\in\Omega=[0,1]\times[0,1],$$
 
 其中边界条件为
 
@@ -405,11 +583,11 @@ $$u(x,y)=\sin(\pi x)\sin(\pi y),$$
 我们取$n=64$, 运行上面的代码得到的数值解记为$u_h$, 真解为$u$, 那么误差的绝对值$e_h=\vert u_h-u\vert $的图像如下: 
 
 <div align = center>
-<img src="/pics/2DElliptic_Ex1.png" width = "400"/>
+<img src="/pics/2DEllipticEx1.png" width = "400"/>
 
 <br/>
 
-图4：算例的误差
+图5：算例的误差
 </div>
 
 # 附录：本节的所有代码
@@ -469,6 +647,28 @@ def assempde(Pb,Tb,c,a,f,bdnodes, g):
                 for j in range(Nlb): #第j个结点
                     r = S[j][i] #单刚度矩阵
                     A[Tb[k][j],Tb[k][i]] += r
+
+    if(callable(a)==False):  #a是常数，那就直接算单刚度矩阵. 
+        S = np.array([[2,1,1],
+                      [1,2,1],
+                      [1,1,2]  ])/24.0 #单刚度矩阵
+
+        for k in range(N):  #第k个单元    
+            for i in range(Nlb): #第i个结点
+                for j in range(Nlb): #第j个结点
+                    r = a*S[j][i] #单刚度矩阵
+                    A[Tb[k][j],Tb[k][i]] += r
+                    
+    else:  #a是个函数, 此时需要算数值积分, 比较麻烦. 
+        #我们可以采用Gauss数值积分.
+        for k in range(N):  #第k个单元  
+            p = np.array([Pb[Tb[k][0]], Pb[Tb[k][1]], Pb[Tb[k][2]]])  
+            S = localstiff_a(p, a) #\int_{E_n}a \phi_i\cdot \phi_j dxdy
+            for i in range(Nlb): #第i个结点
+                for j in range(Nlb): #第j个结点
+                    r = S[j][i] #单刚度矩阵
+                    A[Tb[k][j],Tb[k][i]] += r
+
 
     #右端向量
     b = np.zeros(Nb)
@@ -581,3 +781,14 @@ plt.show()
 
 ```
 
+# 参考学习资料
+
+[1] 武海军，偏微分方程现代数值方法，上课讲义，2021-2022学期.
+
+[2] 何晓明，有限元基础编程短课(Chapter 3)，天元数学东北中心. 
+
+链接：[https://www.bilibili.com/video/BV1CK411M71t/](https://www.bilibili.com/video/BV1CK411M71t/)
+
+<span style="display:block;color:red;  ">   font-size:24px 
+**（强烈推荐看这个短课学习）**
+</span>

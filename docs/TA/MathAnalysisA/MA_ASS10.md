@@ -23,7 +23,12 @@ nav_order: 17
 
 ## 主要问题
 
-待补充
+### 4.3/10(5)题
+
+**问题：** 广义积分还没学呢, 有些同学就作换元$x=\tan t$变成广义积分. 
+
+虽然某些“参考答案”可能是用广义积分来处理的, 
+但是还没学过就不要使用, 还是得用万能变换$x=\tan \dfrac{t}{2}$.
 
 ## 作业之后的思考题:（此部分思考题为助教友情提供，与上课无关，感兴趣可以做，不感兴趣可以不做）
 
@@ -163,7 +168,7 @@ $$\sum\limits_{k=1}^n\int_{\frac{k-1}{n}(b-a)}^{\frac{k}{n}(b-a)}f\Big(\frac{k}{
 
 **4.** (反证法)若存在$x_0\in(0,1]$使得$f(t_0)>0$, 则$\dfrac{f(t_0)}{t_0}>0$. 
 根据连续函数最值定理以及$\lim\limits_{t\to 0}\dfrac{f(t)}{t}=0$, 
-存在$t_1\in (0,t_0)$使得
+存在$t_1\in (0,t_0]$使得
 
 $$M=\sup\limits_{t\in[0,t_0]}\dfrac{f(t)}{t} = \dfrac{f(t_1)}{t_1}.$$
 
@@ -232,7 +237,7 @@ $$\begin{aligned}
 &= \int_0^t|\psi(s)-\varphi(s)|(s+1)\mathrm{d}s.
 \end{aligned}$$
 
-根据Gronwall不等式(在Gronwall不等式中让$f(t)=|\psi(t)-\varphi(t)|$, $a(t)=t+1$, $b(t)=c(t)=0$, 可知
+根据Gronwall不等式(在Gronwall不等式中让$f(t)=\vert\psi(t)-\varphi(t)\vert$, $a(t)=t+1$, $b(t)=c(t)=0$, 可知
 
 $$|\psi(t)-\varphi(t)|\le 0.$$
 
