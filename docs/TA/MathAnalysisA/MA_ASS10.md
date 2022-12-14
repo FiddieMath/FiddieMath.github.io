@@ -80,8 +80,6 @@ $$f(t)\le \int_0^t\dfrac{f(s)}{s}\mathrm{d}s,$$
 
 则$f$恒为$0$. 
 
-**提示：** 若$f(t_0)>0$, 研究$\sup\limits_{t\in [0,t_0]}\dfrac{f(t)}{t}$. 
-
 {: .remark}
 > 考虑常微分方程
 >
@@ -109,9 +107,6 @@ $$f(x)\le \int_0^x[a(t)f(t)+b(t)]\mathrm{d}t + c(x),$$
 证明Gronwall不等式
 
 $$f(x)\le \left[\int_0^xb(t)\mathrm{d}t+\max\limits_{t\in[0,x]}c(t)\right]e^{\int_0^xa(t)\mathrm{d}t}.$$
-
-**提示：** 建立函数$\displaystyle F(x)=\int_0^x[a(t)f(t)]\mathrm{d}t$的不等式,
-再考虑函数$A(x)=F(x)e^{-\int_0^xa(t)\mathrm{d}t}$. 
 
 **6.** 假设存在定义在$[0,+\infty)$上的$C^1$函数$x(t)$满足
 
@@ -151,6 +146,7 @@ $$\left\{\begin{aligned}
 **1.** 答案为$1$. 
 
 **2.** (1)【方法一】可以直接计算出$\displaystyle\int_0^1\dfrac{x^n}{1+x}\mathrm{d}x$的结果, 
+
 【方法二】固定$\delta\in(0,1)$, 然后拆分
 
 $$\int_0^1\dfrac{x^n}{1+x}\mathrm{d}x=\int_0^{\delta}\dfrac{x^n}{1+x}\mathrm{d}x
@@ -165,6 +161,37 @@ $$\int_0^1\dfrac{x^n}{1+x}\mathrm{d}x=\int_0^{\delta}\dfrac{x^n}{1+x}\mathrm{d}x
 **3.** 把这个积分和下面的式子作比较: 
 
 $$\sum\limits_{k=1}^n\int_{\frac{k-1}{n}(b-a)}^{\frac{k}{n}(b-a)}f\Big(\frac{k}{n}(b-a)\Big)g(x)\mathrm{d}x.$$
+
+**4.** 若$f(t_0)>0$, 研究$\sup\limits_{t\in [0,t_0]}\dfrac{f(t)}{t}$. 
+
+**5.** 建立函数$\displaystyle F(x)=\int_0^x[a(t)f(t)]\mathrm{d}t$的不等式,
+再考虑函数$A(x)=F(x)e^{-\int_0^xa(t)\mathrm{d}t}$. 
+
+**6.** 用Gronwall不等式.
+
+&nbsp; 
+
+&nbsp; 
+
+&nbsp;
+
+&nbsp; 
+
+&nbsp;
+
+&nbsp; 
+
+&nbsp;
+
+&nbsp; 
+
+&nbsp;
+
+&nbsp; 
+
+&nbsp;
+
+## 部分题的解答
 
 **4.** (反证法)若存在$x_0\in(0,1]$使得$f(t_0)>0$, 则$\dfrac{f(t_0)}{t_0}>0$. 
 根据连续函数最值定理以及$\lim\limits_{t\to 0}\dfrac{f(t)}{t}=0$, 

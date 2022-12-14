@@ -597,11 +597,54 @@ $$\lim\limits_{x\to 0}\cos\dfrac{1}{\xi(x)}=0.$$
 
 **4.** 若$g$在$(x_1,x_2)$上没有零点, 对函数$\dfrac{f(x)}{g(x)}$应用Rolle定理. 
 
-
 **5.** 反证法, 若存在$P_n$有复根, 设$m$是使得$P_{m+1}$具有复根的最小的正整数, 
 证明如果$P_{m+1}$具有复根, 则$P_{m-1}$有复根, 这与$m$的选取矛盾.
 
-具体来说, 考虑$x=u+iv$, 定义数列$r_n$和$s_n$分别为$P_n(x)$的实部和虚部, 则
+**6.** “$\Leftarrow$”: 用Newton-Leibniz公式来处理, 行列式可以变成下式: 
+
+$$|\det(\cdot)|=\left|\int_w^v\int_v^u[f'(t)-f'(s)]\mathrm{d}t\mathrm{d}s\right|.$$
+
+接下来就用Lipschitz条件进行放缩即可.
+
+“$\Rightarrow$”: 把行列式改写成下面的形式: 
+
+$$\left|\dfrac{f(u)-f(v)}{u-v}-\dfrac{f(w)-f(v)}{w-v}\right|\le|w-u|, \tag{6.1}$$
+
+固定$v,w$, 然后研究函数$g(w)=\dfrac{f(u)-f(v)}{u-v}-\dfrac{f(w)-f(v)}{w-v} (w\ne v, w\in I)$的连续性,
+进而推出$f$可微. 再从$(6.1)$式出发, 推导$f'\in\mathrm{Lip}$. 
+
+
+&nbsp;
+
+&nbsp; 
+
+&nbsp;
+
+&nbsp; 
+
+&nbsp;
+
+&nbsp; 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp; 
+
+&nbsp;
+
+&nbsp; 
+
+&nbsp;
+
+&nbsp; 
+
+&nbsp;
+
+## 部分题的简答
+
+**5.** 考虑$x=u+iv$, 定义数列$r_n$和$s_n$分别为$P_n(x)$的实部和虚部, 则
 
 $$r_{n+1}+is_{n+1}=r_n+is_n+(u+iv)(r_{n-1}+is_{n-1}),$$
 
