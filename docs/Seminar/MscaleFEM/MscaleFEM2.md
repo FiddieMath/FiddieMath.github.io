@@ -34,15 +34,15 @@ $$\begin{aligned}
 &u=0 &&\text{ on }\Gamma=\partial\Omega,
 \end{aligned} \tag{1.9}$$
 
-其中$\Omega\subset\mathbb{R}^n$是凸多面体, $\varepsilon$是一个小的参数,
+其中$\Omega\subset\mathbb{R}^2$是凸多面体, $\varepsilon$是一个小的参数,
 $a(x)=\left(a_{ij}\left(\dfrac{x}{\varepsilon}\right)\right)_{i,j}$是对称的,
 且满足
 
-$$\alpha|\xi|^2\le \sum\limits_{i=1}^n\sum\limits_{j=1}^n a_{ij}\xi_i\xi_j\le \beta|\xi|^2$$
+$$\alpha|\xi|^2\le \sum\limits_{i=1}^2\sum\limits_{j=1}^2 a_{ij}\xi_i\xi_j\le \beta|\xi|^2$$
 
-对任意$x\in\mathbb{R}^2$与$0 <  \alpha <  \beta$成立,
+对任意$\xi\in\mathbb{R}^2$与$0 <  \alpha <  \beta$成立,
 
-$a_{ij}(y)$关于$y$在$[0,1]^n$是光滑的周期函数, $f\in L^2(\Omega)$.
+$a_{ij}(y)$关于$y$在$[0,1]^2$是光滑的周期函数, $f\in L^2(\Omega)$.
 
 设$u_0$是均匀化问题的解:
 

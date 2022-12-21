@@ -7,7 +7,7 @@ nav_order: 174
 ---
 
 {: .warning}
-> 前置知识: Galerkin方法, [请点击这里](/docs/TA/numerical/Galerkin)跳转.
+> 前置知识: Galerkin方法, [请点击这里](/docs/TA/numerical/BdyP_Galerkin)跳转.
 
 {: .new}
 > 参考书：Jie Shen, Tao Tang, Li-Lian Wang, Spectral Methods, Algorithms, Analysis and Applications.

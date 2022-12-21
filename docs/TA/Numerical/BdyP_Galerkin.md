@@ -56,7 +56,7 @@ $$S(u,v):=\int_a^b(pu'v'+quv)\mathrm{d}x, \tag{1.4}$$
 
 $$F(v):=\int_a^brv\mathrm{d}x.$$
 
-我们把$(1.3)$叫做问题$(1.2)$的**弱形式(weak formulation)**.
+我们把$(1.3)$叫做问题$(1.2)$的**弱形式(weak formulation)**或者**变分形式(variational formulation)**.
 
 反之, 若$u\in C^2[a,b]$满足$(1.3)$, 根据分部积分可得
 
@@ -304,7 +304,7 @@ $$(pu')'=f'=qu-r,$$
 你只需要知道: **求解问题$(1.2)$等价于求解问题$(1.3)$**, 即可. 
 本节我们着重研究用数值方法来求问题$(1.3)$的解. 
 
-下面记$V = H_0^1[a,b]$. 假设$[a,b]$有如下的等距剖分:
+下面记$V = H_0^1[a,b]$. 假设$[a,b]$有如下的等距剖分（分成了$n+1$等分）:
 
 $$\mathcal{M}_h: a = x_0 < x_1 < \cdots < x_{n-1} < x_n < x_{n+1} = b,$$
 
@@ -396,7 +396,7 @@ k_{12}^i=k_{21}^i&=\int_{x_{i-1}}^{x_i}(p\phi_i'\phi_{i-1}'+q\phi_i\phi_{i-1})\m
 因此, 把各个区间的单元刚度矩阵加在一起可得总刚度矩阵$K$. 
 
 $$\begin{aligned}
-S(\phi_i,\phi_i) &= k_{22}^i+k_{11}^{i+1} = 2\dfrac{p}{h}+\dfrac{4}{3}qh,  \\
+S(\phi_i,\phi_i) &= k_{22}^i+k_{11}^{i+1} = 2\dfrac{p}{h}+\dfrac{2}{3}qh,  \\
 S(\phi_i,\phi_{i-1})=S(\phi_{i-1},\phi_{i}) &= k_{12}^i = -\dfrac{p}{h}+\dfrac{qh}{6}.
 \end{aligned}$$
 
@@ -416,7 +416,7 @@ k_{12}^i=k_{21}^i&=\int_{x_{i-1}}^{x_i}(p\phi_i'\phi_{i-1}'+q\phi_i\phi_{i-1})\m
 $$\begin{aligned}
 S(\phi_i,\phi_i) &= k_{22}^i+k_{11}^{i+1} = 
 \int_{x_{i-1}}^{x_{i+1}}(p\phi_{i}'\phi_{i}'+q\phi_{i}\phi_{i})\mathrm{d}x    \\
-& \approx \dfrac{1}{3h}(p_{i-1}+4p_{i}+p_{i+1}) + \dfrac{4q_ih}{3}, \\
+& \approx \dfrac{1}{3h}(p_{i-1}+4p_{i}+p_{i+1}) + \dfrac{2q_ih}{3}, \\
 S(\phi_i,\phi_{i-1})=S(\phi_{i-1},\phi_{i}) &= k_{12}^i = -\dfrac{1}{6h}(p_{i-1}+4p_{i-1/2}+p_i)
 +\dfrac{hq_{j-\frac{1}{2}}}{6}.
 \end{aligned}$$
@@ -425,11 +425,197 @@ S(\phi_i,\phi_{i-1})=S(\phi_{i-1},\phi_{i}) &= k_{12}^i = -\dfrac{1}{6h}(p_{i-1}
 
 右端向量用Simpson公式处理得到
 
-$$f_j \approx \dfrac{h}{6}(r_{j-1}+4r_j+r_{j+1}).$$
+$$f_j = \int_{x_{j-1}}^{x_{j+1}}r(x)\phi_j(x)\mathrm{d}x \approx \dfrac{h}{6}(r_{j-1}+4r_j+r_{j+1}).$$
 
 ### 数值例子
 
+考虑问题
+
+$$\begin{aligned}
+-\dfrac{\mathrm{d}^2u}{\mathrm{d}x^2}+\pi^2u&=f(x), &&x\in\Omega=(0,1), \\
+u(0)&=0, \\
+u(1)&=0,
+\end{aligned} \tag{1.8}$$
+
+其中$f(x)=2\pi^2\sin(\pi x)$. 这个问题的真解是$u(x)=\sin(\pi x).$
+编写程序实现在$n$个小区间构成的等距网格上使用有限元方法求问题$(1.8)$的数值解. 
+
+运行结果如下：
+
+<div align = center>
+<img src="/pics/Galerkin1D_1.png" width = "500"/>
+
+<br/>
+
+图：问题$(1.8)$的数值解.
+</div>
+
+Python代码如下: 
+
+```python
+import numpy as np
+import scipy.sparse as sparse
+from scipy.sparse.linalg import spsolve
+import matplotlib.pyplot as plt
+
+def Elliptic1D(p, q, r, N):
+    """
+    Solving equation -(pu')'+qu=r, u(-1)=u(1)=0. 
+    Input arguments:
+    p: parameter p in the equation. 
+    q: parameter q in the equation.
+    r: a function.
+    N: number of subintervals.
+    """
+    h = 1.0/N
+    x = np.linspace(0,1,N+1)
+
+    # Stiffness matrix
+    a12 = -p/h+q*h/6    #a_{j+1,j} 
+    a11 = 2*p/h + 2*q*h/3 #a_{j,j}
+    K = sparse.lil_matrix((N-1,N-1))
+    for i in range(N-1):
+        K[i,i] = a11
+    for i in range(N-2):
+        K[i,i+1] = a12
+        K[i+1,i] = a12
+        
+    # Load vector
+    R = r(x) # vector r
+    F = np.zeros(N-1)
+    for i in range(N-1):
+        F[i] = h/6.0*(R[i]+4*R[i+1]+R[i+2])
+    
+    # Solving
+    KK = sparse.csc_matrix(K)
+    U = spsolve(KK,F)
+
+    UU = np.zeros(N+1)
+    UU[1:N] = U
+    return UU
+
+if __name__ == "__main__": 
+    N = 24
+    p = 1
+    q = np.pi*np.pi
+
+    def r(x):
+        return 2*np.pi*np.pi*np.sin(np.pi*x)
+    
+    UU = Elliptic1D(p,q,r,N)
+
+    #Plotting
+    x = np.linspace(0,1,N+1)
+    plt.plot(x, UU, 'ro-')
+    plt.show()
+
+```
+
+Matlab代码如下: 
+
+```
+function UU = Elliptic1D(p, q, r, N)
+    %%
+    % Solving equation -(pu')'+qu=r, u(-1)=u(1)=0. 
+    % Input arguments:
+    % p: parameter p in the equation. 
+    % q: parameter q in the equation.
+    % r: a function.
+    % N: number of subintervals.
+    
+    h = 1.0/N;
+    x = linspace(0,1,N+1);
+
+    % Stiffness matrix
+    a12 = -p/h + q*h/6;
+    a11 = 2*p/h + 2*q*h/3;
+    e = ones(N-1,1);
+    K = spdiags([a12*e a11*e a12*e],-1:1,N-1,N-1);
+
+    % Load vector
+    R = r(x);
+    F = zeros(N-1,1);
+    for i = 1:N-1
+        F(i)=h/6.0*(R(i)+4*R(i+1)+R(i+2));
+    end
+
+    % Solving
+    U = K\F;
+    UU = [0; U; 0];
+end
+
+% 主程序
+N = 24;
+p = 1;
+q = pi*pi;
+
+r = @(x) 2*pi*pi*sin(pi*x);
+
+UU = Elliptic1D(p,q,r,N);
+
+%Plotting
+x = linspace(0,1,N+1);
+figure(1)
+plot(x, UU, 'ro-')
+
+```
+
 ### 误差分析
+
+对任意函数$g\in C^1[a,b]$满足$g(a)=0$, 都有
+
+$$g(x)=\int_a^xg'(t)\mathrm{d}t.$$
+
+由Cauchy-Schwarz不等式, 
+
+$$|g(x)|^2\le(b-a)\|g'\|_{L^2}^2, \qquad x\in[a,b].$$
+
+两边关于$x$积分, 可得**Friedrichs不等式**
+
+$$\|g\|_{L^2}\le (b-a)\|g'\|_{L^2}.$$
+
+后面作误差分析时我们要用到这个不等式. 
+
+{: .theorem-title}
+> Lemma 
+> 
+> 设$f\in C^2[a,b]$, $L_1f$表示$f$在$[a,b]$上的Lagrange线性插值函数, 余项记为$R_1f:=f-L_1f$. 
+> 则有如下估计:
+> 
+> $$\begin{aligned}
+& \|R_1f\|_{L^2} \le (b-a)^2\|f''\|_{L^2}, \\
+& \|(R_1f)'\|_{L^2} \le (b-a)\|f''\|_{L^2}.
+\end{aligned}$$
+
+**证明:** 
+利用Lagrange插值函数的性质, $(R_1f)(a)=(R_1f)(b)=0$, 由分部积分可得
+
+$$\int_a^b[f'-(L_1f)']^2\mathrm{d}x = \int_a^bf''(L_1f-f)\mathrm{d}x.$$
+
+由Cauchy-Schwarz不等式可得
+
+$$\|(R_1f)'\|_{L^2}^2 \le \|f''\|_{L^2}\|R_1f\|_{L^2},$$
+
+对$g=R_1f$利用Friedrichs不等式即可得欲证结论. $\square$
+
+{: .theorem}
+> **($H^1$估计)** 
+> 设$u_h$是有限元方法在小区间长度为$h$时的数值解, 
+> $u$是原问题的真解. 则有如下估计: 
+> 
+> $$\|u_h-u\|_{H^1} \le C\|u''\|_{L^2}h,$$
+> 
+> 其中, $C$是常数.
+
+{: .theorem}
+> **($L^2$估计)** 
+> 设$u_h$是有限元方法在小区间长度为$h$时的数值解, 
+> $u$是原问题的真解. 则有如下估计: 
+> 
+> $$\|u_h-u\|_{L^2} \le C\|u''\|_{L^2}h^2,$$
+> 
+> 其中, $C$是常数.
+
 
 ## $\phi_k$是正交函数——谱方法 
 
@@ -459,22 +645,119 @@ Fourier谱方法需要用到离散Fourier变换.
 
 ## 习题一
 
-考虑问题
-
-$$\begin{aligned}
--\dfrac{\mathrm{d}^2u}{\mathrm{d}x^2}+\pi^2u&=f(x), &&x\in\Omega=(0,1), \\
-u(0)&=0, \\
-u(1)&=0,
-\end{aligned} \tag{1.8}$$
-
-其中$f(x)=2\pi^2\sin(\pi x)$. 这个问题的真解是$u(x)=\sin(\pi x).$
-
-**1.** 编写程序实现在$n$个小区间构成的等距网格上使用有限元方法求问题$(1.8)$的数值解. 
-
-**2.** 画出$n=8$时的数值解, 计算$n=8,16,32,64,128,256,512,1024$时数值解与真解误差的$L^2(\Omega)$范数,
+计算问题$(1.8)$在$n=8,16,32,64,128,256,512,1024$时数值解与真解误差的$L^2(\Omega)$范数,
 并求出误差阶. (提示: $L^2$范数可用数值积分计算)
 
 ## 习题二
+
+修改前面程序中的```Elliptic1D```函数, 
+补全下面的```TODO```部分, 使得当$p,q$是函数的情形也能调用. (在python和matlab中二选一即可)
+
+### Python代码
+
+```python
+def Elliptic1D(p, q, r, N):
+    """
+    Solving equation -(pu')'+qu=r, u(-1)=u(1)=0. 
+    Input arguments:
+    p: parameter p in the equation. 
+    q: parameter q in the equation.
+    r: a function.
+    N: number of subintervals.
+    """
+    h = 1.0/N
+    x = np.linspace(0,1,N+1)
+
+    # Stiffness matrix
+    K = sparse.lil_matrix((N-1,N-1))
+    if(callable(p)==False): #p是常数，直接计算刚度矩阵
+        a12 = -p/h  #a_{j+1,j}
+        a11 = 2*p/h #a_{j,j}
+        for i in range(N-1):
+            K[i,i] = a11
+        for i in range(N-2):
+            K[i,i+1] = a12
+            K[i+1,i] = a12
+    else:   #p是函数，用数值积分来计算刚度矩阵
+        #TODO: 把下面的pass换成相应的代码.
+        pass
+
+    if(callable(q)==False): #q是常数，直接计算刚度矩阵
+        b12 = q*h/6    #a_{j+1,j} 
+        b11 = 2*q*h/3  #a_{j,j}
+        for i in range(N-1):
+            K[i,i] += b11
+        for i in range(N-2):
+            K[i,i+1] += b12
+            K[i+1,i] += b12
+    else:  #q是函数，用数值积分来计算刚度矩阵
+        #TODO: 把下面的pass换成相应的代码.
+        pass
+        
+    # Load vector
+    R = r(x) # vector r
+    F = np.zeros(N-1)
+    for i in range(N-1):
+        F[i] = h/6.0*(R[i]+4*R[i+1]+R[i+2])
+    
+    # Solving
+    KK = sparse.csc_matrix(K)
+    U = spsolve(KK,F)
+
+    UU = np.zeros(N+1)
+    UU[1:N] = U
+    return UU
+```
+
+### Matlab代码
+
+```
+function UU = Elliptic1D(p, q, r, N)
+    %%
+    % Solving equation -(pu')'+qu=r, u(-1)=u(1)=0. 
+    % Input arguments:
+    % p: parameter p in the equation. 
+    % q: parameter q in the equation.
+    % r: a function.
+    % N: number of subintervals.
+    
+    h = 1.0/N;
+    x = linspace(0,1,N+1);
+
+    % Stiffness matrix
+    K = sparse(N-1,N-1);
+    if(isa(p, 'function_handle') == 0) %p是常数，直接计算刚度矩阵
+        a12 = -p/h;
+        a11 = 2*p/h;
+        e = ones(N-1,1);
+        K = K + spdiags([a12*e a11*e a12*e],-1:1,N-1,N-1);
+    else %p是函数，用数值积分来计算刚度矩阵
+        % TODO: 把下面else的部分换成相应的代码.
+    end
+
+    if(isa(q, 'function_handle') == 0) %p是常数，直接计算刚度矩阵
+        b12 = q*h/6;
+        b11 = 2*q*h/3;
+        e = ones(N-1,1);
+        K = K + spdiags([b12*e b11*e b12*e],-1:1,N-1,N-1);
+    else %q是函数，用数值积分来计算刚度矩阵
+        % TODO: 把下面else的部分换成相应的代码.
+    end
+
+    % Load vector
+    R = r(x);
+    F = zeros(N-1,1);
+    for i = 1:N-1
+        F(i)=h/6.0*(R(i)+4*R(i+1)+R(i+2));
+    end
+
+    % Solving
+    U = K\F;
+    UU = [0; U; 0];
+end
+```
+
+## 习题三
 
 考虑问题
 
@@ -507,7 +790,53 @@ a(u,v)&=\int_{\Omega}(u'v'+u'v+uv)\mathrm{d}x, \\
 F(v)&=\int_{\Omega}fv\mathrm{d}x-\int_{\Omega}(G'v'+G'v+Gv)\mathrm{d}x, 
 \end{aligned}$$
 
+(注意, 此时$a$并不是对称的双线性函数. )
+
 **3.** 编写程序实现在$n$个小区间构成的等距网格上使用有限元方法求问题$(1.9)$的数值解. 
 
 **4.** 画出$n=8$时的数值解, 计算$n=8,16,32,64,128,256,512,1024$时数值解与真解误差的$L^2(\Omega)$范数,
+并求出误差阶. (提示: $L^2$范数可用数值积分计算)
+
+**5.(*)** 能否用理论证明第4问中的误差阶确实是你做数值试验观察到的那样? 
+
+## 习题四
+
+考虑混合边界问题
+
+$$\begin{aligned}
+-u''+u&=f, &&x\in\Omega=(0,1), \\
+u(0)&=0, \\
+u'(1)&=0,
+\end{aligned} \tag{1.10}$$
+
+**1.** 验证这个问题的变分形式为: 求$u\in V$使得
+
+$$S(u,v)=F(v),$$
+
+其中
+
+$$\begin{aligned}
+S(u,v)&=\int_0^1(u'(x)v'(x)+u(x)v(x))\mathrm{d}x, \\
+F(v) &= \int_0^1f(x)v(x)\mathrm{d}x, \\
+V&= \{v\in H^1[0,1]: v(0)=0\}.
+\end{aligned}$$
+
+**2.** 证明当$f\in C^0[a,b]$时, 这个问题存在唯一的弱解.
+
+**3.** 把区间分成$n$等份. 定义有限元空间
+
+$$V_h=\{v\in C^0[0,1]|v(0)=0, v|_{x_{[x_{i-1},x_i]}}\text{是线性多项式}, i=1,\cdots,n\}.$$
+
+请写出结点基函数的表达式.
+
+(注意: $\phi_1,\cdots,\phi_{n-1}$与前面都是一样的, 但在$\phi_n$处的结点基函数与前面稍微不一样. )
+
+**4.** 给出刚度矩阵$K$的计算公式, 建立线性方程组.
+
+**5.** 考虑$f(x)=\left(\dfrac{\pi^2}{4}+1\right)\sin\dfrac{\pi x}{2}$, 
+此时真解为$u(x)=\sin\dfrac{\pi x}{2}$. 
+
+- **(1)** 编写程序实现在$n$个小区间构成的等距网格上使用有限元方法求问题$(1.10)$的数值解. 
+
+- **(2)** 画出$n=8$时的数值解, 计算$n=8,16,32,64,128,256,512,1024$时数值解与真解误差的$L^2(\Omega)$范数,
 并求出误差阶. (提示: $L^2$范数可用数值积分计算)
