@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 函数拟合：Pade逼近
+title: （待更新）函数拟合：Pade逼近
 parent: 数值计算方法
 grand_parent: 助教工作
 nav_order: 192

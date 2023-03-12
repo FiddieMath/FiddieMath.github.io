@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 数值积分：多重积分的数值方法
+title: （待更新）数值积分：多重积分的数值方法
 parent: 数值计算方法
 grand_parent: 助教工作
 nav_order: 102

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 离散Fourier变换：周期边值问题的谱方法
+title: （待更新）离散Fourier变换：周期边值问题的谱方法
 parent: 数值计算方法
 grand_parent: 助教工作
 nav_order: 202
