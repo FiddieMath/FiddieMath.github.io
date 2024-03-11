@@ -133,6 +133,7 @@ def my_exp(x):
         ans = ans+term
     return ans
 ```
+
 {: .remark}
 > 当$n$充分大时，$x^n/n!$很小，当它的绝对值小于机器精度时，它在计算机中就表示为0，从而后续的项都为0．
 
