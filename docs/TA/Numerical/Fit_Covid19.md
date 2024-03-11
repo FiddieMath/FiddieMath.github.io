@@ -1,6 +1,6 @@
 ---
 layout: default
-title: （待更新）函数拟合：实例：拟合COVID-19疫情数据
+title: （待更新）函数拟合：【实例】拟合COVID-19疫情数据
 parent: 数值计算方法
 grand_parent: 助教工作
 nav_order: 194

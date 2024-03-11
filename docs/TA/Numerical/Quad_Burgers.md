@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 数值积分：实例：Burgers方程的解析解
+title: 数值积分：【实例】Burgers方程的解析解
 parent: 数值计算方法
 grand_parent: 助教工作
 nav_order: 103
