@@ -6,6 +6,17 @@ grand_parent: 助教工作
 nav_order: 2
 ---
 
+{: .no_toc }
+
+<details open markdown="block">
+  <summary>
+    目录
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
+
 # 第2周作业
 
 新版讲义第一章1、4、8(3)、10(3)、13．
