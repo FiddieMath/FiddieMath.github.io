@@ -6,6 +6,8 @@ grand_parent: 助教工作
 nav_order: 56
 ---
 
+# 插值在信息论中的应用
+
 {: .note}
 > 摘自2024年南京大学计算机系《计算方法》课件[https://tcs.nju.edu.cn/wiki/index.php?title=%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95_Numerical_method_(Spring_2024)](https://tcs.nju.edu.cn/wiki/index.php?title=%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95_Numerical_method_(Spring_2024)).
 
