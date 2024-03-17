@@ -6,14 +6,6 @@ grand_parent: 助教工作
 nav_order: 13
 ---
 
-<div align = center>
-<img src="/pics/Godie.jpg" width = "400"/>
-
-<br/>
-
-《高等代数考前指南》
-</div>
-
 ## 第8次作业
 
 习题4.1/2, 4, 6, 10, 12(1)(3)(5), 13偶数题, 14奇数题, 15偶数题, 16奇数题, 18.

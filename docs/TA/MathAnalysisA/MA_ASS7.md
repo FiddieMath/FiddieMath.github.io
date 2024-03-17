@@ -6,9 +6,6 @@ grand_parent: 助教工作
 nav_order: 11
 ---
 
-<script src="https://sinacloud.net/egg-lib/hit-kounter/hit-kounter-lc-0.4.1.js"></script>
-<span data-hk-site> - </span>
-
 ## 第7次作业
 
 习题3.4/15, 16, 18. 

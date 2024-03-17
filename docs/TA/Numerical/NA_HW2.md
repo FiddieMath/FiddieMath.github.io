@@ -98,7 +98,7 @@ $$fl(x\odot y)=(x\odot y)(1+\delta), \qquad |\delta|\le\varepsilon.$$
 
 其中$\varepsilon$是机器精度．
 
-{: .example}
+{: .problem}
 > 机器数$x=0.31426\times 10^{3}$，$y=0.92577\times 10^5$，在$p=10$的计算机、浮点数系采用$t=5$，计算两个机器数的加减乘除的值．
 
 对中间结果用双倍长的累加器，我们有
@@ -118,15 +118,6 @@ fl(x-y)&=-0.92263\times 10^5, \\
 fl(x\ast y)&=0.29093\times 10^8, \\
 fl(x\div y)&=0.33946\times 10^{-2}, 
 \end{aligned}$$
-
-> $$\begin{aligned}
-x\ominus y&=0.10245\times 10^{-2} - 0.14763\times 10^{-3} \\
-&=0.10245\times 10^{-2}-0.014763\times 10^{-2} \\
-&=0.087687\times 10^{-2}
-\end{aligned}$$
->
-> 最后得到$0.08769\times 10^{-2}=0.87690\times 10^{-3}$还是$0.87687\times 10^{-3}$？
-
 
 
 某同学问了如下问题：
