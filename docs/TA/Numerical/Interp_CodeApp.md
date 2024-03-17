@@ -33,7 +33,7 @@ nav_order: 56
 > 
 > $$p(x)=a_0+a_1x+a_2x^2+\cdots+a_kx^k (\mathrm{mod}\,\,q)$$
 > 
-> 其中$a_i\in\{0,1,\cdots,q-1\}$，则$p:\{0,1,\cdots,q-1\}\to\{0,1,\cdots,q-1\}$．
+> 其中$a_i\in\lbrace 0,1,\cdots,q-1\rbrace$，则$p:\lbrace 0,1,\cdots,q-1\rbrace \to\lbrace 0,1,\cdots,q-1\rbrace$．
 
 
 
