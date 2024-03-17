@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 第2周作业+答疑
+title: 第3周作业+答疑
 parent: 数值计算方法
 grand_parent: 助教工作
-nav_order: 2
+nav_order: 3
 ---
 
 {: .no_toc }
