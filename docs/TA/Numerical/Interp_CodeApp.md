@@ -26,6 +26,8 @@ nav_order: 56
 - 任意6个人（或更多），就有了6个数据点
 - 通过Lagrange插值，即可唯一地还原多项式$p(x)$
 
+
+
 {: .remark}
 > 实际的算法使用的是有限域而非实数域
 > 
@@ -35,6 +37,8 @@ nav_order: 56
 > 
 > 其中$a_i\in\lbrace 0,1,\cdots,q-1\rbrace$，则$p:\lbrace 0,1,\cdots,q-1\rbrace \to\lbrace 0,1,\cdots,q-1\rbrace$．
 
+{: .remark}
+> Ron Rivest, Adi Shamir, Leonard Adleman三人在1977年提出了著名的RSA加密算法，它是互联网通信安全的基石之一．
 
 
 
