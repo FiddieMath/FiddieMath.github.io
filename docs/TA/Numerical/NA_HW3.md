@@ -71,7 +71,7 @@ $$\begin{aligned}
 {: .warning}
 > 易错点：
 >
-> 1. 有同学计算 $M_n = \left(\max\limits_{a\le y\le b}|f^{(n+1)}(y)| \right)$ 时，算的是2阶导数而不是3阶导数，得出来不符合误差界估计式．
+> 1. 有同学计算 $M_n = \left(\max\limits_{a\le y\le b}\vert f^{(n+1)}(y)\vert  \right)$ 时，算的是2阶导数而不是3阶导数，得出来不符合误差界估计式．
 >
 > 2. 有同学保留的有效数字位数不够多，导致“相减相消”，即算出来的误差不够精确，得出来不符合误差界估计式．
 
@@ -88,11 +88,13 @@ $$\begin{aligned}
 >
 > (3) $\sum\limits_{i=0}^n(x_i-x)^jl_i(x)=0$，$j=1,2,\cdots,n$；
 >
-> (4) $\sum\limits_{i=0}^nl_i(0)x_i^j=\left\{\begin{aligned}
+> (4) 
+>
+> $$\sum\limits_{i=0}^nl_i(0)x_i^j=\left\{\begin{aligned}
 &1, &&j=0, \\
 &0, &&j=1,2,\cdots,n, \\
 &(-1)^nx_0x_1\cdots x_n, &&j=n+1.
-\end{aligned}\right.$
+\end{aligned}\right.$$
 
 (1)和(2)分别考虑对$f(x)=1$和$f(x)=x^j$，$j=1,2,\cdots,n$用Lagrange插值公式，得到$n$次多项式$p_n(x)$．因为此时$f$的$n+1$次导数是0，根据插值误差公式，有
 
