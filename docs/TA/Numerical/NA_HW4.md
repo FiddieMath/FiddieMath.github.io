@@ -35,7 +35,7 @@ nav_order: 4
 
 $$g(x)=f(0)+(f(1)-f(0))x+\dfrac{f(2)-2f(1)+f(0)}{2}(x^2-x)$$
 
-证明：$\max\limits_{x\in[0,2]}|f(x)-g(x)| \le \dfrac{\sqrt{3}}{27}\max\limits_{x\in[0,2]}|f'''(x)|$．
+证明：$\max\limits_{x\in[0,2]}\vert f(x)-g(x)\vert  \le \dfrac{\sqrt{3}}{27}\max\limits_{x\in[0,2]}\vert f^{(3)}(x)\vert$．
 
 &nbsp;
 
@@ -63,7 +63,9 @@ $$\dfrac{\partial}{\partial x_i}f[x_0,x_1,\cdots,x_n] = f[x_0,x_1,\cdots,x_{i-1}
 
 **4．** 本题是 Hermite 插值多项式的有关补充内容——插值零的定义及性质．
 
-{: .new}
+{: .new-title}
+> Definition
+> 
 > **定义：** 若对于在基点 $x_0$, $x_1$, $\cdots$, $x_n$ 中重复出现 $k$ 次或更多次的每一点 $\xi$，都有 $f^{(k-1)}(\xi)=0$，则称 $f$ 在点 $x_0$, $x_1$, $\cdots$, $x_n$ 上 **插值零**．
 > 
 > 例如，我们称$f$在点1, 3, 8, 1, 13, 1, 8上插值零，如果
@@ -80,7 +82,9 @@ $$\dfrac{\partial}{\partial x_i}f[x_0,x_1,\cdots,x_n] = f[x_0,x_1,\cdots,x_{i-1}
 
 (3) 证明：若 $f$ 在结点 $x_0$, $x_1$, $\cdots$, $x_n$ 上插值零，则 $f$ 在结点 $x_0$, $x_1$, $\cdots$, $x_{n-1}$ 上也插值零．
 
-{: .new}
+{: .new-title}
+> Definition
+> 
 > **定义：** 设 $K$ 是域，一个 **$K$-代数** $A$ 满足如下条件：
 >
 > (i) $A$ 是含单位元的环；
