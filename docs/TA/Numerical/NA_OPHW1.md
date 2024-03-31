@@ -127,7 +127,7 @@ $$\left\vert\dfrac{\overline{x}-x}{x}\right\vert
 
 $$fl(1+\varepsilon) > 1$$
 
-的最小机器数 $\varepsilon$．根据浮点数存储方式，可以知道机器精度是 
+的最小正机器数 $\varepsilon$．根据浮点数存储方式，可以知道机器精度是 
 
 $$2^{-52}\approx 2.2\times 10^{-16}.$$
 
@@ -151,7 +151,7 @@ $$2^{-52}\approx 2.2\times 10^{-16}.$$
 
 $$\dfrac{x^3}{6}-\dfrac{x^5}{120} + \dfrac{x^7}{5040}-\cdots.$$
 
-然后分析对于不同的 $x$，截断至多少项来进行近似计算．当 $|x| < 2$ 时，被截断的项满足
+然后分析对于不同的 $x$，截断至多少项来进行近似计算．当 $\vert x\vert < 2$ 时，被截断的项满足
 
 $$\begin{aligned}
 \left\vert\sum\limits_{n=k}^{\infty}(-1)^k\dfrac{x^{2n+1}}{(2n+1)!}\right\vert 
