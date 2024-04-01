@@ -20,6 +20,7 @@ nav_order: 21
 
 
 
+
 ## 上机作业基本要求
 
 问题要回答清楚、结合上机试验得到的结果以及现成的理论进行解释．
@@ -219,15 +220,25 @@ $$\varepsilon_n = n\varepsilon_{n-1} = \cdots = n!\varepsilon_0.$$
 
 要验证算法是否数值稳定，需要对初值做一个微小的扰动（比如把 $x_0$ 改成 $x_0\pm 10^{-6}$，观察后续输出的变化情况），如果两次输出相差较大，说明这个算法不稳定；如果相差较小，说明算法稳定．
 
-理论上，设初始 $\tilde{x}_0$ 有误差 $\varepsilon_0$，初始 $\tilde{x}_1$ 有误差 $\varepsilon_1$，
+理论上，设计算机中迭代序列为 $\lbrace \tilde{x}_n\rbrace$，初始 $\tilde{x}_0$ 有误差 $\varepsilon_0$，初始 $\tilde{x}_1$ 有误差 $\varepsilon_1$，
 
-令 $\varepsilon_n = x_n-\tilde{x}_n$，则初始部分的误差会变成
+令 $\varepsilon_n = \tilde{x}_n-x_n$，则初始部分的误差会变成
 
-$$\varepsilon_n = \dfrac{3\varepsilon_1-\varepsilon_0}{11}\times 4^n + \dfrac{-3\varepsilon_1+12\varepsilon_0}{11}\times(\dfrac{1}{3})^n.$$
+$$\varepsilon_n = \dfrac{3\varepsilon_1-\varepsilon_0}{11}\times 4^n + \dfrac{-3\varepsilon_1+12\varepsilon_0}{11}\times(\dfrac{1}{3})^n. \qquad (*)$$
 
 当 $n\to\infty$ 时，上式等号右边第二项趋于0，初始部分的误差被缩小了．但如果 $3\varepsilon_1-\varepsilon_0\ne 0$，那么右边第一项就趋向于无穷，初始部分的误差被放大了．
 
-在计算 $x_{n}=\dfrac{13}{3}x_{n-1}-\dfrac{4}{3}x_{n-2}$ 时，有下面两种实现方式：     
+**从相对误差的角度去考虑：** 可算出采用第一组初值的真解是$x_n=(\dfrac{1}{3})^n$，采用第二组初值的真解是$x_n=4^n$．根据$(*)$，对于第一组初值，相对误差 $r_n$ 满足
+
+$$r_n = \dfrac{3\varepsilon_1-\varepsilon_0}{11}\times 12^n + \dfrac{-3\varepsilon_1+12\varepsilon_0}{11} ,$$
+
+所以相对误差会迅速增长．对于第二组初值，相对误差 $r_n$ 满足
+
+$$r_n = \dfrac{3\varepsilon_1-\varepsilon_0}{11}  + \dfrac{-3\varepsilon_1+12\varepsilon_0}{11} (\dfrac{1}{12})^n ,$$
+
+所以相对误差大约保持在 $\dfrac{3\varepsilon_1-\varepsilon_0}{11}$ ，是个非常小的值．
+
+**计算顺序的影响：** 在计算 $x_{n}=\dfrac{13}{3}x_{n-1}-\dfrac{4}{3}x_{n-2}$ 时，有下面两种实现方式：     
 - 方式一：按 $x_{n}=\dfrac{13x_{n-1}-4x_{n-2}}{3}$ 计算；    
 - 方式二：按 $x_{n}=\dfrac{13}{3}x_{n-1}-\dfrac{4}{3}x_{n-2}$ 计算．
 
@@ -248,7 +259,9 @@ $$\varepsilon_n = \dfrac{3\varepsilon_1-\varepsilon_0}{11}\times 4^n + \dfrac{-3
 4611686018427387904.0000000000000000 	 4611686018427385856.0000000000000000
 ```
 
-在本题中，第一组初值满足 $3\varepsilon_1-\varepsilon_0\ne 0$，而第二组初值满足 $3\varepsilon_1-\varepsilon_0 = 0$．如果采用方式一，后续得到的数都是整数，所以没有舍入误差；如果采用方式二，后续得到的数会出现精度丢失，这是因为计算机中无法精确存储 $\dfrac{13}{3}$ 与 $\dfrac{4}{3}$，计算过程会带来误差．但是无论用方式一还是方式二，做微小扰动都可以让相对误差一直保持在一个很小的范围，所以我们可以认为这个算法是稳定的．
+**从舍入误差的角度考虑：** 在本题中，第一组初值满足 $3\varepsilon_1-\varepsilon_0\ne 0$．
+
+第二组初值满足 $3\varepsilon_1-\varepsilon_0 = 0$．如果采用方式一，后续得到的数都是整数，所以没有舍入误差；如果采用方式二，后续得到的数会出现精度丢失，这是因为计算机中无法精确存储 $\dfrac{13}{3}$ 与 $\dfrac{4}{3}$，计算过程会带来误差．但是无论用方式一还是方式二，做微小扰动都可以让相对误差一直保持在一个很小的范围，所以我们可以认为这个算法在第二组初值下是稳定的．
 
 因此，这个算法的稳定性与所给初值有关．
 
@@ -330,8 +343,6 @@ for i in range(N):
 1152921504606846976.0000000000000000 	 1152921504606846464.0000000000000000
 4611686018427387904.0000000000000000 	 4611686018427385856.0000000000000000
 ```
-
-
 
 
 
