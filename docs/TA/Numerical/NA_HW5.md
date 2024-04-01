@@ -26,7 +26,7 @@ nav_order: 5
 
 **31．** 设函数 $f(x)$ 在 $[a,b]$ 上具有四阶连续导数，试构造三次多项式 $H_3(x)$，使其满足插值条件
 
-$$H_3(a)=f(a), \quad H_3'(a)=f'(a), \quad H_3''(a)=f''(a), H_3''(b)=f''(b).$$
+$$H_3(a)=f(a), \quad H_3'(a)=f'(a), \quad H_3^{\prime\prime}(a)=f^{\prime\prime}(a), H_3^{\prime\prime}(b)=f^{\prime\prime}(b).$$
 
 并求其余项 $f(x)-H_3(x)$ 的表达式．
 
@@ -42,25 +42,25 @@ $$H_3(a)=f(a), \quad H_3(b)=f(b), \quad H_3(c)=f(c), H_3'(c)=f'(c).$$
 
 设 
 
-$$H_3(x) = f(a) + f'(a)(x-a) + \dfrac{f''(a)}{2}(x-a)^2 + C(x-a)^3,$$
+$$H_3(x) = f(a) + f'(a)(x-a) + \dfrac{f^{\prime\prime}(a)}{2}(x-a)^2 + C(x-a)^3,$$
 
 其中 $C$ 是待定系数，则 $H_3(x)$ 满足前三个插值条件，而
 
-$$H_3''(x) = f''(a) + 6C(x-a),$$
+$$H_3^{\prime\prime}(x) = f^{\prime\prime}(a) + 6C(x-a),$$
 
 代入 $x=b$ 结合第四个插值条件得 
 
-$$C = \dfrac{f''(b)-f''(a)}{6(b-a)}.$$
+$$C = \dfrac{f^{\prime\prime}(b)-f^{\prime\prime}(a)}{6(b-a)}.$$
 
 这样便能得到 $H_3(x)$ 的表达式．
 
 **【方法一】** 为求余项 $r(x) = f(x) - H_3(x)$，依据插值条件，可设 
 
-$$r''(x) = K(x)(x-a)(x-b). \qquad (1)$$
+$$r^{\prime\prime}(x) = K(x)(x-a)(x-b). \qquad (1)$$
 
 设辅助函数为
 
-$$F(t) = f''(t) - H_3''(t) - K(x)(t-a)(t-b),$$
+$$F(t) = f^{\prime\prime}(t) - H_3^{\prime\prime}(t) - K(x)(t-a)(t-b),$$
 
 仿照书上定理证明，用两次 Rolle 定理，得 $K(x) = \dfrac{f^{(4)}(\eta)}{2}$．对 $(1)$ 式积分两次，可得
 
@@ -86,14 +86,14 @@ $$F(t)=f(t) - H_3(t) - K(x)(t-a)^3(t+a-2b), \qquad (4)$$
 
 $$\begin{aligned}
 F'(t)&=f'(t)-H_3'(t) - 2K(x)(t-a)^2(2t+a-3b), && (5) \\
-F''(t)&=f''(t)-H_3''(t) - 12K(x)(t-a)(t-b). && (6)
+F^{\prime\prime}(t)&=f^{\prime\prime}(t)-H_3^{\prime\prime}(t) - 12K(x)(t-a)(t-b). && (6)
 \end{aligned}$$
 
 由 $(3)(4)$ 式， $F(a)=F(x)=0$，依 Rolle 定理，存在 $\xi_1\in (a,x)$ 使得 $F'(\xi_1)=0$．
 
-由 $(5)$ 式， $F'(a)=F'(\xi_1)=0$，依 Rolle 定理，存在 $\xi_2\in(a,\xi_1)$ 使得 $F''(\xi_2)=0$．
+由 $(5)$ 式， $F'(a)=F'(\xi_1)=0$，依 Rolle 定理，存在 $\xi_2\in(a,\xi_1)$ 使得 $F^{\prime\prime}(\xi_2)=0$．
 
-由 $(6)$ 式， $F''(a)=F''(\xi_2)=F''(b)=0$，依 Rolle 定理，存在 $\xi_3\in(a,\xi_2)$，$\xi_4\in(\xi_2,b)$，使得 $F^{(3)}(\xi_3)=F^{(4)}(\xi_4)=0$．
+由 $(6)$ 式， $F^{\prime\prime}(a)=F^{\prime\prime}(\xi_2)=F^{\prime\prime}(b)=0$，依 Rolle 定理，存在 $\xi_3\in(a,\xi_2)$，$\xi_4\in(\xi_2,b)$，使得 $F^{(3)}(\xi_3)=F^{(4)}(\xi_4)=0$．
 
 依 Rolle 定理，存在 $\xi\in(\xi_3,\xi_4)$，使得$F^{(4)}(\xi)=0$．求导计算得
 
@@ -111,7 +111,7 @@ $$r(x) = K(x)(x-a)^3(x+a-2b),$$
 
 $$r(x) = K(x)(x-a)^3(x-s),$$
 
-其中 $s$ 是待定系数，使得 $r(a)=r'(a)=r''(a)=r''(b)=0$．在后续用 Rolle 定理求解过程中，根据 $r''(b)=0$ 可解出 $s=2b-a$．
+其中 $s$ 是待定系数，使得 $r(a)=r'(a)=r^{\prime\prime}(a)=r^{\prime\prime}(b)=0$．在后续用 Rolle 定理求解过程中，根据 $r^{\prime\prime}(b)=0$ 可解出 $s=2b-a$．
 
 ### 错解
 
@@ -138,12 +138,12 @@ $$r(x) = f(x) - H_3(x) = K(x)(x-a)^3(x+a-2b).$$
 
 **【错解5】** 用了3次Rolle定理，得到了奇怪的结果（包含了 $f$ 的三次导数），比如
 
-$$K(x)=\dfrac{1}{6}\left[f^{(3)}(\xi) - \dfrac{f''(a)-f''(b)}{a-b}\right]$$
+$$K(x)=\dfrac{1}{6}\left[f^{(3)}(\xi) - \dfrac{f^{\prime\prime}(a)-f^{\prime\prime}(b)}{a-b}\right]$$
 
 
-**【错解6】** 没有构造辅助函数然后用 Rolle 定理，设 $r(x) = f(x) - H_3(x)$，由题目条件可知 $r''(x)$ 至少有 2 个零点 $a$，$b$，假设
+**【错解6】** 没有构造辅助函数然后用 Rolle 定理，设 $r(x) = f(x) - H_3(x)$，由题目条件可知 $r^{\prime\prime}(x)$ 至少有 2 个零点 $a$，$b$，假设
 
-$$r''(x)=K(x-a)(x-b),$$
+$$r^{\prime\prime}(x)=K(x-a)(x-b),$$
 
 那么取不定积分可得
 
@@ -153,7 +153,7 @@ $$r'(x) = \dfrac{1}{2}K(x-a)^2(x-b) -\dfrac{1}{6}K(x-a)^3,$$
 
 $$r(x) = \dfrac{1}{6}K(x-a)^3(x-b) -\dfrac{1}{24}K(x-a)^4.$$
 
-**错因：** 从 $r''(x)$ 到 $r'(x)$ 取不定积分这一步是错的，因为 $K$ 不是常数，而是与 $x$ 有关的函数．
+**错因：** 从 $r^{\prime\prime}(x)$ 到 $r'(x)$ 取不定积分这一步是错的，因为 $K$ 不是常数，而是与 $x$ 有关的函数．
 
 
 **【错解7】** 不同的同学构造了各种不同的辅助函数，比如
