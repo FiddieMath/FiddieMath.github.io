@@ -327,11 +327,9 @@ $$\begin{aligned}
 &\le M\sum\limits_{k=0}^n  \prod\limits_{j\ne k}\dfrac{y-x_j}{\vert x_k-x_j\vert }.
 \end{aligned}$$
 
-注意到，当 $k$ 为奇数时 $\prod\limits_{j\ne k}(x_k-x_j)$ 的符号与当 $k$ 为偶数时 $\prod\limits_{j\ne k}(x_k-x_j)$ 的符号相反，所以可以写
+注意到，当 $k$ 为奇数时 $\prod\limits_{j\ne k}(x_k-x_j)$ 是负的；当 $k$ 为偶数时 $\prod\limits_{j\ne k}(x_k-x_j)$ 是正的，所以可以写
 
-$$\prod\limits_{j\ne k}(x_k-x_j) = (-1)^k\sigma,$$
-
-其中 $\sigma\in\lbrace \pm 1\rbrace$．
+$$\prod\limits_{j\ne k}(x_k-x_j) = (-1)^k,$$
 
 再注意到，Chebyshev 多项式在 $x_k$ 处的值 $T_n(x_k)=(-1)^k$．
 
@@ -339,9 +337,8 @@ $$\prod\limits_{j\ne k}(x_k-x_j) = (-1)^k\sigma,$$
 
 $$\begin{aligned}
 \vert p_n(y)\vert 
-&\le M\sigma \sum\limits_{k=0}^n (-1)^k\prod\limits_{j\ne k}\dfrac{y-x_j}{ x_k-x_j } \\
-&= M\sigma T_n(x) \\
-&\le M \vert T_n(x)\vert.
+&\le M\sum\limits_{k=0}^n (-1)^k\prod\limits_{j\ne k}\dfrac{y-x_j}{ x_k-x_j } \\
+&= M\cdot T_n(x).
 \end{aligned}$$
 
 证明完成．$\square$
