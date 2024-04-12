@@ -20,7 +20,7 @@ nav_order: 6
 ## 第6周作业
 
 {: .note}
-> 本次作业笔误较多，所以同学们看看就行．
+> 本次布置的作业，书上笔误较多．
 
 讲义第三章习题2，4，5，6，7，8，9，12
 
@@ -289,4 +289,62 @@ $\displaystyle (p_0,p_0)=\int_{-1}^1p_0(x)p_0(x)(1+x^2)\mathrm{d}x=\dfrac{8}{3}$
 
 
 
+### 第8题
+
+求特征多项式 $p_n(x)=\mathrm{det}(x I_n-A_n)$ 的递推关系式，发现它和直交多项式 $q_n(x)$ 的递推关系式完全一致．
+
+又因为 $p_0(x)=q_0(x)$，$p_1(x)=q_1(x)$，依据递推式，可得 $p_k(x)=q_k(x)$ 对任意自然数 $k$ 成立．所以 $A_n$ 的特征值就是 $p_n(x)$ 的根，也是 $q_n(x)$ 的根．
+
+### 第9题
+
+依据 $T_n(x)$ 的递推式
+
+$$T_{n+1}=2T_n(x)-T_{n-1}(x)$$
+
+可以证明第一条式子．第二条式子采用裂项相消求和法．本题没什么难度．
+
+### 第12题
+
+{: .warning}
+> 本题容易出现伪证．根据提交情况，同学们的证明方法五花八门，但很多都不正确，又或者仿照书中性质(9)想当然地“造”了一个性质，把最难证的部分一笔带过．
+>
+> 助教精力有限，无法一一展示于此，实在抱歉．如果同学们不太确定自己的证明是否正确，可联系助教．
+
+设 $x_k=\cos\dfrac{\pi k}{n}$，$k=0,1,\cdots,n$．
+
+注意到：$p_n(x)$ 在插值基点 $\lbrace(x_k,p_n(x_k))\rbrace_{k=0}^n$ 处的 Lagrange 插值多项式是 $p_n(x)$ 本身，所以
+
+$$\begin{aligned}
+p_n(x)&=\sum\limits_{k=0}^np_n(x_k)\prod\limits_{j\ne k}\dfrac{x-x_j}{x_k-x_j}.
+\end{aligned}$$
+
+所以，当 $y > 1$ 时，$y > x_j (j=0,1,\cdots,n)$，故
+
+$$\begin{aligned}
+\vert p_n(y)\vert 
+&=\left\vert\sum\limits_{k=0}^n p_n(x_k)\prod\limits_{j\ne k}\dfrac{y-x_j}{x_k-x_j}\right\vert \\
+&\le \sum\limits_{k=0}^n \vert p_n(x_k)\vert \prod\limits_{j\ne k}\dfrac{y-x_j}{\vert x_k-x_j\vert } \\
+&\le M\sum\limits_{k=0}^n  \prod\limits_{j\ne k}\dfrac{y-x_j}{\vert x_k-x_j\vert }.
+\end{aligned}$$
+
+注意到，当 $k$ 为奇数时 $\prod\limits_{j\ne k}(x_k-x_j)$ 的符号与当 $k$ 为偶数时 $\prod\limits_{j\ne k}(x_k-x_j)$ 的符号相反，所以可以写
+
+$$\prod\limits_{j\ne k}(x_k-x_j) = (-1)^k\sigma,$$
+
+其中 $\sigma\in\lbrace \pm 1\rbrace$．
+
+再注意到，Chebyshev 多项式在 $x_k$ 处的值 $T_n(x_k)=(-1)^k$．
+
+因此，$\sum\limits_{k=0}^n (-1)^k\prod\limits_{j\ne k}\dfrac{y-x_j}{ x_k-x_j }$ 就是 $T_n(x)$ 插值基点为 $\lbrace (x_k,T_n(x_k))\rbrace_{k=0}^n$ 的 Lagrange 插值多项式．从而
+
+$$\begin{aligned}
+\vert p_n(y)\vert 
+&\le M\sigma \sum\limits_{k=0}^n (-1)^k\prod\limits_{j\ne k}\dfrac{y-x_j}{ x_k-x_j } \\
+&= M\sigma T_n(x) \\
+&\le M \vert T_n(x)\vert.
+\end{aligned}$$
+
+证明完成．$\square$
+
+你学会了吗？
 
