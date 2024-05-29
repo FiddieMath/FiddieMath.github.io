@@ -37,17 +37,17 @@ nav_order: 13
 
 解：设 $f(t,y(t)) = \dfrac{1}{1+y^2}$，则 $y'(t)=f(t,y(t))$．依 Taylor 展开，
 
-$$y(t+h)=y(t)+hy'(t)+\dfrac{1}{2}h^2y''(t)+\dfrac{1}{3!}h^3y^{(3)}(t)
+$$y(t+h)=y(t)+hy'(t)+\dfrac{1}{2}h^2y^{\prime\prime}(t)+\dfrac{1}{3!}h^3y^{(3)}(t)
 +\cdots,$$
 
 其中，
 
 $$\begin{aligned}
 y'(t) &= f(t,y(t)), \\
-y''(t) &= f_t(t,y(t)) + y'(t)f_y(t,y(t)) = f_t + ff_y, \\
+y^{\prime\prime}(t) &= f_t(t,y(t)) + y'(t)f_y(t,y(t)) = f_t + ff_y, \\
 y^{(3)}(t) &= \Big[f_{tt}(t,y(t)) + y'(t)f_{ty}(t,y(t))\Big] + \\
-&\qquad y''(t)f_y(t,y(t)) + y'(t)\Big[ f_{ty}(t,y(t)) + f_{yy}(t,y(t))y'(t)\Big] \\
-&=f_{tt}+2y'f_{ty}+y''f_y+(y')^2f_{yy} \\
+&\qquad y^{\prime\prime}(t)f_y(t,y(t)) + y'(t)\Big[ f_{ty}(t,y(t)) + f_{yy}(t,y(t))y'(t)\Big] \\
+&=f_{tt}+2y'f_{ty}+y^{\prime\prime}f_y+(y')^2f_{yy} \\
 &=f_{tt}+2ff_{ty}+(f_t+ff_y)f_y+f^2f_{yy}.
 \end{aligned}$$
 
@@ -57,11 +57,11 @@ $$\begin{aligned}
 f_y&=-\dfrac{2y}{(1+y^2)^2}, \\
 f_{yy}&=\dfrac{6y^2-2}{(1+y^2)^3}, \\
 y'(t)&=\dfrac{1}{1+y^2}, \\
-y''(t)&=\dfrac{-2y}{(1+y^2)^3}, \\
+y^{\prime\prime}(t)&=\dfrac{-2y}{(1+y^2)^3}, \\
 y^{(3)}(t)&=\dfrac{4y^2}{(1+y^2)^5}+\dfrac{6y^2-2}{(1+y^2)^5} = \dfrac{10y^2-2}{(1+y^2)^5}.
 \end{aligned}$$
 
-将 $y',y'',y^{(3)}$ 代回原式，并取 $h = t_{n+1}-t_n$，得迭代公式
+将 $y',y^{\prime\prime},y^{(3)}$ 代回原式，并取 $h = t_{n+1}-t_n$，得迭代公式
 
 $$\begin{aligned}
 y_0&=1, \\
@@ -71,7 +71,7 @@ y_{n+1}&=y_n+h\left[\dfrac{1}{1+y_n^2}-\dfrac{hy_n}{(1+y_n^2)^3} + \dfrac{h^2}{3
 {: .warning}
 > 可能到了后半学期了，同学们学习稍有松懈，推导出了错误的公式，比如
 >
-> $$y_{n+1}=y_n+h[f(y_n)+\dfrac{1}{2}h(f'(y_n)f(y_n)) + \dfrac{1}{3!}h^2(f''(y_n)f^2(y_n))$$
+> $$y_{n+1}=y_n+h[f(y_n)+\dfrac{1}{2}h(f'(y_n)f(y_n)) + \dfrac{1}{3!}h^2(f^{\prime\prime}(y_n)f^2(y_n))$$
 >
 > 然后就照抄答案．请确保理解了书中 $f=f(t,y(t))$ 的具体含义！
 
@@ -90,15 +90,15 @@ $$\varepsilon_n = y(t_n) - y_n$$
 
 的一致上界．书中已经证明
 
-$$\max\limits_{0\le n\le N}\vert \varepsilon_n\vert \le \dfrac{h\Vert y''\Vert_{\infty}}{2L}(\mathrm{e}^{L(b-a)}-1).$$
+$$\max\limits_{0\le n\le N}\vert \varepsilon_n\vert \le \dfrac{h\Vert y^{\prime\prime}\Vert_{\infty}}{2L}(\mathrm{e}^{L(b-a)}-1).$$
 
 因为对 $f(t,y)=\dfrac{1}{1+y^2}$，
 
 $$\max\limits_{x\in[0,1]}\vert f'\vert=\max\limits_{x\in[0,1]}\left\vert\dfrac{-2y}{(1+y^2)^2}\right\vert = \dfrac{1}{2},$$
 
-$$\max\limits_{x\in[0,1]}\vert y''\vert=\max\limits_{x\in[0,1]}\left\vert\dfrac{-2y}{(1+y^2)^3}\right\vert = \dfrac{1}{4},$$
+$$\max\limits_{x\in[0,1]}\vert y^{\prime\prime}\vert=\max\limits_{x\in[0,1]}\left\vert\dfrac{-2y}{(1+y^2)^3}\right\vert = \dfrac{1}{4},$$
 
-所以 $L = \dfrac{1}{2}$，$\Vert y''\Vert_{\infty} = \dfrac{1}{4}$．
+所以 $L = \dfrac{1}{2}$，$\Vert y^{\prime\prime}\Vert_{\infty} = \dfrac{1}{4}$．
 
 代入 $a=0$，$b=1$，可得
 
@@ -153,14 +153,14 @@ $$y(t+h)=y(t)+\dfrac{1}{6}h[4f(t,y(t))+2f(t+h,y(t+h))+h\dfrac{\mathrm{d}}{\mathr
 首先，由 $y'=f(t,y)$，得
 
 $$\begin{aligned}
-y''&=\dfrac{\mathrm{d}}{\mathrm{d}t}f(t,y(t))=f_t+ff_y, \\
+y^{\prime\prime}&=\dfrac{\mathrm{d}}{\mathrm{d}t}f(t,y(t))=f_t+ff_y, \\
 y^{(3)}&=f_{tt}+2ff_{ty}+(f_t+ff_y)f_y+f^2f_{yy}.
 \end{aligned}$$
 
 依 Taylor 展开，
 
 $$\begin{aligned}
-y(t+h)-y(t)&=hy'(t)+\dfrac{h^2}{2}y''(t)+\dfrac{h^3}{6}y^{(3)}(t) + O(h^4) \\
+y(t+h)-y(t)&=hy'(t)+\dfrac{h^2}{2}y^{\prime\prime}(t)+\dfrac{h^3}{6}y^{(3)}(t) + O(h^4) \\
 &=hf+\dfrac{h^2}{2}(f_t+ff_y)+\dfrac{h^3}{6}\Big[f_{tt}+2ff_{ty}+(f_t+ff_y)f_y+f^2f_{yy}\Big] +O(h^4).
 \end{aligned}$$
 
