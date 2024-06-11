@@ -4,6 +4,7 @@ title: 第8周：期中复习
 parent: 数值计算方法
 grand_parent: 助教工作
 nav_order: 8
+nav_exclude: true
 ---
 
 {: .no_toc }
