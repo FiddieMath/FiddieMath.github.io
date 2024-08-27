@@ -6,8 +6,6 @@ has_children: true
 permalink: docs/Exercise
 ---
 
-# 助教工作
-{: .no_toc }
+# 习题
 
-这里我记录一些题目.
-{: .fs-6 .fw-300 }
+这里我记录一些题目．
