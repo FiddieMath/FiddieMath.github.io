@@ -41,6 +41,9 @@ nav_order: 202401
 
 
 
+<div STYLE="page-break-after: always;"></div>
+
+
 ## 二、球与桶模型（20分）
 
 **5．** 有 $𝑛$ 个球，$𝑘$ 个盒子，每个球独立等概率地放入盒子中．
@@ -56,6 +59,9 @@ nav_order: 202401
 **（5）** 设 $𝑘 = 𝑛$，证明出现球最多的盒子中的球数多于 $\dfrac{3\ln n}{\ln\ln n}$ 的概率是极小的．
 
 
+<div STYLE="page-break-after: always;"></div>
+
+
 
 ## 三、离散随机变量（$2\times 10=20$ 分）
 
@@ -67,16 +73,23 @@ nav_order: 202401
 
 
 
+<div STYLE="page-break-after: always;"></div>
+
+
 ## 四、连续随机变量 （$2\times 10=20$ 分）
 
 **8．（1）**设独立的 $X\sim U(0,1)$，$Y\sim U(0,2)$，求
+
 $$
 \mathrm{Pr}(\max\{X,Y\}-\min\{X,Y\}\le 1).
 $$
+
 **（2）** 设独立的 $Y\sim U(0,1)$，$X$ 定义在 $[0,1]$ 且有概率密度函数 $f_X(x)=2x$，$x\in[0,1]$，求
+
 $$
 \mathrm{Pr}(\max\{X,Y\}-\min\{X,Y\}\le 1).
 $$
+
 **9．** 两个人打靶．甲打靶时，击中点和靶心的距离服从 $𝑈 (0, 1)$．乙打靶时，击中点在以靶心为圆心的半径为 $1$ 的圆内服从均匀分布．两人公平地选一个人上场打靶．
 
 （1）求击中点到靶心的距离的概率密度函数 $𝑓(𝑥)$．
@@ -87,23 +100,32 @@ $$
 
 
 
+<div STYLE="page-break-after: always;"></div>
+
+
 ## 五、测度集中和极限定理 （$2\times 10=20$ 分）
 
 **10．（1）** 设 $U$ 是$[0,1]$ 上的均匀分布，求证：$-\log U$ 服从参数为 $1$ 的指数分布．
 
 **（2）** 求
+
 $$
 \lim\limits_{n\to\infty}\int_0^1\int_0^1\cdots\int_0^1(x_1x_2\cdots x_n)^{\frac{1}{n}}\mathrm{d}x_1\mathrm{d}x_2\cdots\mathrm{d}x_n.
 $$
+
 **（3）** 设 $f$ 是 $[0,1]\to\mathbb{R}$ 上的连续函数，使用大数定律求
+
 $$
 \lim\limits_{n\to\infty}\int_0^1\int_0^1\cdots\int_0^1f\left(x_1x_2\cdots x_n)^{\frac{1}{n}}\right)\mathrm{d}x_1\mathrm{d}x_2\cdots\mathrm{d}x_n.
 $$
+
 **11．** 回忆对于随机变量 $X$，其矩生成函数为 $M_X(t)=\mathbb{E}[\mathrm{e}^{tX}]$．
 
 （1）若 $\mu=\mathbb{E}[X]$，证明 $M_X(t) \ge \mathrm{e}^{t\mu}$．
 
 （2）设 $X$ 的矩生成函数为 $M_X(t)=\dfrac{\mathrm{e}^t}{1-t^2}$．求 $\mathbb{E}[X]$，并证明对任意 $a>0$，有
+
 $$
 \mathrm{Pr}(X\ge a)\le 3\mathrm{e}^{-\frac{a}{2}}.
 $$
+
