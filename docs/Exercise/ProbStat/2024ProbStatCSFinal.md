@@ -10,6 +10,15 @@ nav_order: 202401
 
 任课老师：尹一通，刘景铖
 
+[课程主页](https://tcs.nju.edu.cn/wiki/index.php?title=%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1_(Spring_2024))
+
+参考书：
+- 概率导论（第2版·修订版）Dimitri P. Bertsekas and John N. Tsitsiklis，郑忠国 童行伟 译；人民邮电出版社 (2022)
+- Probability and Random Processes (4E) Geoffrey Grimmett and David Stirzaker Oxford University Press (2020)
+- Probability and Computing (2E) Michael Mitzenmacher and Eli Upfal Cambridge University Press (2017)
+
+## 期末考试题
+
 考试时间：2024年6月19日
 
 **说明：** 为方便整理与引用，本文采用的题号与原卷题号不一样．
@@ -37,11 +46,8 @@ nav_order: 202401
 
 
 
-**4．** 一个 𝑛 × 𝑚 的 $0/1$ 网格，每个格子独立地以 $\dfrac{1}{2}$ 的概率取 $1$，以 $\dfrac{1}{2}$ 的概率取 $0$，则每一行和每一列均有偶数个 $1$ 的概率为 $\underline{\hspace{2cm}}$ ．
+**4．** 一个 $n\times m$ 的 $0/1$ 网格，每个格子独立地以 $\dfrac{1}{2}$ 的概率取 $1$，以 $\dfrac{1}{2}$ 的概率取 $0$，则每一行和每一列均有偶数个 $1$ 的概率为 $\underline{\hspace{2cm}}$ ．
 
-
-
-<div STYLE="page-break-after: always;"></div>
 
 
 ## 二、球与桶模型（20分）
@@ -54,12 +60,9 @@ nav_order: 202401
 
 **（3）** 事件“第一个盒子为空”和“第二个盒子为空”是否独立？
 
-**（4）** 设 $𝑘 = 2𝑛 \ln 𝑛$，证明存在一个盒子为空的概率是  $O(\dfrac{1}{n})$ 的．
+**（4）** 设 $k = 2n\ln n$，证明存在一个盒子为空的概率是  $O(\dfrac{1}{n})$ 的．
 
-**（5）** 设 $𝑘 = 𝑛$，证明出现球最多的盒子中的球数多于 $\dfrac{3\ln n}{\ln\ln n}$ 的概率是极小的．
-
-
-<div STYLE="page-break-after: always;"></div>
+**（5）** 设 $k = n$，证明出现球最多的盒子中的球数多于 $\dfrac{3\ln n}{\ln\ln n}$ 的概率是极小的．
 
 
 
@@ -71,9 +74,6 @@ nav_order: 202401
 
 **7．** 有 $𝑛$ 个球，依次标号为 $1$ 到 $𝑛$． 按照下面的规则均匀独立地抽球，直到所有球被取出：每次抽球要求本次得到的球是剩下的球中拿出编号最小的球，否则把球放回去．从而，最后拿出的球的编号依次是 $1, 2, \cdots, 𝑛$． 设 $𝑇$ 为抽球的次数，求 $\mathbb{E}(𝑇)$ 和 $\mathrm{Var}(𝑇 )$．
 
-
-
-<div STYLE="page-break-after: always;"></div>
 
 
 ## 四、连续随机变量 （$2\times 10=20$ 分）
@@ -98,9 +98,6 @@ $$
 
 （3）让已上场的人再开一枪，则此次击中点到靶心的距离的期望是多少．
 
-
-
-<div STYLE="page-break-after: always;"></div>
 
 
 ## 五、测度集中和极限定理 （$2\times 10=20$ 分）
@@ -128,4 +125,3 @@ $$
 $$
 \mathrm{Pr}(X\ge a)\le 3\mathrm{e}^{-\frac{a}{2}}.
 $$
-
