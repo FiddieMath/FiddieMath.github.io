@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 习题
+title: 习题补充
 nav_order: 50
 has_children: true
 permalink: docs/ExerciseHidden
