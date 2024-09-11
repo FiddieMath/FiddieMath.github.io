@@ -173,6 +173,9 @@ kramdown:
     block:
       line_numbers: false
 
+math: mathjax
+
+
 compress_html:
   clippings: all
   comments: all
