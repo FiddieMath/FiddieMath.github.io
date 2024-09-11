@@ -1,5 +1,5 @@
 ---
-layout: mathjax
+layout: default
 title: 第1周作业
 parent: 偏微分方程现代数值方法
 grand_parent: 助教工作
