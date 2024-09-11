@@ -48,11 +48,11 @@ $$
 
 ### HW2
 
-对 Poisson 方程 $-\Delta u=f$，$x\in\Omega$，设 $$\mathcal{M}\_h$$ 为 $\Omega_h$ 的三角剖分，任意 $$K\in\mathcal{M}_h$$，记 $u_K$ 为 $u$ 在 $K$ 的重心 $C_K$ 处的近似值，取 $\mathcal{M}_K$ 为由单元 $K$ 及至少5个邻居单元组成的集合，使得可以由 $$\lbrace (C_{K'},u_{K'}), K'\in\mathcal{M}_k\rbrace$$ 按最小二乘拟合构造一个二次多项式函数，记为 $u_{h,K}$．定义逼近空间 $$U_h=\lbrace u_h:u_h\vert_K=u_{h,K}\vert_K, \forall K\in\mathcal{M}_h\rbrace$$．得 Poisson 方程的单元中心式有限体积离散
+对 Poisson 方程 $-\Delta u=f$，$x\in\Omega$，设 $\mathcal{M} _h$ 为 $\Omega_h$ 的三角剖分，任意 $K\in\mathcal{M} _h$，记 $u_K$ 为 $u$ 在 $K$ 的重心 $C_K$ 处的近似值，取 $\mathcal{M}_K$ 为由单元 $K$ 及至少5个邻居单元组成的集合，使得可以由 $\lbrace (C_{K'},u_{K'}), K'\in\mathcal{M}_k\rbrace$ 按最小二乘拟合构造一个二次多项式函数，记为 $u_{h,K}$．定义逼近空间 $U_h=\lbrace u_h:u_h\vert_K=u_{h,K}\vert _K, \forall K\in\mathcal{M}_h\rbrace$．得 Poisson 方程的单元中心式有限体积离散
 
 $$\displaystyle-\int_K\dfrac{\partial u_h}{\partial n}=f(C_K)\vert K\vert.$$
 
-考虑正三角形剖分，对下图中的单元 $K_0$，取 $$\mathcal{M}_{K_0}=\lbrace K_0,K_1,\cdots,K_6\rbrace$$，简记 $$u_i=u_{K_i}$$，给出 $K_0$ 上具体的单元中心式有限体积离散方程．
+考虑正三角形剖分，对下图中的单元 $K_0$，取 $\mathcal{M} _{K_0}=\lbrace K_0,K_1,\cdots,K_6\rbrace$，简记 $u_i=u_{K_i}$，给出 $K_0$ 上具体的单元中心式有限体积离散方程．
 
 <div align = center>
 <img src="/pics/MNPDEHW2.png" width = "200"/>
