@@ -2,16 +2,16 @@
 layout: default
 title: 第1周作业
 parent: 偏微分方程现代数值方法
-grand_parent: 助教工作
+grand_parent: 上课笔记
 nav_order: 1
 ---
 
-## 第1周作业
+# 第1周作业
 
 提交截止日期：2024 年 9 月 22 日 23:55:59
 
 
-### HW1 
+## HW1 
 
 设 $\Omega=(0,1)\times(0,1)$，$\Gamma_ 0:=\lbrace (0,y):0<y<1\rbrace$．给出问题
 
@@ -46,7 +46,7 @@ $$
 
 
 
-### HW2
+## HW2
 
 对 Poisson 方程 $-\Delta u=f$，$x\in\Omega$，设 $\mathcal{M} _  {h}$ 为 $\Omega_ h$ 的三角剖分，任意 $K\in\mathcal{M} _  h$，记 $u_ K$ 为 $u$ 在 $K$ 的重心 $C_ K$ 处的近似值，取 $\mathcal{M}_ K$ 为由单元 $K$ 及至少5个邻居单元组成的集合，使得可以由 $\lbrace (C_ {K'},u_ {K'}), K'\in\mathcal{M} _  {h}\rbrace$ 按最小二乘拟合构造一个二次多项式函数，记为 $u_ {h,K}$．定义逼近空间 $U_ h=\lbrace u_ h:u_ h\vert_ K=u_ {h,K}\vert _ K, \forall K\in\mathcal{M}_ h\rbrace$．得 Poisson 方程的单元中心式有限体积离散
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 高中数学
-nav_order: 4
+nav_order: 100
 has_children: true
 permalink: docs/Highschool
 nav_exclude: true

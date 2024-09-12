@@ -2,11 +2,11 @@
 layout: default
 title: 第2周作业
 parent: 偏微分方程现代数值方法
-grand_parent: 助教工作
+grand_parent: 上课笔记
 nav_order: 2
 ---
 
-## 第2周随堂练习
+# 第2周随堂练习
 
 {: .problem}
 > **随堂练习 qz1（判断题）：** 设 $\Omega$ 是二维空间中边界是 Lipschitz 的有界区域，则 $H^1(\Omega)$ 连续嵌入到 $L^{\infty}(\Omega)$．
@@ -21,10 +21,10 @@ nav_order: 2
 但是，可以证明：如果 $1\le q < \infty$，$\Omega\subset\mathbb{R}^2$，则 $H^1(\Omega)$ 连续嵌入到 $L^q(\Omega)$．
 
 
-## 第2周作业
+# 第2周作业
 
 提交截止日期：2024 年 9 月 ？ 日 23:55:59
 
-### HW3 
+## HW3 
 
 还没布置
