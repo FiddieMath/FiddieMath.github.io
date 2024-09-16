@@ -12,7 +12,7 @@ Date: September 2023
 
 ## Problem 1
 
-Consider the Newton's method for finding a solution $x_*$ to $f(x)=0$, where $f\in C^2(a,b)$, $x_*\in(a,b)$.
+Consider the Newton's method for finding a solution $x _ *$ to $f(x)=0$, where $f\in C^2(a,b)$, $x _ *\in(a,b)$.
 
 ```matlab
 determine $x_0\in(a,b)$.
@@ -21,9 +21,9 @@ for k=0,1,2,... do
 end for
 ```
 
-(1). Prove that if $x_0$ is sufficiently close to $x_*$ and $f'(x_*)\ne 0$, then $\lim\limits_{k\to\infty} x_k=x_*$ and $\lim\limits_{k\to\infty}\dfrac{x _ {k+1}-x _ *}{(x _ k-x _ *)^2}=\dfrac{f''(x _ *)}{2f'(x _ *)}.$
+(1). Prove that if $x _ 0$ is sufficiently close to $x _ *$ and $f'(x _ *)\ne 0$, then $\lim\limits _ {k\to\infty} x _ k=x _ *$ and $\lim\limits_{k\to\infty}\dfrac{x _ {k+1}-x _ *}{(x _ k-x _ *)^2}=\dfrac{f^{\prime\prime}(x _ *)}{2f'(x _ *)}.$
 
-(2). In practice sometimes the derivative is not easy to be obtained. As a result, a difference is used instead: $x_ {k+1}=x_ k-\dfrac{x_ k-x_ {k-1}}{f(x _ k)-f(x _ {k-1})}f(x _ k)$. Prove that if $x_0$ is sufficiently close to $x_ *$, then $x_ k \to x_ *$ and $\lim\limits_ {k\to\infty} \dfrac{x_ {k+1}-x _ * }{(x_ k-x_ *)(x_ {k-1}-x_ *)}=\dfrac{f''(x_ *)}{2f'(x _ *)}.$
+(2). In practice sometimes the derivative is not easy to be obtained. As a result, a difference is used instead: $x_ {k+1}=x_ k-\dfrac{x_ k-x_ {k-1}}{f(x _ k)-f(x _ {k-1})}f(x _ k)$. Prove that if $x_0$ is sufficiently close to $x_ *$, then $x_ k \to x_ *$ and $\lim\limits_ {k\to\infty} \dfrac{x_ {k+1}-x _ * }{(x_ k-x_ *)(x_ {k-1}-x_ *)}=\dfrac{f^{\prime\prime}(x_ *)}{2f'(x _ *)}.$
 
 ## Problem 2
 
@@ -44,7 +44,15 @@ end for
 
 (3). Suppose that $A$ has $n$ distinct eigenvalues and none of the shifts $\mu_i$, $i=1,2,\cdots$ is an eigenvalue of $A$. Prove that $H_i$, $i=0,1,2,\cdots$ are unreduced upper Hessenberg matrices. (An upper Hessenberg matrix $H$ is called unreduced, if $H _ {i+1,i}\ne 0$ for $i=1,\cdots,n-1$. )
 
-(4). Write $H_k=\begin{bmatrix} G_k & u_k \\ \varepsilon_ke^T & \alpha_k \end{bmatrix}$ when $\alpha_k,\varepsilon_k\in \mathbb{C}$, $u_k,e\in\mathbb{C}^{n-1}$ and $e=\begin{bmatrix} 0 \\ \vdots \\ 0 \\ 1 \end{bmatrix}$. Suppose $A$ has $n$ distinct eigenvalues. Prove that $\vert\varepsilon_ {k+1}\vert \le \rho_k^2 \Vert u _ k\Vert _ 2 \vert \varepsilon _ k\vert ^2 + \rho _ k \vert \alpha _ k -\mu _ k\vert \vert \varepsilon _ k \vert$, where $\rho _ k = \Vert (G _ k)-\mu _ k I )^{-1}\Vert _ 2$, provided $\mu _ k$ is not an eigenvalue of $G _ k$.
+(4). Write 
+
+$$H_k=\begin{bmatrix} G_k & u_k \\ \varepsilon_ke^T & \alpha_k \end{bmatrix}$$ 
+
+when $\alpha_k,\varepsilon_k\in \mathbb{C}$, $u_k,e\in\mathbb{C}^{n-1}$ and 
+
+$$e=\begin{bmatrix} 0 \\ \vdots \\ 0 \\ 1 \end{bmatrix}$$
+
+Suppose $A$ has $n$ distinct eigenvalues. Prove that $\vert\varepsilon_ {k+1}\vert \le \rho_k^2 \Vert u _ k\Vert _ 2 \vert \varepsilon _ k\vert ^2 + \rho _ k \vert \alpha _ k -\mu _ k\vert \vert \varepsilon _ k \vert$, where $\rho _ k = \Vert (G _ k)-\mu _ k I )^{-1}\Vert _ 2$, provided $\mu _ k$ is not an eigenvalue of $G _ k$.
 
 ## Problem 3
 
@@ -112,7 +120,7 @@ Consider the eigenvalue problem with $0 < \epsilon \ll 1$.
 
 $$
 \begin{aligned}
-&u''+(\lambda+\epsilon f(x))u=0, \quad 0 < x < 1, \\
+&u^{\prime\prime}+(\lambda+\epsilon f(x))u=0, \quad 0 < x < 1, \\
 &u(0)=0, \quad u'(1)=0.
 \end{aligned}
 $$
