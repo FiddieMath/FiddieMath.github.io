@@ -23,8 +23,26 @@ nav_order: 2
 
 # 第2周作业
 
-提交截止日期：2024 年 9 月 ？ 日 23:55:59
+提交截止日期：2024 年 9 月 29 日 23:55:59
 
 ## HW3 
 
-还没布置
+{: .problem}
+> 假设 $\Omega\subset\mathbb{R}^d$ 是有界的多面体区域，证明 Poincaré 不等式：
+> 
+> $$\Vert u-u_{\Omega}\Vert_{L^2(\Omega)}\le C\Vert\nabla u\Vert_{L^2(\Omega)}, \quad \forall u\in H^1(\Omega).$$
+> 
+> 其中 $\displaystyle u_{\Omega}=\dfrac{1}{\vert\Omega\vert}\int_{\Omega}u(x)\mathrm{d}x$．
+
+
+**提示：** 设 
+
+$$V=\left\lbrace v\in H^1(\Omega)\Big\vert\int_{\Omega}v=0\right\rbrace.$$
+
+欲证结论等价于
+
+$$\Vert v\Vert_{L^2(\Omega)}\le C\Vert\nabla v\Vert_{L^2(\Omega)}, \quad \forall v\in V. $$
+
+然后用稠密性论证．
+
+
