@@ -28,5 +28,5 @@ nav_order: 3
 
 **提示：** 必要性是简单的．充分性，因为对常数 $c$，仍有 $u-c\in H_ {\mathrm{per}}^1(\Omega)$ ，可不妨设 $c=u_ {\Omega}$（积分平均），然后在下面的空间中考虑用 Lax-Milgram 定理：
 
-$$V=\leftlbrace u\in H_ {\mathrm{per}}^1(\Omega): \int_u\mathrm{d}x\right\rbrace=0.$$
+$$\displaystyle V=\left\lbrace u\in H_ {\mathrm{per}}^1(\Omega): \int_ {\Omega}u\mathrm{d}x\right\rbrace=0.$$
 
