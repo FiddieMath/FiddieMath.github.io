@@ -19,10 +19,14 @@ nav_order: 3
 
 ## HW4 
 
-设 $\Omega=\lbrace x:0 < x_i < T_i, 1\le i\le d\rbrace$，$f\in L^2(\Omega)$，考虑周期边界条件的 Poisson 问题的变分形式：求 $u\in H_{\mathrm{per}}^1(\Omega)$ 满足
+{: .problem}
+> 设 $\Omega=\lbrace x:0 < x_i < T_i, 1\le i\le d\rbrace$，$f\in L^2(\Omega)$，考虑周期边界条件的 Poisson 问题的变分形式：求 $u\in H_{\mathrm{per}}^1(\Omega)$ 满足
+> 
+> $$\text{(VP)}\qquad \int_{\Omega}\nabla u\cdot\nabla v\mathrm{d}x=\int_{\Omega}fv\mathrm{d}x, \qquad \forall v\in H_{\mathrm{per}}^1(\Omega),$$
+> 
+> 证明 (VP) 存在弱解的充要条件是 $\int_{\Omega}f\mathrm{d}x=0$．
 
-$$\text{(VP)}\qquad \int_{\Omega}\nabla u\cdot\nabla v\mathrm{d}x=\int_{\Omega}fv\mathrm{d}x, \qquad \forall v\in H_{\mathrm{per}}^1(\Omega),$$
+**提示：** 必要性是简单的．充分性，因为对常数 $c$，仍有 $u-c\in H_ {\mathrm{per}}^1(\Omega)$ ，可不妨设 $c=u_ {\Omega}$（积分平均），然后在下面的空间中考虑用 Lax-Milgram 定理：
 
-证明 (VP) 存在弱解的充要条件是 $\int_{\Omega}f\mathrm{d}x=0$．
-
+$$V=\leftlbrace u\in H_ {\mathrm{per}}^1(\Omega): \int_u\mathrm{d}x\right\rbrace=0.$$
 
