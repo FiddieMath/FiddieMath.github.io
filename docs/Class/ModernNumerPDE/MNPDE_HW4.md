@@ -34,7 +34,7 @@ nav_order: 4
 > a(u,v)=\int_{\Omega}(a\nabla u\cdot\nabla v+cuv)\mathrm{d}x. \tag{4.2}
 > $$
 > 
-> 取有限维子空间 $V_h\subset H^1(\Omega)$，$g_h\in V_h|_{\partial\Omega}$ 为 $g$ 的近似，则相应的 Galerkin 离散为：求 $u_h\in V_h$，$u_h|_{\partial\Omega}=g_h$ 使得
+> 取有限维子空间 $V_h\subset H^1(\Omega)$，$g_h\in V_h\vert _ {\partial\Omega}$ 为 $g$ 的近似，则相应的 Galerkin 离散为：求 $u_h\in V_h$，$u_h \vert _ {\partial\Omega}=g_h$ 使得
 >
 > $$
 > a(u_h,v_h)=\langle f,v_h\rangle \qquad \forall v_h\in V_h\cap H_0^1(\Omega) \tag{4.3}
