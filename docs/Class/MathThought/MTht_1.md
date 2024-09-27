@@ -28,3 +28,4 @@ nav_order: 1
 
 那么这个无人会证明或证伪．
 
+相关链接：[If $2x$ and $3x$ are integers, must $x$ be as well? ](https://mathoverflow.net/questions/17560/)
