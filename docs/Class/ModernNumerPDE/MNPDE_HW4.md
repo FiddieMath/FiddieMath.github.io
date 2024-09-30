@@ -46,3 +46,5 @@ nav_order: 4
 > \Vert u-u_h\Vert _ {H^1(\Omega)}\le\left(1+\dfrac{\beta}{\alpha}\right)\inf\limits_{\substack{v _ h\in V _ h \\ v _ h\vert _ {\partial\Omega}=g_h}}\Vert u-v _ h\Vert _ {H^1(\Omega)}. \tag{4.4}
 > $$
 > 
+
+提示：仿照书上的定理来证明．注意强制性 $a(v,v) \ge \alpha \Vert v\Vert^2$ 仅对 $v\in H _ 0^1(\Omega)$ 成立，所以需要想办法构造边界条件为 $0$ 的函数．
