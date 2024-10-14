@@ -38,10 +38,10 @@ nav_order: 6
 
 {: .problem}
 > 
-> 设单元 $K$ 与 $\hat{K}\subset\mathbb{R}^d$ 仿射等价，证明局部的 Poincare 不等式：
+> 设单元 $K$ 与 $\hat{K}\subset\mathbb{R}^d$ 仿射等价，证明局部的 Poincaré 不等式：
 >
 > $$\Vert v-v_K\Vert_{L^2(K)}\le Ch_K\Vert\nabla v\Vert_{L^2(K)}, \forall v\in H^1(K).$$
 >
-> 其中 $\displaystyle v_K=\dfrac{1}{|K|}\int_Kv$，$C=C(\hat{K})$．
+> 其中 $\displaystyle v_K=\dfrac{1}{\vert K\vert}\int_Kv$，$C=C(\hat{K})$．
 
 没什么难度，关键是把积分区域变到参考单元中．
