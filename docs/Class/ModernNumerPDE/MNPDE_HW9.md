@@ -26,13 +26,13 @@ nav_order: 9
 >
 > 利用完全多重网格方法求解如下椭圆问题的线性有限元离散：
 >
-> ​    $$\begin{aligned}
+> ​$$\begin{aligned}
 >​    -\nabla\cdot(a\nabla u)&=1, \qquad x\in\Omega:=(-1,1)\times(-1,1), \\
 > ​    u&=0, \qquad x\in\partial\Omega,
 >​    \end{aligned}\qquad a=\left\lbrace\begin{aligned}
 > ​    &1, &&x_1x_2>0, \\
 >​    &10, &&x_1x_2\le 0.
-> ​    \end{aligned}\right.$$
+> \end{aligned}\right.$$
 >
 > 探究不同的$l$的选取对多重网格法所求近似解的精度的影响(参见定理5.8, 与直接法的解或与$V$循环多重网格解比较即可).
 
@@ -43,13 +43,13 @@ nav_order: 9
 > （讲义第六章作业题1）
 >
 > 设 $\Omega=\Omega_1\setminus\Omega_0\subset\mathbb{R}^d(d=2,3)$，其中 $\Omega_0\subset\Omega_1$ 都是多面体且关于某一点 $x_0\in\Omega_0$ 都是严格的星型区域．考虑Helmholtz方程：
-> $$
-> \begin{aligned}
+> 
+> $$\begin{aligned}
 >  -\Delta u-k^2u&=f, \qquad x\in\Omega, \\
 >   \dfrac{\partial u}{\partial \boldsymbol{n}}+iku&=g, \qquad x\in\partial\Omega_1, \\
 > u&=0,  \qquad x\in\partial\Omega_0. 
-> \end{aligned}
-> $$
+> \end{aligned}$$
+> 
 > 推导其稳定性估计．
 
 
