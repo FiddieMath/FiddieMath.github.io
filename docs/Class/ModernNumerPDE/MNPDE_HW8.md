@@ -41,3 +41,4 @@ nav_order: 8
 >
 > $$u^{n+1}=MG(u^n,A_k,f_k), \quad n=0,1,2,\cdots.$$
 
+多重网格法的 $\mathbb{B}_k$ 是递归定义的，只需把 $\mathbb{B}_k$ 都改为 $MG(\cdot,A_k,\cdot)$．
