@@ -7,14 +7,14 @@ nav_order: 41
 ---
 
 <div align = center>
-<img src="/pics/FloatXHS.png" width = "200"/>
+<img src="/pics/FloatXHS.png" width = "300"/>
 <br/>
 
 根据数值计算
 
 $$
 x=\dfrac{\sqrt[7]{\dfrac{843+\sqrt{843^2-4}}{2}}+\sqrt[7]{\dfrac{843-\sqrt{843^2-4}}{2}}-3}
-{\sqrt[5]{\dfrac{123+\sqrt{123^2-4}{2}}+\sqrt[5]{\dfrac{123-\sqrt{123^2-4}{2}}-3}
+{\sqrt[5]{\dfrac{123+\sqrt{123^2-4}}{2}}+\sqrt[5]{\dfrac{123-\sqrt{123^2-4}}{2}}-3}
 $$
 
 随浮点运算位数的不同计算所得的数值，下列判断正确的是：
