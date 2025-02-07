@@ -6,9 +6,16 @@ grand_parent: 助教工作
 nav_order: 41
 ---
 
+# 先看一个帖子
+
 <div align = center>
 <img src="/pics/FloatXHS.png" width = "300"/>
 <br/>
+
+小红书上的帖子
+</div>
+
+# 选择题
 
 根据数值计算
 
