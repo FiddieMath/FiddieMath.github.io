@@ -61,7 +61,7 @@ $$\left\vert\dfrac{a-\overline{a}}{\overline{a}}\right\vert \le \dfrac{1}{2(a_s+
 
 $$\begin{aligned}
 \vert e_{\overline{z}}\vert &=\vert e_{\overline{x}}+e_{\overline{y}}\vert \\
-&\le \vert e_{\overline{x}}\vert+\vert e_{\overline{y}}\vert=1\times 10^{-4}, 
+&\le \vert e_{\overline{x}}\vert+\vert e_{\overline{y}}\vert \le 1\times 10^{-4}, 
 \end{aligned}$$
 
 其中 $\overline{z}=z_0z_1\cdots z_m.z_{m+1}\cdots z_n$ 满足：$m=0$，$n=4$，$s=4$．
