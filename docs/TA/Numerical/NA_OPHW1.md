@@ -109,7 +109,7 @@ $$\left\vert\dfrac{\overline{x}-x}{x}\right\vert
 ① 上机报告的基本要素都有，基准分为 10 分．    
 ② 上机报告缺了任何一个部分，基准分为 9 分．    
 ③ 上机报告缺了至少两个部分，基准分为 7 分．    
-④ 雷同或抄袭：基准分为 0 分．
+④ 雷同或抄袭或严重的 AI 痕迹：基准分为 0 分．
 
 2．减分：
 
@@ -127,13 +127,19 @@ $$\left\vert\dfrac{\overline{x}-x}{x}\right\vert
 
 我们采用IEEE双精度浮点数(double类型)．
 
-**1．机器精度(machine epsilon)** 是满足
+**1．Machine epsilon** 是满足
 
 $$fl(1+\varepsilon) > 1$$
 
 的最小正机器数 $\varepsilon$．根据浮点数存储方式，可以知道机器精度是 
 
 $$2^{-52}\approx 2.2\times 10^{-16}.$$
+
+而教材上所定义的 **机器精度** 是用浮点系统表示一个非零实数 $x$ 的最大可能的相对误差
+
+$$\left\vert\dfrac{fl(x)-x}{x}\right\vert \le \varepsilon_{\text{Mach}}.$$
+
+若采用舍入截断，应有 $\varepsilon_{\text{Mach}}=\dfrac{\varepsilon}{2}$．
 
 **2．下溢值(underflow)** 是计算机能表示的大于 0 的最小浮点数．下溢值除以 2 之后，在计算机中会因为舍入而得到 0．所以为了寻找下溢值，只需从 1 出发，不断除以 2，即可得到下溢值．
 
