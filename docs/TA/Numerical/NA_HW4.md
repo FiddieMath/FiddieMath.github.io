@@ -232,15 +232,17 @@ $$w_{n+1}'(x)=\sum\limits_{k=0}^n\prod\limits_{j\ne k}(x-j).$$
 
 依据讲义的命题 2.3.1 中 (2.3.5) 式，
 
-$$f[0,1,\cdots,n]=\sum\limits_{i=1}^n\dfrac{i^k}{(i-1)\cdots(i-i+1)(i-i-1)\cdots(i-n)}=0.$$
+$$f[0,1,\cdots,n]=\sum\limits_{i=1}^n\dfrac{i^k}{(i-1)\cdots(i-i+1)(i-i-1)\cdots(i-n)}.$$
 
-利用 Newton 差商的误差公式（讲义的(2.3.9)式），
+利用 Newton 差商的误差公式（讲义的(2.3.9)式）
 
 $$f[0,1,\cdots,n]=\dfrac{f^{(n)}(\xi)}{n!}.$$
 
 而 $\deg f \le n-1$，故 $f^{(n)}(\xi)=0$．
 
-**【注】** 也可以设 $f(x)=x^k$ 然后考虑 $f[1,2,\cdots,n]$．
+**【注1】** 最后也可以根据习题二的第 11 题，因为 $\deg f < n$，所以 $f[0,1,\cdots,n]=0$．
+
+**【注2】** 也可以设 $f(x)=x^k$ 然后考虑 $f[1,2,\cdots,n]$．
 
 ## 第17题
 
