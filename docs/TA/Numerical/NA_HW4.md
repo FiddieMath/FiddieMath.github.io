@@ -33,9 +33,6 @@ nav_order: 4
 
 $$f[x,x_1,\cdots,x_n]=\dfrac{f[x_1,x_2,\cdots,x_n]-f[x,x_1,\cdots,x_{n-1}]}{x_n-x}.$$
 
-注意 $x_i$ 是 $f[x,x_1,\cdots,x_n]$ 的根．
-
-
 ## 第13题
 
 {: .problem}
