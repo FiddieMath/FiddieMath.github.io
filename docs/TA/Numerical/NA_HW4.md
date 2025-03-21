@@ -49,7 +49,7 @@ $$f[x,x_1,\cdots,x_n]=\dfrac{f[x_1,x_2,\cdots,x_n]-f[x,x_1,\cdots,x_{n-1}]}{x_n-
 > 
 > 且 $g'(x)$ 也关于 $x$ 在 $[a,b]$ 上连续．
 
-这个问题解决的关键是在第一类间断点处进行补充定义．
+**这个问题解决的关键是在第一类间断点处进行补充定义．**
 
 下面的引理 1 是习题二的第 6 题：
 
@@ -134,10 +134,10 @@ $$h'(x)=\dfrac{\mathrm{d}f[x,x_j]}{\mathrm{d}x}
 
 $$\begin{aligned}
 \lim\limits_{x\to x_j}h'(x)&=\lim\limits_{x\to x_j}\dfrac{f'(x)(x-x_j)-[f(x)-f(x_j)]}{(x-x_j)^2} \\
-&=\lim\limits_{x\to x_j}\dfrac{f''(x)(x-x_j)}{2(x-x_j)}=\dfrac{f''(x_j)}{2},
+&=\lim\limits_{x\to x_j}\dfrac{f^{\prime\prime}(x)(x-x_j)}{2(x-x_j)}=\dfrac{f^{\prime\prime}(x_j)}{2},
 \end{aligned}$$
 
-（上式用到了 $f''(x)$ 在 $x_j$ 的邻域连续）
+（上式用到了 $f^{\prime\prime}(x)$ 在 $x_j$ 的邻域连续）
 
 以及
 
@@ -145,7 +145,7 @@ $$\begin{aligned}
 h'(x_j)&=\lim\limits_{x\to x_j}\dfrac{h(x)-h(x_j)}{x-x_j} \\
 &=\lim\limits_{x\to x_j}\dfrac{f[x,x_j]-f'(x_j)}{x-x_j} \\
 &=\lim\limits_{x\to x_j}\dfrac{f(x)-f(x_j)-f'(x_j)(x-x_j)}{(x-x_j)^2} \\
-&=\lim\limits_{x\to x_j}\dfrac{f'(x)-f'(x_j)}{2(x-x_j)}=\dfrac{f''(x_j)}{2},
+&=\lim\limits_{x\to x_j}\dfrac{f'(x)-f'(x_j)}{2(x-x_j)}=\dfrac{f^{\prime\prime}(x_j)}{2},
 \end{aligned}$$
 
 所以 $h'(x_j)=\lim\limits_{x\to x_j}h'(x)$，故 $h'(x)$ 在 $x=x_j$ 处连续．
@@ -189,6 +189,23 @@ f[x,x,x_0,x_1,\cdots,x_n]&=\lim\limits_{y\to x}f[x,x_0,x_1,\cdots,x_n,y] \\
 
 若 $f(x)\in C^2[a,b]$，由定理 4 得 $h_j\in C^1[a,b]$，而  $g(x)$ 是 $h_0,h_1,\cdots,h_n$ 的线性组合，故 $g\in C^1[a,b]$． $\square$
 
+### 注记
+
+(1) 上面的 L'Hospital 法则的步骤可换为用 Taylor 公式．
+
+(2) 证明的关键是在节点处补充定义以确保连续性．
+
+### 错解 1
+
+直接写“显然，$g\in C[a,b]$”，没有去证明 $g$ 在 $x_i$ 处的连续性，缺乏论证过程．
+
+### 错解 2
+
+写 $g'(x)=\dfrac{g(x)-g(x_0)}{x-x_n}$，可能是笔误．
+
+写 $g'(x)=\dfrac{g(x)-g(x_0)}{x-x_0}$，少写了 lim．
+
+
 ## 第15题
 
 {: .problem}
@@ -196,13 +213,34 @@ f[x,x,x_0,x_1,\cdots,x_n]&=\lim\limits_{y\to x}f[x,x_0,x_1,\cdots,x_n,y] \\
 >
 > $$\sum\limits_{i=1}^n\dfrac{i^k}{(i-1)\cdots(i-i+1)(i-i-1)\cdots(i-n)}=0.$$
 
-**方法一：** 考虑 $f(x)=x^k$ 在点 $(1,f(1)),\cdots,(n,f(n))$ 的插值多项式 $p(x)$．将 $p(x)$ 的表达式写出来：
+**方法一：** 考虑 $f(x)=x^{k+1}$ 在点 $(1,f(1)),\cdots,(n,f(n))$ 的插值多项式 $p(x)$．将 $p(x)$ 的表达式写出来：
 
-$$p(x)=\sum\limits_{i=1}^n\dfrac{i^k}{(i-1)\cdots(i-i+1)(i-i-1)\cdots(i-n)}=0.$$
+$$p(x)=\sum\limits_{i=1}^n\dfrac{i^{k+1}(x-1)\cdots(x-i+1)(x-i-1)\cdots(x-n)}{(i-1)\cdots(i-i+1)(i-i-1)\cdots(i-n)}.$$
 
-因为 $f(x)$ 的次数比 $p(x)$ 大，所以根据 Lagrange 插值余项公式，$f(x)=p(x)$ 恒成立．
+根据 Lagrange 插值余项公式或代数基本定理，$f(x)=p(x)$ 恒成立．
 
-**方法二：** 在第 17 题中取 $f(x)=(x-1)(x-2)\cdots(x-n)$ 即可．
+令 $x=0$ 得
+
+$$0=f(0)=p(0)=\sum\limits_{i=1}^n\dfrac{(-1)^{n-1}n!\cdot i^k}{(i-1)\cdots(i-i+1)(i-i-1)\cdots(i-n)}.$$
+
+
+**方法二：** 设 $f(x)=x^{k+1}$，$w_{n+1}(x)=(x-0)(x-1)\cdots(x-n)$，则
+
+$$w_{n+1}'(x)=\sum\limits_{k=0}^n\prod\limits_{j\ne k}(x-j).$$
+
+所以 $w_{n+1}'(i)=i(i-1)\cdots(i-i+1)(i-i-1)\cdots(i-n)$．
+
+依据讲义的命题 2.3.1 中 (2.3.5) 式，
+
+$$f[0,1,\cdots,n]=\sum\limits_{i=1}^n\dfrac{i^k}{(i-1)\cdots(i-i+1)(i-i-1)\cdots(i-n)}=0.$$
+
+利用 Newton 差商的误差公式（讲义的(2.3.9)式），
+
+$$f[0,1,\cdots,n]=\dfrac{f^{(n)}(\xi)}{n!}.$$
+
+而 $\deg f \le n-1$，故 $f^{(n)}(\xi)=0$．
+
+**【注】** 也可以设 $f(x)=x^k$ 然后考虑 $f[1,2,\cdots,n]$．
 
 ## 第17题
 
@@ -220,11 +258,19 @@ $$p(x)=\sum\limits_{i=1}^n\dfrac{i^k}{(i-1)\cdots(i-i+1)(i-i-1)\cdots(i-n)}=0.$$
 
 $$f(x)=a\prod\limits_{j=1}^n(x-x_j),$$
 
-先写出$f'(x)$的表达式，取$x=x_i$，得到
+先写出 $f'(x)$ 的表达式，取 $x=x_i$，得到
 
 $$f'(x_i)=a\prod\limits_{j\ne i}(x_i-x_j)$$
 
 发现它跟Lagrange插值多项式很像．接下来利用第6题的结论或证明过程．
+
+### 错解 1
+
+没有写第 15 题，而写由题 15 知，$k=0,1,\cdots,n-2$ 时，$\sum\limits_{i=1}^n\dfrac{x_i^k}{f'(x_i)}=0$．
+
+错因：对 Lagrange 插值多项式的性质不熟悉，第 15 题只是第 17 题的一种特殊情形，还是希望你能用 Lagrange 插值多项式的性质完整书写过程，以达到巩固的目的．期中考试还有几周就到了，这部分很重要，记得好好复习．
+
+
 
 
 ## 第19题
