@@ -29,7 +29,12 @@ nav_order: 4
 {: .problem}
 > 设 $f(x)$ 为 $x$ 的 $k$ 次多项式，$x_1,x_2,\cdots,x_m$ 为互不相同的实数，且 $k>m$，证明 $f[x,x_1,\cdots,x_m]$ 为 $x$ 的 $k-m$ 次多项式．
 
-对 $m$ 用数学归纳法来证明．
+用下面Newton均差的迭代定义式进行归纳：
+
+$$f[x,x_1,\cdots,x_n]=\dfrac{f[x_1,x_2,\cdots,x_n]-f[x,x_1,\cdots,x_{n-1}]}{x_n-x}.$$
+
+注意 $x_i$ 是 $f[x,x_1,\cdots,x_n]$ 的根．
+
 
 ## 第13题
 
@@ -44,15 +49,20 @@ nav_order: 4
 > 
 > 且 $g'(x)$ 也关于 $x$ 在 $[a,b]$ 上连续．
 
-下面的解答需要用到习题二的第 6 题：
+这个问题解决的关键是在第一类间断点处进行补充定义．
 
-{: .lemma}
+下面的引理 1 是习题二的第 6 题：
+
+{: .highlight-title}
+> Lemma
+> 
 > **引理 1：** $\sum\limits_{j=0}^n\prod\limits_{\substack{k=0 \\ k\ne j}}^n\dfrac{x-x_k}{x_j-x_k}=1$
 
 **证明：** 考虑常值函数 $f(x)=1$ 的 Lagrange 插值多项式，应用代数基本定理或 Lagrange 插值多项式的余项公式即可得结论．
 
-{: .lemma}
-
+{: .highlight-title}
+> Lemma
+> 
 > **引理 2：** 若 $x$, $x_0$, $x_1$, $\cdots$, $x_n$ 是 $n+2$ 个不同的点，则
 >
 > $$f[x_0,x_1,\cdots,x_n,x]=\sum\limits_{j=0}^n\dfrac{f[x,x_j]}{\prod\limits_{\substack{k=0 \\ k\ne j}}^n(x_j-x_k)}.$$
@@ -99,10 +109,12 @@ f[x_0,x_1,\cdots,x_n,x]
 > **定理3：** 
 >
 > 若 $f\in C[a,b]$，$x_j\in[a,b]$，$f'(x_j)$ 存在，定义函数 
-> $h(x)=\left\{\begin{aligned}
+>
+> $$h(x)=\left\{\begin{aligned}
 &f[x,x_j], && x \ne x_j, \\ 
 &f^{\prime}(x_j), &&x= x_j, 
-\end{aligned}\right.$ 
+\end{aligned}\right.$$
+>
 > 则 $h(x)$ 是关于 $x\in[a,b]$ 的连续函数．
 
 **证明：** 因为 $\lim\limits_{x\to x_j}h(x)=\lim\limits_{x\to x_j}\dfrac{f(x)-f(x_j)}{x-x_j}=f'(x_j)=h(x_j)$，所以 $h(x)$ 在 $x=x_j$ 连续；而 $f\in C[a,b]$，则 $h(x)$ 是关于 $x\in[a,b]$ 的连续函数．  $\square$
@@ -176,3 +188,81 @@ f[x,x,x_0,x_1,\cdots,x_n]&=\lim\limits_{y\to x}f[x,x_0,x_1,\cdots,x_n,y] \\
 \end{aligned}$$
 
 若 $f(x)\in C^2[a,b]$，由定理 4 得 $h_j\in C^1[a,b]$，而  $g(x)$ 是 $h_0,h_1,\cdots,h_n$ 的线性组合，故 $g\in C^1[a,b]$． $\square$
+
+## 第15题
+
+{: .problem}
+> 证明：对 $k=0,1,\cdots,n-2$，
+>
+> $$\sum\limits_{i=1}^n\dfrac{i^k}{(i-1)\cdots(i-i+1)(i-i-1)\cdots(i-n)}=0.$$
+
+**方法一：** 考虑 $f(x)=x^k$ 在点 $(1,f(1)),\cdots,(n,f(n))$ 的插值多项式 $p(x)$．将 $p(x)$ 的表达式写出来：
+
+$$p(x)=\sum\limits_{i=1}^n\dfrac{i^k}{(i-1)\cdots(i-i+1)(i-i-1)\cdots(i-n)}=0.$$
+
+因为 $f(x)$ 的次数比 $p(x)$ 大，所以根据 Lagrange 插值余项公式，$f(x)=p(x)$ 恒成立．
+
+**方法二：** 在第 17 题中取 $f(x)=(x-1)(x-2)\cdots(x-n)$ 即可．
+
+## 第17题
+
+{: .problem}
+> 设 $n$ 次多项式 $f(x)$ 有互异的 $n$ 个实根 $x_1,x_2,\cdots,x_n$，证明
+>
+> $$\sum\limits_{i=1}^n\dfrac{x_i^k}{f'(x_i)}=\left\{\begin{aligned}
+&0, && 0\le k\le n-2; \\
+&a_n^{-1}, && k=n-1.
+\end{aligned}\right.$$
+>
+> 其中 $a_n$ 为 $f(x)$ 的最高次项系数．
+
+记
+
+$$f(x)=a\prod\limits_{j=1}^n(x-x_j),$$
+
+先写出$f'(x)$的表达式，取$x=x_i$，得到
+
+$$f'(x_i)=a\prod\limits_{j\ne i}(x_i-x_j)$$
+
+发现它跟Lagrange插值多项式很像．接下来利用第6题的结论或证明过程．
+
+
+## 第19题
+
+{: .problem}
+> 已知 $f(x)$ 的函数值 $f(0)=3$, $f(1)=3$, $f(2)=\frac{5}{2}$，求 Newton 差商插值多项式 $N_2(x)$ ．再增加 $f(\frac{3}{2})=\frac{13}{4}$，求 $N_3(x)$．
+
+用 Newton 插值多项式的递推式计算得
+
+$$\begin{aligned}
+N_2(x)&=3-\dfrac{1}{4}x(x-1), \\
+N_3(x)&=3-\dfrac{1}{4}x(x-1)-\dfrac{7}{6}x(x-1)(x-2).
+\end{aligned}$$
+
+
+## 第20题
+
+{: .problem}
+> 已知函数 $y=f(x)$ 的观测数据为 $f(0)=1$, $f(1)=2$, $f(2)=4$, $f(3)=8$，试分别求出三次 Newton 前差和后差插值多项式，并求 $f(0.25)$ 和 $f(2.5)$ 的近似值．
+
+三次Newton前差和后差插值多项式分别是
+
+$$\begin{aligned}
+N_3(x)&=N_3(0+s)=1+s+\dfrac{1}{2}s(s-1)+\dfrac{1}{6}s(s-1)(s-2), \\
+N_3(x)&=N_3(3+t)=8+4t+t(t+1)+\dfrac{1}{6}t(t+1)(t+2).
+\end{aligned}$$
+
+这两个多项式是相同的（替换 $t=x-3$，$s=x-0$ 之后）
+
+取 $s=0.25$，$t=-2.75$，都能算出 $N_3(0.25)=\dfrac{155}{128}$．
+
+取 $s=2.5$，$t=-0.5$，都能算出 $N_3(2.5)=\dfrac{91}{16}$．
+
+
+
+
+
+
+
+
+
