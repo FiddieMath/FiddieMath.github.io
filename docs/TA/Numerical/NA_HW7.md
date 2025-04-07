@@ -169,7 +169,7 @@ $$T_{n+1}=2xT_n(x)-T_{n-1}(x)$$
 {: .problem}
 > 证明：在所有首项系数为 1 的 $n$ 次多项式集合 $Q_n$ 中，Legendre 多项式 $\bar{P}_n(x)=\dfrac{2^n(n!)^2}{(2n)!}P_n(x)$ 在区间 $[-1,1]$ 上与零的平方误差最小，即
 >
-> $$\int_{-1}^1|\bar{P}_n(x)|^2\mathrm{d}x=\min\limits_{p_n\in Q_n}\int_{-1}^1|p_n(x)|^2\mathrm{d}x.$$
+> $$\int_{-1}^1\vert\bar{P}_n(x)\vert^2\mathrm{d}x=\min\limits_{p_n\in Q_n}\int_{-1}^1\vert p_n(x)\vert^2\mathrm{d}x.$$
 
 证明：因为 Legendre 多项式 $\lbrace P_k\rbrace$ 是正交多项式，故对任意 $p_n\in Q_n$，有
 
@@ -177,7 +177,7 @@ $$p_n=\sum\limits_{k=0}^nc_kP_k,$$
 
 其中 $\deg p_n=n$ 且 $p_n$ 为首一多项式，所以 $c_n=\dfrac{2^n(n!)^2}{(2n)!}$．于是，由正交性得
 
-$$\int_{-1}^1|p_n(x)|^2\mathrm{d}x=\sum\limits_{k=0}^nc_k^2\int_{-1}^1|P_k(x)|^2\mathrm{d}x \ge \int_{-1}^1c_n^2|P_n(x)|^2\mathrm{d}x.$$
+$$\int_{-1}^1\vert p_n(x)\vert^2\mathrm{d}x=\sum\limits_{k=0}^nc_k^2\int_{-1}^1\vert P_k(x)\vert^2\mathrm{d}x \ge \int_{-1}^1c_n^2\vert P_n(x)\vert^2\mathrm{d}x.$$
 
 等号成立条件是 $c_0=c_1=\cdots=c_{n-1}=0$．
 
@@ -189,7 +189,7 @@ $$\int_{-1}^1|p_n(x)|^2\mathrm{d}x=\sum\limits_{k=0}^nc_k^2\int_{-1}^1|P_k(x)|^2
 
 首先，$\displaystyle \int_{1}^2x^k\mathrm{d}x=\dfrac{2^{k+1}-1}{k+1}$．
 
-$\displaystyle \int_1^2x^k\ln x\mathrm{d}x=\dfrac{x^{k+1}}{k+1}\left(\ln x-\dfrac{1}{k+1}\right)\Big|_1^2=\dfrac{2^{k+1}}{k+1}\left(\ln 2-\dfrac{1}{k+1}\right)+\dfrac{1}{(k+1)^2}$．
+$\displaystyle \int_1^2x^k\ln x\mathrm{d}x=\dfrac{x^{k+1}}{k+1}\left(\ln x-\dfrac{1}{k+1}\right)\Big\vert_1^2=\dfrac{2^{k+1}}{k+1}\left(\ln 2-\dfrac{1}{k+1}\right)+\dfrac{1}{(k+1)^2}$．
 
 (1) 一次多项式 $p(x)=a_0+a_1x$ ：法方程是
 
