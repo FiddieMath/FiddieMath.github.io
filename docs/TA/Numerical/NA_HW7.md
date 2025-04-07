@@ -243,7 +243,7 @@ x=A\b;
 {: .problem}
 >  求 $f(x)=\arcsin x$ 的 Chebyshev 级数．
 
-先设 $f(x)=a_0+\sum\limits_{j=1}^{\infty}a_jT_j(x)$，利用 $T_k(x)$ 的带权正交性，两边同乘 $T_k(x)$ 然后在 $[-1,1]$ 上积分，可得 $a_k$ 的表达式．
+先设 $f(x)=a_0+\sum\limits_{j=1}^{\infty}a_jT_j(x)$，利用 $T_k(x)$ 的带权正交性，两边同乘 $T_k(x)\dfrac{1}{\sqrt{1-x^2}}$ 然后在 $[-1,1]$ 上积分，可得 $a_k$ 的表达式．
 
 $$\arcsin x = 1-\dfrac{\pi}{2}+\sum_{j=1}^{\infty}\dfrac{2}{j^2\pi}((-1)^{j-1}+1)T_j(x).$$
 
