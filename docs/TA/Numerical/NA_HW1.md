@@ -31,7 +31,7 @@ $$I=\int_0^1\mathrm{e}^{-x}\mathrm{d}x$$
 
 的近似值，在整个计算过程中按四舍五入规则取五位小数．计算中产生的误差的主要原因是离散或是舍入？为什么？
 
-**3．** 证明：若近似数 $\overline{a}=\pm a_0a_1\cdots a_m.a_{m+1}\cdots a_n$ 的相对误差有估计式
+**3．** 证明：若近似数 $\overline{a}=\pm a_0a_1\cdots a_m.a_{m+1}\cdots a_na_{n+1}\cdots a_{n+r}(r\in\mathbb{N})$ 的相对误差有估计式
 
 $$\left\vert\dfrac{a-\overline{a}}{\overline{a}}\right\vert \le \dfrac{1}{2(a_s+1)}\times 10^{-(n-s)},$$
 
@@ -53,7 +53,7 @@ $$\left\vert\dfrac{a-\overline{a}}{\overline{a}}\right\vert \le \dfrac{1}{2(a_s+
 
 提示：讨论 $s=0$ 或 $s\ne 0$，验证有效数字的定义即可．
 
-思考：这题能不能说 $\overline{a}$ 恰好有 $n+1-s$ 位有效数字？
+思考：如果 $r=0$，这题能不能说 $\overline{a}$ 恰好有 $n+1-s$ 位有效数字？
 
 ### 第4题解答
 
