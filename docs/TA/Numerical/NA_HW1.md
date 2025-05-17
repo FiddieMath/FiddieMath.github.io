@@ -60,7 +60,7 @@ $$\left\vert\dfrac{a-\overline{a}}{\overline{a}}\right\vert \le \dfrac{1}{2(a_s+
 记 $\overline{z}=\overline{x}-\overline{y}=0.0001$，且
 
 $$\begin{aligned}
-\vert e_{\overline{z}}\vert &=\vert e_{\overline{x}}+e_{\overline{y}}\vert \\
+\vert e_{\overline{z}}\vert &=\vert e_{\overline{x}}-e_{\overline{y}}\vert \\
 &\le \vert e_{\overline{x}}\vert+\vert e_{\overline{y}}\vert \le 1\times 10^{-4}, 
 \end{aligned}$$
 
