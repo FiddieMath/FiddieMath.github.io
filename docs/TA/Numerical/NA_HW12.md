@@ -77,7 +77,7 @@ $$\begin{aligned}
 代入 $f(t,y)=t+y$ 得迭代格式
 
 $$\begin{aligned}
-y_0&=1, 
+y_0&=1, \\
 y_{n+1}^{(0)}&=y_n+ht_n+hy_n, \\
 y_{n+1}&=y_n+\dfrac{h}{2}(t_n+y_n+t_{n+1}+y_{n+1}^{(0)}) \\
 &=y_n+\dfrac{h}{2}(t_n+y_n+t_{n+1}+y_n+ht_n+hy_n) \\ 
