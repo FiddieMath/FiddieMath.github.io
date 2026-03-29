@@ -127,7 +127,7 @@ $\square$
 由于
 
 $$[a_k,b_k]
-=\bigcup\limits_{x\in [a_k,b_k]}(x-\delta_x, x+\delta_x),$$
+\subset \bigcup\limits_{x\in [a_k,b_k]}(x-\delta_x, x+\delta_x),$$
 
 则根据有限覆盖定理, 存在有限个点$x_1^{(k)},\cdots,x_{n_k}^{(k)}$满足
 
@@ -156,7 +156,7 @@ $$|f(y)| < \varepsilon, \quad \forall y\in A_k.$$
 由于
 
 $$[a_k,b_k]
-=\bigcup\limits_{x\in [a_k,b_k]}(x-\delta_x^{(m)}, x+\delta_x^{(m)}),$$
+\subset \bigcup\limits_{x\in [a_k,b_k]}(x-\delta_x^{(m)}, x+\delta_x^{(m)}),$$
 
 则根据有限覆盖定理, 存在有限个($n_{k,m}$个)点$x_1^{(k,m)},\cdots,x_{n_{k,m}}^{(k,m)}$满足
 
