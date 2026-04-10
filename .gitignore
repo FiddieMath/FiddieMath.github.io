@@ -5,6 +5,4 @@
 .sass-cache
 _site
 Gemfile.lock
-node_modules
-/index.html
-/index.md
+node_modules 
