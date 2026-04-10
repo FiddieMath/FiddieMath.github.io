@@ -103,8 +103,10 @@ nav_sort: case_sensitive # Capital letters sorted before lowercase
 
 # External navigation links
 nav_external_links:
-  - title: FiddieMath on GitHub
-    url: https://github.com/FiddieMath/FiddieMath.github.io
+  - title: Fiddie 的 Bilibili
+    url: https://space.bilibili.com/261149392
+  - title: Fiddie 的 知乎
+    url: https://www.zhihu.com/people/RealFiddie 
 
 # Footer content
 # appears at the bottom of every page's main content
