@@ -4,6 +4,7 @@ title: 上课笔记
 nav_order: 3
 has_children: true
 permalink: docs/Class
+nav_exclude: true
 ---
 
 # 上课笔记

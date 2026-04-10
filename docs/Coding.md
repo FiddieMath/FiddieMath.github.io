@@ -4,6 +4,7 @@ title: 代码记录
 nav_order: 4
 has_children: true
 permalink: docs/Coding
+nav_exclude: true
 ---
 
 # 一些代码
