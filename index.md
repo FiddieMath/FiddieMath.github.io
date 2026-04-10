@@ -17,11 +17,11 @@ permalink: /
 
 ### 研究方向
 
-偏微分方程数值解法．
+偏微分方程数值解法、深度学习理论．
 
 ### 社交媒体账号
 
-- Bilibili: FiddieMath
+- Bilibili: Fiddie 
 - 知乎: Fiddie
 
 ### 其他
