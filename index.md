@@ -4,7 +4,7 @@ title: 主页
 nav_order: 1
 description: "Fiddie的个人主页"
 permalink: index/
-hidden: true
+nav_exclude: true
 ---
 
 ## 欢迎来到Fiddie的Github主页.
