@@ -3,7 +3,7 @@ layout: default
 title: 主页
 nav_order: 1
 description: "Fiddie的个人主页"
-permalink: /index
+permalink: index/
 hidden: true
 ---
 

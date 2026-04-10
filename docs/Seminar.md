@@ -4,6 +4,7 @@ title: 讨论班
 nav_order: 5
 has_children: true
 permalink: docs/Seminar
+nav_exclude: true
 ---
 
 # 讨论班
